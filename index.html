@@ -10,9 +10,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bonaire Roleplay">
-<meta property="og:description" content="A high-fidelity Roblox roleplay experience set in Bonaire, The Netherlands.">
 <meta name="theme-color" content="#040404">
 
 <style>
@@ -92,6 +89,30 @@ body {
 .nav-btn.active { color: var(--accent); }
 .nav-btn:hover { color: #aaa; }
 
+.nav-socials {
+    display: flex;
+    gap: 2px;
+    padding-left: 8px;
+    margin-left: 4px;
+    border-left: 1px solid var(--border);
+}
+
+.social-btn {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #444;
+    transition: 0.3s;
+}
+
+.social-btn:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
 .page-container {
     max-width: 1200px;
     margin: auto;
@@ -114,39 +135,48 @@ body {
 
 .grid-master {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(320px,1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
+    gap: 14px;
 }
 
+/* 🔽 REFINED CARD SCALE */
 .card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 32px;
-    position: relative;
+    border-radius: 22px;
+    padding: 22px;
     transition: 0.5s var(--ease-butter);
 }
 
 .card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
     border-color: #333;
 }
 
-.card-tag {
+.card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.01em;
+}
+
+.card-desc {
+    font-size: 11px;
+    color: #8a8a8a;
+    margin-top: 6px;
+    line-height: 1.6;
+}
+
+.section-label {
     font-size: 10px;
     font-weight: 800;
-    color: var(--accent);
-    letter-spacing: 0.2em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
 }
 
-.stat-num {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: #fff;
-}
-
-.spacer { height: 400px; }
+.spacer { height: 360px; }
 </style>
 </head>
 
@@ -155,7 +185,8 @@ body {
 
 <nav class="nav-fixed">
 <div class="nav-container">
-<div class="nav-logo">BonaireRP<span class="text-[#c89b3c]">.</span></div>
+<div class="nav-logo">Bonaire&nbsp;the&nbsp;Netherlands<span class="text-[#c89b3c]">.</span></div>
+
 <div class="nav-tabs">
 <div id="nav-pill"></div>
 <button class="nav-btn active" id="default-btn" onclick="tab('home',this)">home</button>
@@ -164,6 +195,16 @@ body {
 <button class="nav-btn" onclick="tab('stat',this)">status</button>
 <button class="nav-btn" onclick="tab('legal',this)">legal</button>
 </div>
+
+<div class="nav-socials">
+<button onclick="window.open('https://discord.gg/zDJyx7VHSd','_blank')" class="social-btn">
+<i class="fa-brands fa-discord"></i>
+</button>
+<button onclick="window.open('https://www.roblox.com/games/134913590714763/Bonaire-The-Netherlands','_blank')" class="social-btn">
+<i class="fa-solid fa-cube"></i>
+</button>
+</div>
+
 </div>
 </nav>
 
@@ -174,112 +215,80 @@ body {
 <h1 class="text-7xl md:text-9xl font-black text-white mb-8 tracking-tighter leading-none">
 Bonaire,<br><span class="text-gray-700">The Netherlands.</span>
 </h1>
+
 <p class="text-gray-500 max-w-2xl mx-auto text-lg mb-24">
-A high-fidelity Roblox roleplay experience focused on realism, law enforcement, civilian life, and Caribbean atmosphere.
+A high-fidelity Roblox roleplay experience focused on realism, structured governance, and immersive Caribbean life.
 </p>
 
-<div class="grid-master mb-32">
+<div class="grid-master mb-28">
 
-<div class="card">
-<div class="stat-num">Updates</div>
-<p class="text-xs text-gray-500 mt-4">Game & bot changelogs, balance adjustments, and feature releases.</p>
+<div class="card text-left">
+<div class="section-label">Updates</div>
+<div class="card-desc">Game & bot changelogs, balancing, fixes, and feature deployments.</div>
 </div>
 
-<div class="card">
-<div class="stat-num">Community</div>
-<p class="text-xs text-gray-500 mt-4">
-An organised roleplay community with clear rules, defined departments, staff introductions, and ongoing development.
-</p>
+<div class="card text-left">
+<div class="section-label">Community</div>
+<div class="card-desc">
+Structured departments, clear rules, staff transparency, and a long-term roleplay vision.
+</div>
 </div>
 
-<div class="card">
-<div class="stat-num">Legal</div>
-<p class="text-xs text-gray-500 mt-4">
-Rules, policies, data handling, moderation authority, and enforcement transparency.
-</p>
+<div class="card text-left">
+<div class="section-label">Legal</div>
+<div class="card-desc">
+Policies, moderation authority, enforcement rules, and data handling transparency.
+</div>
 </div>
 
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-xs text-gray-500 text-justify">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-14 text-[11px] text-gray-500 text-justify">
 
 <div>
 <h4 class="text-white uppercase tracking-widest mb-4 border-l-2 pl-4 border-[#c89b3c]">Community</h4>
 <p>
-Bonaire RP is built around structured roleplay, professional conduct, and immersive environments inspired by real-world Caribbean governance and culture.
+Bonaire RP is built around realism, professionalism, and immersive roleplay inspired by real Caribbean governance.
 </p>
 </div>
 
 <div>
 <h4 class="text-white uppercase tracking-widest mb-4 border-l-2 pl-4 border-[#c89b3c]">Suggestions</h4>
 <p>
-Community suggestions influence updates, features, and quality-of-life improvements. All submissions are reviewed internally by staff.
+Suggestions are reviewed internally and help guide quality-of-life improvements and future updates.
 </p>
 </div>
 
 <div>
 <h4 class="text-white uppercase tracking-widest mb-4 border-l-2 pl-4 border-[#c89b3c]">Terms</h4>
 <p>
-Participation implies agreement to server rules, moderation decisions, and policy updates without prior notice.
+Participation implies acceptance of all server rules and future policy changes.
 </p>
 </div>
 
 </div>
-<div class="spacer"></div>
-</div>
 
-<!-- UPDATES -->
-<div id="upds-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Updates</h2>
-<div class="grid-master">
-<div class="card"><span class="card-tag">Stable</span><h3 class="text-white font-bold">Initial Release</h3><p class="text-xs text-gray-500">Core systems deployed.</p></div>
-</div>
-<div class="spacer"></div>
-</div>
-
-<!-- COMMUNITY -->
-<div id="comm-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Community</h2>
-<div class="grid-master">
-<div class="card"><span class="card-tag">Staff</span><p class="text-xs text-gray-500">Meet leadership, moderators, and department heads.</p></div>
-</div>
-<div class="spacer"></div>
-</div>
-
-<!-- STATUS -->
-<div id="stat-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Status</h2>
-<div class="grid-master">
-<div class="card"><span class="card-tag">Online</span><p class="text-xs text-gray-500">Servers operational.</p></div>
-</div>
-<div class="spacer"></div>
-</div>
-
-<!-- LEGAL -->
-<div id="legal-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Legal</h2>
-<div class="grid-master">
-<div class="card"><span class="card-tag">Policy</span><p class="text-xs text-gray-500">Rules, data retention, and enforcement authority.</p></div>
-</div>
 <div class="spacer"></div>
 </div>
 
 </main>
 
 <script>
-function init(){ movePill(document.getElementById('default-btn')); }
+function init(){
+    movePill(document.getElementById('default-btn'));
+}
 function tab(id,el){
-movePill(el);
-document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');
-document.querySelectorAll('.page-wrap').forEach(p=>p.classList.remove('active'));
-document.getElementById(id+'-tab').classList.add('active');
-window.scrollTo({top:0,behavior:'smooth'});
+    movePill(el);
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.page-wrap').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id+'-tab').classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
 }
 function movePill(el){
-const pill=document.getElementById('nav-pill');
-pill.style.width=el.offsetWidth+'px';
-pill.style.left=el.offsetLeft+'px';
+    const pill=document.getElementById('nav-pill');
+    pill.style.width=el.offsetWidth+'px';
+    pill.style.left=el.offsetLeft+'px';
 }
 </script>
 
