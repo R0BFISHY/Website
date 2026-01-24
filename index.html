@@ -465,24 +465,41 @@ and emoji lifecycle management.
 </div>
 
 <script>
-function init(){movePill(document.getElementById('default-btn'));}
-function tab(id,el){
-movePill(el);
-document.querySelectorAll('.page-wrap').forEach(p=>p.classList.remove('active'));
-document.getElementById(id+'-tab').classList.add('active');
-window.scrollTo({top:0,behavior:'smooth'});
+function init(){
+    const btn = document.getElementById('default-btn');
+    movePill(btn);
+    btn.classList.add('active');
 }
+
+function tab(id, el){
+    movePill(el);
+
+    document.querySelectorAll('.nav-btn').forEach(b=>{
+        b.classList.remove('active');
+    });
+    el.classList.add('active');
+
+    document.querySelectorAll('.page-wrap').forEach(p=>{
+        p.classList.remove('active');
+    });
+    document.getElementById(id+'-tab').classList.add('active');
+
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
 function movePill(el){
-const pill=document.getElementById('nav-pill');
-pill.style.width=el.offsetWidth+'px';
-pill.style.left=el.offsetLeft+'px';
+    const pill=document.getElementById('nav-pill');
+    pill.style.width=el.offsetWidth+'px';
+    pill.style.left=el.offsetLeft+'px';
 }
+
 function openModal(html){
-document.getElementById('modalContent').innerHTML=html;
-document.getElementById('modal').classList.add('open');
+    document.getElementById('modalContent').innerHTML=html;
+    document.getElementById('modal').classList.add('open');
 }
+
 function closeModal(){
-document.getElementById('modal').classList.remove('open');
+    document.getElementById('modal').classList.remove('open');
 }
 
 /* ===== UPDATE CONTENT ===== */
