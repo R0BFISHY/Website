@@ -737,11 +737,135 @@ const update03 = `
 `;
 
 /* ===== STATUS ===== */
-const statusSynthova = `<h2>Synthova</h2>Latency: 40–80ms<br>API Latency: 15–45ms<br>Uptime: 99.9%<br>Servers: 8`;
-const statusAPI = `<h2>Synthova API</h2>Latency: 30–60ms<br>API Latency: 15–35ms<br>Uptime: 99.9%<br>Servers: 8`;
-const statusAppeals = `<h2>Synthova Appeals</h2>Latency: 45–90ms<br>API Latency: 50–80ms<br>Uptime: 99.9%<br>Servers: 2`;
-const statusCommunity = `<h2>Synthova Community</h2>Latency: 50–100ms<br>API Latency: 50–80ms<br>Uptime: 99.9%<br>Servers: 2`;
-const statusGame = `<h2>Bonaire, The Netherlands</h2>Game servers operational<br>Uptime: 99.9%`;
+const statusSynthova = `
+<h2 class="text-3xl font-black text-white mb-6">Synthova</h2>
+
+<div class="space-y-3 text-gray-400 text-sm">
+  <div class="flex justify-between">
+    <span>Latency</span>
+    <span class="text-white font-medium">40–80ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>API Latency</span>
+    <span class="text-white font-medium">15–45ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Uptime</span>
+    <span class="text-white font-medium">99.9%</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Servers</span>
+    <span class="text-white font-medium">8</span>
+  </div>
+</div>
+`;
+
+const statusAPI = `
+<h2 class="text-3xl font-black text-white mb-6">Synthova API</h2>
+
+<div class="space-y-3 text-gray-400 text-sm">
+  <div class="flex justify-between">
+    <span>Latency</span>
+    <span class="text-white font-medium">30–60ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>API Latency</span>
+    <span class="text-white font-medium">15–35ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Uptime</span>
+    <span class="text-white font-medium">99.9%</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Servers</span>
+    <span class="text-white font-medium">8</span>
+  </div>
+</div>
+`;
+
+const statusAppeals = `
+<h2 class="text-3xl font-black text-white mb-6">Synthova Appeals</h2>
+
+<div class="space-y-3 text-gray-400 text-sm">
+  <div class="flex justify-between">
+    <span>Latency</span>
+    <span class="text-white font-medium">45–90ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>API Latency</span>
+    <span class="text-white font-medium">50–80ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Uptime</span>
+    <span class="text-white font-medium">99.9%</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Servers</span>
+    <span class="text-white font-medium">2</span>
+  </div>
+</div>
+`;
+
+const statusCommunity = `
+<h2 class="text-3xl font-black text-white mb-6">Synthova Community</h2>
+
+<div class="space-y-3 text-gray-400 text-sm">
+  <div class="flex justify-between">
+    <span>Latency</span>
+    <span class="text-white font-medium">50–100ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>API Latency</span>
+    <span class="text-white font-medium">50–80ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Uptime</span>
+    <span class="text-white font-medium">99.9%</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Servers</span>
+    <span class="text-white font-medium">2</span>
+  </div>
+</div>
+`;
+
+const statusGame = `
+<h2 class="text-3xl font-black text-white mb-6">Bonaire, The Netherlands</h2>
+
+<div class="space-y-3 text-gray-400 text-sm">
+  <div class="flex justify-between">
+    <span>Latency</span>
+    <span class="text-white font-medium">50–90ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>API Latency</span>
+    <span class="text-white font-medium">40–60ms</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Uptime</span>
+    <span class="text-white font-medium">99.9%</span>
+  </div>
+
+  <div class="flex justify-between">
+    <span>Servers</span>
+    <span class="text-white font-medium">10</span>
+  </div>
+</div>
+`;
 
 /* ===== TEAM BIOS (FULL) ===== */
 const teamRob = `
