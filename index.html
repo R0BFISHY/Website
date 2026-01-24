@@ -165,6 +165,7 @@ body {
     padding: 28px;
     overflow: hidden;
     transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s;
+    cursor: pointer;
 }
 
 .card::before {
@@ -198,6 +199,35 @@ body {
     display: block;
 }
 
+/* MODAL */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(16px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s var(--ease);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 36px;
+    width: 90%;
+    max-width: 540px;
+}
+
 .spacer { height: 160px; }
 </style>
 </head>
@@ -220,6 +250,7 @@ body {
             <button class="nav-btn active" id="default-btn" onclick="tab('home',this)">home</button>
             <button class="nav-btn" onclick="tab('upds',this)">updates</button>
             <button class="nav-btn" onclick="tab('comm',this)">community</button>
+            <button class="nav-btn" onclick="tab('stat',this)">status</button>
             <button class="nav-btn" onclick="tab('legal',this)">legal</button>
         </div>
 
@@ -238,57 +269,178 @@ body {
 <!-- MAIN -->
 <main class="page-container">
 
+<!-- HOME -->
 <div id="home-tab" class="page-wrap active">
-
     <div class="text-center mb-24">
         <h1 class="text-7xl md:text-9xl font-black text-white tracking-tighter mb-8 leading-none">
             Bonaire,<br>
             <span class="text-[#c89b3c]">The Netherlands</span>
         </h1>
         <p class="text-gray-500 text-lg max-w-2xl mx-auto">
-            A high-fidelity Roblox roleplay experience focused on realism, structured governance,
-    and immersive Caribbean life.
+            A high-fidelity Roblox roleplay experience focused on realism,
+            structured governance, and immersive Caribbean life.
         </p>
     </div>
 
-    <!-- FEATURE CARDS -->
     <div class="grid-master mb-24">
+        <div class="card">
+            <span class="card-tag">Updates</span>
+            <h3 class="text-white font-bold text-xl mb-2">Ongoing Development</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+                Game and bot changelogs, fixes, balancing updates, and feature releases.
+            </p>
+        </div>
 
-<div class="card">
-    <span class="card-tag">Updates</span>
-    <h3 class="text-white font-bold text-xl mb-2">Ongoing Development</h3>
-    <p class="text-gray-500 text-sm leading-relaxed">
-        Game and bot changelogs, fixes, balancing updates, and feature releases
-        that improve stability, performance, and overall roleplay quality.
-    </p>
+        <div class="card">
+            <span class="card-tag">Community</span>
+            <h3 class="text-white font-bold text-xl mb-2">People & Structure</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+                Meet the staff team, explore departments, and understand daily operations.
+            </p>
+        </div>
+
+        <div class="card">
+            <span class="card-tag">Legal</span>
+            <h3 class="text-white font-bold text-xl mb-2">Rules & Policies</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+                Rules, moderation authority, enforcement procedures, and data handling.
+            </p>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
 </div>
 
-<div class="card">
-    <span class="card-tag">Community</span>
-    <h3 class="text-white font-bold text-xl mb-2">People & Structure</h3>
-    <p class="text-gray-500 text-sm leading-relaxed">
-        Learn about the community, meet the staff team, explore departments,
-        and understand how Bonaire, The Netherlands operates day to day.
-    </p>
+<!-- UPDATES PAGE -->
+<div id="upds-tab" class="page-wrap">
+    <h2 class="text-6xl font-black text-white mb-16">Changelog</h2>
+    <div id="updates-grid" class="grid-master"></div>
+    <div class="spacer"></div>
 </div>
 
-<div class="card">
-    <span class="card-tag">Legal</span>
-    <h3 class="text-white font-bold text-xl mb-2">Rules & Policies</h3>
-    <p class="text-gray-500 text-sm leading-relaxed">
-        Server rules, policies, moderation authority, enforcement procedures,
-        and data handling that ensure fairness, safety, and accountability.
-    </p>
+<!-- STATUS PAGE -->
+<div id="stat-tab" class="page-wrap">
+    <h2 class="text-6xl font-black text-white mb-16">System Status</h2>
+
+    <div class="grid-master">
+        <div class="card">
+            <span class="card-tag">Info</span>
+            <h3 class="text-white font-bold text-xl mb-2">Systems Operational</h3>
+            <p class="text-gray-500 text-sm">
+                All game services, bots, and automation systems are currently operational.
+            </p>
+        </div>
+
+        <div class="card">
+            <span class="card-tag">Bot</span>
+            <h3 class="text-white font-bold text-xl mb-2">Moderation & AutoMod</h3>
+            <p class="text-gray-500 text-sm">
+                Active and enforcing server rules in real time.
+            </p>
+        </div>
+
+        <div class="card">
+            <span class="card-tag">Bot</span>
+            <h3 class="text-white font-bold text-xl mb-2">Utility & Logging</h3>
+            <p class="text-gray-500 text-sm">
+                Logging, auditing, and backend systems are functioning normally.
+            </p>
+        </div>
+    </div>
+
+    <div class="spacer"></div>
 </div>
 
+<!-- COMMUNITY PAGE (placeholder for later) -->
+<div id="comm-tab" class="page-wrap">
+    <h2 class="text-6xl font-black text-white mb-16">Community</h2>
+    <p class="text-gray-500 max-w-3xl">
+        Community information, departments, and staff structure will be available here.
+    </p>
+    <div class="spacer"></div>
+</div>
+
+<!-- LEGAL PAGE -->
+<div id="legal-tab" class="page-wrap">
+    <h2 class="text-6xl font-black text-white mb-16">Legal</h2>
+    <p class="text-gray-500 max-w-3xl">
+        Server rules, moderation authority, enforcement procedures, and data handling policies.
+    </p>
     <div class="spacer"></div>
 </div>
 
 </main>
 
+<!-- UPDATE MODAL -->
+<div id="update-modal" class="modal-overlay" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <div id="modal-content"></div>
+        <button onclick="closeModal()" class="mt-8 w-full py-3 border border-white/10 rounded-xl text-xs font-bold uppercase tracking-widest">
+            Close
+        </button>
+    </div>
+</div>
+
 <script>
+const updates = [
+{
+    title: "Server & Feature Updates",
+    status: "Stable",
+    description: "Several improvements and additions have been deployed.",
+    bullets: [
+        "Embeds updated (info, notice, teaser, event)",
+        "New AutoMod rules added",
+        "Role icons implemented",
+        "Notification roles available:",
+        "• Notice Notifications",
+        "• Development Preview Notifications",
+        "• Event Notifications"
+    ]
+},
+{
+    title: "Booster Perks Added",
+    status: "Stable",
+    description: "New benefits are now available for server boosters.",
+    bullets: [
+        "10,000 economy cash",
+        "Embed permissions",
+        "Attach files",
+        "External emojis & stickers",
+        "Bypass slowmode",
+        "Voice messages",
+        "Create polls",
+        "Soundboard & activities"
+    ]
+},
+{
+    title: "System & Automation Updates",
+    status: "Stable",
+    description: "Automation and reporting systems have been expanded.",
+    bullets: [
+        "Automatic booster reward application",
+        "No manual staff input required",
+        "New bug reporting system",
+        "Automatic user confirmation",
+        "Staff-controlled bug status updates"
+    ]
+},
+{
+    title: "Moderation & Backend Improvements",
+    status: "Stable",
+    description: "Internal systems expanded for oversight and performance.",
+    bullets: [
+        "Advanced screening & join logs",
+        "Role update logs",
+        "Archived voice moderation logs",
+        "Backend optimizations",
+        "Emoji rotation and management"
+    ]
+}
+];
+
 function init(){
     movePill(document.getElementById('default-btn'));
+    renderUpdates();
 }
 
 function tab(id, el){
@@ -297,7 +449,7 @@ function tab(id, el){
     el.classList.add('active');
 
     document.querySelectorAll('.page-wrap').forEach(p => p.classList.remove('active'));
-    document.getElementById(id + '-tab')?.classList.add('active');
+    document.getElementById(id + '-tab').classList.add('active');
 
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
@@ -306,6 +458,34 @@ function movePill(el){
     const pill = document.getElementById('nav-pill');
     pill.style.width = el.offsetWidth + 'px';
     pill.style.left = el.offsetLeft + 'px';
+}
+
+function renderUpdates(){
+    const grid = document.getElementById('updates-grid');
+    grid.innerHTML = updates.map((u,i) => `
+        <div class="card" onclick="openUpdate(${i})">
+            <span class="card-tag">${u.status}</span>
+            <h3 class="text-white font-bold text-xl mb-2">${u.title}</h3>
+            <p class="text-gray-500 text-sm">${u.description}</p>
+        </div>
+    `).join('');
+}
+
+function openUpdate(i){
+    const u = updates[i];
+    document.getElementById('modal-content').innerHTML = `
+        <span class="card-tag">${u.status}</span>
+        <h2 class="text-3xl font-black text-white mb-4">${u.title}</h2>
+        <p class="text-gray-400 mb-4">${u.description}</p>
+        <ul class="text-gray-400 text-sm space-y-1 list-disc list-inside">
+            ${u.bullets.map(b => `<li>${b}</li>`).join('')}
+        </ul>
+    `;
+    document.getElementById('update-modal').classList.add('open');
+}
+
+function closeModal(){
+    document.getElementById('update-modal').classList.remove('open');
 }
 </script>
 
