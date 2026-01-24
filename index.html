@@ -3,124 +3,313 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bonaire the Netherlands</title>
 
-<link rel="stylesheet" href="/assets/css/main.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Bonaire, The Netherlands</title>
+
+<link rel="icon" type="image/png" href="https://www.transparentpng.com/download/emoticons/thinking-blue-emoticons-hd-transparent-1b3uLJ.png">
+<script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<meta name="theme-color" content="#050505">
+
+<style>
+:root {
+    --accent: #c89b3c;
+    --bg: #050505;
+    --surface: #0a0a0a;
+    --border: rgba(255,255,255,0.06);
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+body {
+    background: var(--bg);
+    color: #d4d4d4;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; }
+
+/* Background grid */
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+    z-index: -1;
+}
+
+/* NAV */
+.nav-fixed {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 100px;
+    background: rgba(10,10,10,0.75);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+}
+
+.nav-logo {
+    font-weight: 800;
+    font-size: 13px;
+    padding: 0 16px;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+.nav-logo .main { color: #fff; }
+.nav-logo .sub { color: var(--accent); }
+
+.nav-tabs {
+    position: relative;
+    display: flex;
+    gap: 2px;
+}
+
+#nav-pill {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.05);
+    border-radius: 100px;
+    transition: all 0.6s var(--ease);
+    z-index: 0;
+}
+
+.nav-btn {
+    position: relative;
+    z-index: 1;
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    border-radius: 100px;
+    transition: color 0.3s ease;
+}
+
+.nav-btn.active { color: var(--accent); }
+.nav-btn:hover:not(.active) { color: #aaa; }
+
+.nav-socials {
+    display: flex;
+    gap: 4px;
+    padding-left: 8px;
+    margin-left: 4px;
+    border-left: 1px solid var(--border);
+}
+
+.social-btn {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    transition: 0.3s ease;
+}
+
+.social-btn:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* PAGES */
+.page-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 140px;
+}
+
+.page-wrap {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+    padding: 0 24px;
+}
+
+.page-wrap.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* CARDS */
+.grid-master {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+    gap: 16px;
+}
+
+.card {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    overflow: hidden;
+    transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        600px circle at top left,
+        rgba(200,155,60,0.14),
+        transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 0.6s var(--ease);
+}
+
+.card:hover::before { opacity: 1; }
+
+.card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(200,155,60,0.45);
+    box-shadow: 0 35px 70px rgba(0,0,0,0.7);
+}
+
+.card-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.spacer { height: 160px; }
+</style>
 </head>
 
-<body>
+<body onload="init()">
 
 <div class="bg-grid"></div>
 
 <!-- NAV -->
 <nav class="nav-fixed">
-  <div class="nav-container">
+    <div class="nav-container">
 
-    <div class="nav-logo">
-      <span class="logo-main">Bonaire</span>
-      <span class="logo-sub">the Netherlands</span><span class="logo-dot">.</span>
+        <div class="nav-logo">
+            <span class="main">Bonaire</span>,
+            <span class="sub">The Netherlands</span>
+        </div>
+
+        <div class="nav-tabs">
+            <div id="nav-pill"></div>
+            <button class="nav-btn active" id="default-btn" onclick="tab('home',this)">home</button>
+            <button class="nav-btn" onclick="tab('upds',this)">updates</button>
+            <button class="nav-btn" onclick="tab('comm',this)">community</button>
+            <button class="nav-btn" onclick="tab('legal',this)">legal</button>
+        </div>
+
+        <div class="nav-socials">
+            <button onclick="window.open('https://discord.gg/zDJyx7VHSd','_blank')" class="social-btn">
+                <i class="fa-brands fa-discord"></i>
+            </button>
+            <button onclick="window.open('https://www.roblox.com/games/134913590714763/Bonaire-The-Netherlands','_blank')" class="social-btn">
+                <i class="fa-solid fa-gamepad"></i>
+            </button>
+        </div>
+
     </div>
-
-    <div class="nav-tabs">
-      <button class="nav-btn active">home</button>
-      <button class="nav-btn">updates</button>
-      <button class="nav-btn">community</button>
-      <button class="nav-btn">status</button>
-      <button class="nav-btn">legal</button>
-    </div>
-
-    <div class="nav-socials">
-      <a href="https://discord.gg/zDJyx7VHSd" target="_blank" class="social-btn">
-        <i class="fa-brands fa-discord"></i>
-      </a>
-
-      <a href="https://www.roblox.com/games/134913590714763/Bonaire-The-Netherlands"
-         target="_blank" class="social-btn">
-        <svg viewBox="0 0 256 256" aria-hidden="true">
-          <path d="M96 32L32 160l128 64 64-128z"/>
-        </svg>
-      </a>
-    </div>
-
-  </div>
 </nav>
 
 <!-- MAIN -->
-<main class="container">
+<main class="page-container">
 
-<section class="hero">
-  <h1>
-    Bonaire,<br>
-    <span>The Netherlands.</span>
-  </h1>
+<div id="home-tab" class="page-wrap active">
 
-  <p class="hero-sub">
-    A high-fidelity Roblox roleplay experience focused on realism, structured governance,
-    and immersive Caribbean life.
-  </p>
-</section>
+    <div class="text-center mb-24">
+        <h1 class="text-7xl md:text-9xl font-black text-white tracking-tighter mb-8 leading-none">
+            Bonaire,<br>
+            <span class="text-[#c89b3c]">The Netherlands</span>
+        </h1>
+        <p class="text-gray-500 text-lg max-w-2xl mx-auto">
+            A realism-focused Roblox roleplay experience inspired by Caribbean governance,
+            structured departments, and professional standards.
+        </p>
+    </div>
 
-<!-- EVERGREEN CARDS -->
-<section class="features">
+    <!-- FEATURE CARDS -->
+    <div class="grid-master mb-24">
 
-  <div class="feature-card">
-    <h3>Realistic Roleplay</h3>
-    <p>
-      Experience structured, immersive roleplay inspired by real-world Caribbean governance,
-      procedures, and professional standards.
-    </p>
-  </div>
+        <div class="card">
+            <span class="card-tag">Roleplay</span>
+            <h3 class="text-white font-bold text-xl mb-2">Realistic Environment</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+                Immersive roleplay designed around real-world procedures, infrastructure,
+                and long-term continuity.
+            </p>
+        </div>
 
-  <div class="feature-card">
-    <h3>Structured Community</h3>
-    <p>
-      Bonaire RP is organised into clear departments, supported by experienced staff,
-      and designed for long-term, consistent roleplay.
-    </p>
-  </div>
+        <div class="card">
+            <span class="card-tag">Community</span>
+            <h3 class="text-white font-bold text-xl mb-2">Structured Community</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+                Clear departments, experienced staff, and consistent standards
+                that prioritise quality over quantity.
+            </p>
+        </div>
 
-  <div class="feature-card">
-    <h3>Fair Moderation</h3>
-    <p>
-      Rules, policies, and moderation decisions are enforced consistently to ensure
-      a safe, respectful, and enjoyable environment for all players.
-    </p>
-  </div>
+        <div class="card">
+            <span class="card-tag">Governance</span>
+            <h3 class="text-white font-bold text-xl mb-2">Fair Moderation</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+                Transparent rules, proportional enforcement, and professionalism
+                across all moderation decisions.
+            </p>
+        </div>
 
-</section>
+    </div>
 
-<!-- INFO -->
-<section class="info-grid">
-
-  <div class="info-block">
-    <h4>Community</h4>
-    <p>
-      Meet the team, learn how departments operate, and understand the standards that
-      shape everyday roleplay within Bonaire RP.
-    </p>
-  </div>
-
-  <div class="info-block">
-    <h4>Suggestions</h4>
-    <p>
-      Community feedback helps guide improvements and future development while maintaining
-      realism and balance across the server.
-    </p>
-  </div>
-
-  <div class="info-block">
-    <h4>Terms</h4>
-    <p>
-      Participation implies agreement with all server rules, policies, and updates
-      as the server evolves over time.
-    </p>
-  </div>
-
-</section>
+    <div class="spacer"></div>
+</div>
 
 </main>
+
+<script>
+function init(){
+    movePill(document.getElementById('default-btn'));
+}
+
+function tab(id, el){
+    movePill(el);
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+
+    document.querySelectorAll('.page-wrap').forEach(p => p.classList.remove('active'));
+    document.getElementById(id + '-tab')?.classList.add('active');
+
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function movePill(el){
+    const pill = document.getElementById('nav-pill');
+    pill.style.width = el.offsetWidth + 'px';
+    pill.style.left = el.offsetLeft + 'px';
+}
+</script>
 
 </body>
 </html>
