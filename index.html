@@ -248,70 +248,90 @@ body {
 
 /* modal */
 .modal {
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.85);
-    backdrop-filter:blur(12px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:2000;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
 }
 
-.modal.open { display:flex; }
+.modal.open {
+    display: flex;
+}
 
 .modal-box {
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:28px;
-    padding:42px;
-    max-width:760px;
-    width:90%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 28px;
+    padding: 42px;
+    max-width: 760px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .modal-close {
-    width:100%;
-    margin-top:32px;
-    padding:14px 0;
-
-    font-size:11px;
-    font-weight:800;
-    letter-spacing:0.25em;
-    text-transform:uppercase;
-
-    color:var(--accent);
-    background:
-        radial-gradient(
-            600px circle at top left,
-            rgba(200,155,60,0.18),
-            rgba(200,155,60,0.04),
-            transparent 60%
-        );
-
-    border:1px solid rgba(200,155,60,0.35);
-    border-radius:20px;
-
-    transition:
-        transform 0.45s var(--ease),
-        box-shadow 0.45s var(--ease),
-        border-color 0.45s var(--ease),
-        background 0.45s var(--ease);
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: radial-gradient(600px circle at top left, rgba(200, 155, 60, 0.18), rgba(200, 155, 60, 0.04), transparent 60%);
+    border: 1px solid rgba(200, 155, 60, 0.35);
+    border-radius: 20px;
+    transition: 0.45s var(--ease);
+    cursor: pointer;
+    width: 100%;
 }
 
 .modal-close:hover {
-    transform:translateY(-4px);
-    border-color:rgba(200,155,60,0.7);
-    background:
-        radial-gradient(
-            600px circle at top left,
-            rgba(200,155,60,0.28),
-            rgba(200,155,60,0.08),
-            transparent 60%
-        );
+    transform: translateY(-4px);
+    border-color: rgba(200, 155, 60, 0.7);
+    background: radial-gradient(600px circle at top left, rgba(200, 155, 60, 0.28), rgba(200, 155, 60, 0.08), transparent 60%);
+    box-shadow: 0 0 0 1px rgba(200, 155, 60, 0.15), 0 28px 60px rgba(0, 0, 0, 0.75);
+}
 
-    box-shadow:
-        0 0 0 1px rgba(200,155,60,0.15),
-        0 28px 60px rgba(0,0,0,0.75);
+/* Modal content structure */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.modal-name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.modal-role {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.modal-divider {
+    height: 1px;
+    background: linear-gradient(to right, rgba(200, 155, 60, 0.6), rgba(200, 155, 60, 0.05));
+}
+
+.modal-body {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #c7c7c7;
 }
     
 .spacer { height:120px; }
@@ -724,18 +744,45 @@ const statusCommunity = `<h2>Synthova Community</h2>Latency: 50–100ms<br>API L
 const statusGame = `<h2>Bonaire, The Netherlands</h2>Game servers operational<br>Uptime: 99.9%`;
 
 /* ===== TEAM BIOS (FULL) ===== */
-const teamRob = `<h2>R0BFISHY</h2><p>Hey, I’m Robert (R0BFISHY on Roblox).
-I’m a scripter, as well as the founder and owner of the project. I’m a neat, detail-oriented person who values order and structure, and I aim to make BTNL a place where everyone is recognised, treated fairly, and given the opportunity to grow. I care strongly about consistency, strong moral standards, and maintaining a positive environment, with the goal of building something stable, meaningful, and welcoming for everyone involved.</p>`;
-const teamZack = `<h2>ZlindbergVirus</h2><p>Hi, I’m Zack (ZlindbergVirus on Roblox). I’m a developer with a passion for creating solid, well-structured projects. I believe in fostering a positive, respectful community where everyone has a chance to grow and succeed. I prioritize fairness, consistency, and high moral standards, aiming to build something stable and meaningful for all participants. My goal is to make sure everyone is treated equally and has the opportunity to thrive within the project.</p>`;
-const teamOllie = `<h2>OllieChurchblox</h2><p>Hi, I'm Ollie, an A-Level computing student and developer here at Synthova. 
-My main assignment is to work on the scripting side of the game. I hope to create and maintain high quality scripts that keep the game interactive and enjoyable for all players. Despite having ample experience in many languages such as Java and C#, this is my first time properly working in Luau. It's certainly a challenge, but one I'm eager to take on and I can't wait to see what we can create! I also have the additional responsibility of overseeing the Verisentry moderation team. My role is to ensure the team is operating smoothly and according to our expectations, as well as provide any developmental assistance needed for the team to moderate effectively. Our aim is to keep the community a safe place where everyone can feel welcome :)</p>`;
-const teamFire = `<h2>FireHyperrr</h2><p>Hello, I’m FireHyperrr.
-I’m an investor and developer of the project and I’m committed to ensuring BTNL is polished and of the highest quality. I look forward to working with the community and the other members of the team to create an experience that’s fun and inclusive for all.</p>`;
-const teamKelz = `<h2>KelzGotGame</h2><p>Hi, I’m Kelz (KelzGotGome on Roblox). I’m a developer who loves creating innovative and engaging experiences. I believe in a balanced approach to development, where creativity and structure come together to make something truly unique. I value teamwork, consistency, and honesty, and I aim to build a supportive community where everyone can grow and thrive. My goal is to help make the project a fun and welcoming place for all.</p>`;
-const teamRyan = `<h2>Vontirax</h2><p>Hi, I’m Ryan (Vontirax on Roblox). I’m a developer dedicated to building well-crafted projects with a focus on functionality and efficiency. I believe in creating a community where everyone feels valued and has the opportunity to contribute and improve. My core values are fairness, consistency, and integrity, and I strive to maintain a positive environment where collaboration and growth are at the forefront. My goal is to build something lasting and meaningful for everyone involved.</p>`;
-const teamLaura = `<h2>mlxlaura</h2><p>Hii! I'm Laura, mlxlaura on Roblox, and I am the Moderation Lead of BTNL! My focus within this community is to ensure it stays a safe environment for others to chat & play together, while still maintaining fairness and organisation.★</p>`;
-const teamMax = `<h2>ThePuggle2</h2><p>Hey, I’m Max (ThePuggle2 on Roblox).
-I’m the Quality Assurance Lead, as well as the commandant of The Netherlands Armed Forces (TNAF) in Bonaire. I am a organised, dedicated and trusting person who values honesty and respect, and I aim to make BTNL and TNAF more specifically a place where everyone has an equal chance to thrive and have fun as well as be treated fairly and with respect. I care about maintaining strong standards as well as a close, enriching environment, with the ultimate goal of building a service that has a meaningful impact and is welcoming for everyone. In Quality Assurance, I alongside my team aim to deliver a stable, working experience for the players, one which allows them to fully immerse themselves and experience new, innovative features which enrich their overall game experience.</p>`;
+const teamRob = `
+<h2>R0BFISHY</h2>
+<p>Hey, I’m Robert (R0BFISHY on Roblox). I’m a scripter, as well as the founder and owner of the project. I’m a neat, detail-oriented person who values order and structure, and I aim to make BTNL a place where everyone is recognised, treated fairly, and given the opportunity to grow. I care strongly about consistency, strong moral standards, and maintaining a positive environment, with the goal of building something stable, meaningful, and welcoming for everyone involved.</p>
+`;
+
+const teamZack = `
+<h2>ZlindbergVirus</h2>
+<p>Hi, I’m Zack (ZlindbergVirus on Roblox). I’m a developer with a passion for creating solid, well-structured projects. I believe in fostering a positive, respectful community where everyone has a chance to grow and succeed. I prioritize fairness, consistency, and high moral standards, aiming to build something stable and meaningful for all participants. My goal is to make sure everyone is treated equally and has the opportunity to thrive within the project.</p>
+`;
+
+const teamOllie = `
+<h2>OllieChurchblox</h2>
+<p>Hi, I'm Ollie, an A-Level computing student and developer here at Synthova. My main assignment is to work on the scripting side of the game. I hope to create and maintain high-quality scripts that keep the game interactive and enjoyable for all players. Despite having ample experience in many languages such as Java and C#, this is my first time properly working in Luau. It's certainly a challenge, but one I'm eager to take on and I can't wait to see what we can create! I also have the additional responsibility of overseeing the Verisentry moderation team. My role is to ensure the team is operating smoothly and according to our expectations, as well as provide any developmental assistance needed for the team to moderate effectively. Our aim is to keep the community a safe place where everyone can feel welcome :)</p>
+`;
+
+const teamFire = `
+<h2>FireHyperrr</h2>
+<p>Hello, I’m FireHyperrr. I’m an investor and developer of the project, and I’m committed to ensuring BTNL is polished and of the highest quality. I look forward to working with the community and the other members of the team to create an experience that’s fun and inclusive for all.</p>
+`;
+
+const teamKelz = `
+<h2>KelzGotGame</h2>
+<p>Hi, I’m Kelz (KelzGotGame on Roblox). I’m a developer who loves creating innovative and engaging experiences. I believe in a balanced approach to development, where creativity and structure come together to make something truly unique. I value teamwork, consistency, and honesty, and I aim to build a supportive community where everyone can grow and thrive. My goal is to help make the project a fun and welcoming place for all.</p>
+`;
+
+const teamRyan = `
+<h2>Vontirax</h2>
+<p>Hi, I’m Ryan (Vontirax on Roblox). I’m a developer dedicated to building well-crafted projects with a focus on functionality and efficiency. I believe in creating a community where everyone feels valued and has the opportunity to contribute and improve. My core values are fairness, consistency, and integrity, and I strive to maintain a positive environment where collaboration and growth are at the forefront. My goal is to build something lasting and meaningful for everyone involved.</p>
+`;
+
+const teamLaura = `
+<h2>mlxlaura</h2>
+<p>Hi! I'm Laura (mlxlaura on Roblox), and I am the Moderation Lead of BTNL! My focus within this community is to ensure it stays a safe environment for others to chat & play together, while still maintaining fairness and organisation. ★</p>
+`;
+
+const teamMax = `
+<h2>ThePuggle2</h2>
+<p>Hey, I’m Max (ThePuggle2 on Roblox). I’m the Quality Assurance Lead, as well as the commandant of The Netherlands Armed Forces (TNAF) in Bonaire. I am an organised, dedicated, and trusting person who values honesty and respect, and I aim to make BTNL and TNAF, more specifically, a place where everyone has an equal chance to thrive and have fun, as well as be treated fairly and with respect. I care about maintaining strong standards as well as a close, enriching environment, with the ultimate goal of building a service that has a meaningful impact and is welcoming for everyone. In Quality Assurance, I, alongside my team, aim to deliver a stable, working experience for the players, one which allows them to fully immerse themselves and experience new, innovative features that enrich their overall game experience.</p>
+`;
 
 /* ===== LEGAL ===== */
 const discordRules = `<h2>Discord Rules</h2><ul><li>No harassment, toxicity, spam, impersonation, or abuse.</li><li>No illegal, NSFW, or harmful content.</li><li>No self-promotion or advertising without permission.</li><li>No bot exploitation or moderation evasion.</li><li>Respect privacy and follow Discord TOS.</li></ul>`;
