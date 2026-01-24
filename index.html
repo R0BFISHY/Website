@@ -138,47 +138,112 @@ body {
 
 /* cards */
 .grid-master {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-    gap:16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
 }
 
 .card {
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:28px;
-    transition:0.5s var(--ease);
-    cursor:pointer;
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    cursor: pointer;
+
+    transition:
+        transform 0.5s var(--ease),
+        box-shadow 0.5s var(--ease),
+        border-color 0.5s var(--ease),
+        background 0.5s var(--ease);
+}
+
+/* subtle gold depth on hover */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background: radial-gradient(
+        600px circle at top left,
+        rgba(200,155,60,0.14),
+        transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 0.6s var(--ease);
+    pointer-events: none;
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .card:hover {
-    transform:translateY(-8px);
-    border-color:rgba(200,155,60,0.45);
-    box-shadow:0 35px 70px rgba(0,0,0,0.7);
+    transform: translateY(-8px);
+    border-color: rgba(200,155,60,0.45);
+    box-shadow: 0 35px 70px rgba(0,0,0,0.7);
 }
 
+/* section / role label */
 .card-tag {
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:0.25em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:10px;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
 }
 
+/* main title (name / system / update title) */
+.card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+}
+
+/* secondary description */
+.card p {
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.6;
+}
+
+/* status row */
 .status-row {
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-top:6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #9ca3af;
 }
 
 .status-dot {
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#22c55e;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+/* ===== TEAM CARD ENHANCEMENTS ===== */
+.team-card::after {
+    content: "View profile";
+    position: absolute;
+    bottom: 18px;
+    right: 22px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,155,60,0.65);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+}
+
+.team-card:hover::after {
+    opacity: 1;
 }
 
 /* modal */
@@ -374,42 +439,42 @@ and emoji lifecycle management.
 <h3 class="text-3xl font-bold mb-8">Meet the Team</h3>
 
 <div class="grid-master">
-<div class="card" onclick="openModal(teamRob)">
+<div class="card team-card" onclick="openModal(teamRob)">
 <span class="card-tag">Founder & Owner</span>
 <h3 class="text-white font-bold">R0BFISHY</h3>
 </div>
 
-<div class="card" onclick="openModal(teamZack)">
+<div class="card team-card" onclick="openModal(teamZack)">    
 <span class="card-tag">Developer Lead</span>
 <h3 class="text-white font-bold">ZlindbergVirus</h3>
 </div>
 
-<div class="card" onclick="openModal(teamOllie)">
+<div class="card team-card" onclick="openModal(teamOllie)">
 <span class="card-tag">Developer</span>
 <h3 class="text-white font-bold">OllieChurchblox</h3>
 </div>
 
-<div class="card" onclick="openModal(teamFire)">
+<div class="card team-card" onclick="openModal(teamFire)">
 <span class="card-tag">Developer</span>
 <h3 class="text-white font-bold">FireHyperrr</h3>
 </div>
 
-<div class="card" onclick="openModal(teamKelz)">
+<div class="card team-card" onclick="openModal(teamKelz)">
 <span class="card-tag">Developer</span>
 <h3 class="text-white font-bold">KelzGotGame</h3>
 </div>
 
-<div class="card" onclick="openModal(teamRyan)">
-<span class="card-tag">Builder</span>
+<div class="card team-card" onclick="openModal(teamRyan)">
+<span class="card-tag">Developer</span>
 <h3 class="text-white font-bold">Vontirax</h3>
 </div>
 
-<div class="card" onclick="openModal(teamLaura)">
+<div class="card team-card" onclick="openModal(teamLaura)">
 <span class="card-tag">Moderation Lead</span>
 <h3 class="text-white font-bold">mlxlaura</h3>
 </div>
 
-<div class="card" onclick="openModal(teamMax)">
+<div class="card team-card" onclick="openModal(teamMac)">
 <span class="card-tag">QA Lead</span>
 <h3 class="text-white font-bold">ThePuggle2</h3>
 </div>
