@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Bonaire, The Netherlands</title>
 
 <link rel="icon" type="image/png" href="https://www.transparentpng.com/download/emoticons/thinking-blue-emoticons-hd-transparent-1b3uLJ.png">
@@ -13,251 +14,342 @@
 <meta name="theme-color" content="#050505">
 
 <style>
-:root{
---accent:#c89b3c;
---bg:#050505;
---surface:#0a0a0a;
---border:rgba(255,255,255,0.06);
---ease:cubic-bezier(.2,.8,.2,1);
+:root {
+    --accent: #c89b3c;
+    --bg: #050505;
+    --surface: #0a0a0a;
+    --border: rgba(255,255,255,0.06);
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-body{
-background:var(--bg);
-color:#d4d4d4;
-font-family:'Plus Jakarta Sans',sans-serif;
-overflow-x:hidden;
+body {
+    background: var(--bg);
+    color: #d4d4d4;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
 }
 
-.bg-grid{
-position:fixed;inset:0;
-background-image:radial-gradient(rgba(255,255,255,.03)1px,transparent 1px);
-background-size:40px 40px;
-mask-image:radial-gradient(circle at center,black,transparent 80%);
-z-index:-1;
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; }
+
+.bg-grid {
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+    z-index: -1;
 }
 
-/* NAV (RESTORED) */
-.nav-fixed{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000}
-.nav-container{
-display:flex;align-items:center;gap:4px;
-background:rgba(10,10,10,.75);
-backdrop-filter:blur(20px);
-border:1px solid var(--border);
-padding:6px;border-radius:100px
-}
-.nav-logo{
-font-weight:800;font-size:13px;
-padding:0 16px;border-right:1px solid var(--border);
-white-space:nowrap
-}
-.nav-logo .main{color:#fff}
-.nav-logo .sub{color:var(--accent)}
-
-.nav-tabs{position:relative;display:flex;gap:2px}
-#nav-pill{
-position:absolute;height:100%;top:0;
-background:rgba(255,255,255,.05);
-border-radius:100px;
-transition:.6s var(--ease);
-z-index:0
-}
-.nav-btn{
-position:relative;z-index:1;
-padding:8px 18px;font-size:12px;font-weight:600;
-color:#555;border-radius:100px
-}
-.nav-btn.active{color:var(--accent)}
-.nav-btn:hover:not(.active){color:#aaa}
-
-.nav-socials{
-display:flex;gap:4px;padding-left:8px;
-margin-left:4px;border-left:1px solid var(--border)
-}
-.social-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#555}
-.social-btn:hover{color:var(--accent);transform:translateY(-2px)}
-
-/* PAGES */
-.page-container{
-display:grid;max-width:1200px;margin:0 auto;
-padding-top:140px
-}
-.page-wrap{
-grid-area:1/1;
-opacity:0;transform:translateY(30px);
-pointer-events:none;
-transition:.6s var(--ease);
-padding:0 24px
-}
-.page-wrap.active{
-opacity:1;transform:none;pointer-events:auto
+.nav-fixed {
+    position: fixed;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
 }
 
-/* CARDS */
-.grid-master{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-gap:16px
-}
-.card{
-background:var(--surface);
-border:1px solid var(--border);
-border-radius:24px;
-padding:28px;
-transition:.5s var(--ease);
-cursor:pointer
-}
-.card:hover{
-transform:translateY(-6px);
-border-color:rgba(200,155,60,.45)
-}
-.card-tag{
-font-size:10px;font-weight:800;
-letter-spacing:.25em;text-transform:uppercase;
-color:var(--accent);margin-bottom:10px;display:block
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 100px;
+    background: rgba(10,10,10,0.75);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
 }
 
-/* STATUS */
-.status-dot{width:8px;height:8px;border-radius:50%;background:#22c55e}
-
-/* MODAL */
-.modal-overlay{
-position:fixed;inset:0;
-background:rgba(0,0,0,.85);
-backdrop-filter:blur(16px);
-opacity:0;pointer-events:none;
-transition:.4s var(--ease);
-z-index:2000;
-display:flex;align-items:center;justify-content:center
-}
-.modal-overlay.open{opacity:1;pointer-events:auto}
-.modal-box{
-background:var(--surface);
-border:1px solid var(--border);
-border-radius:28px;
-padding:36px;width:90%;max-width:560px
+.nav-logo {
+    font-weight: 800;
+    font-size: 13px;
+    padding: 0 16px;
+    border-right: 1px solid var(--border);
+    white-space: nowrap;
 }
 
-/* SHORTER SCROLL */
-.spacer{height:80px}
+.nav-logo .main { color: #fff; }
+.nav-logo .sub { color: var(--accent); }
+
+.nav-tabs {
+    position: relative;
+    display: flex;
+    gap: 2px;
+}
+
+#nav-pill {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.05);
+    border-radius: 100px;
+    transition: all 0.6s var(--ease);
+    z-index: 0;
+}
+
+.nav-btn {
+    position: relative;
+    z-index: 1;
+    padding: 8px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #555;
+    border-radius: 100px;
+}
+
+.nav-btn.active { color: var(--accent); }
+
+.nav-socials {
+    display: flex;
+    gap: 4px;
+    padding-left: 8px;
+    margin-left: 4px;
+    border-left: 1px solid var(--border);
+}
+
+.social-btn {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+}
+
+.social-btn:hover { color: var(--accent); }
+
+.page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 140px;
+}
+
+.page-wrap {
+    display: none;
+    padding: 0 24px;
+}
+
+.page-wrap.active { display: block; }
+
+.grid-master {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
+    gap: 16px;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    cursor: pointer;
+}
+
+.card-tag {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+
+.spacer { height: 140px; }
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal.open { display: flex; }
+
+.modal-box {
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    border-radius: 24px;
+    padding: 36px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.modal-box h2 {
+    color: #fff;
+    font-weight: 800;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+.modal-box ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.close-btn {
+    margin-top: 24px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: #111;
+    color: #fff;
+}
 </style>
 </head>
 
 <body onload="init()">
+
 <div class="bg-grid"></div>
 
-<!-- NAV -->
 <nav class="nav-fixed">
-<div class="nav-container">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <span class="main">Bonaire</span>,
+            <span class="sub">The Netherlands</span>
+        </div>
 
-<div class="nav-logo">
-<span class="main">Bonaire</span>, <span class="sub">The Netherlands</span>
-</div>
-
-<div class="nav-tabs">
-<div id="nav-pill"></div>
-<button class="nav-btn active" id="default-btn" onclick="tab('home',this)">home</button>
-<button class="nav-btn" onclick="tab('upds',this)">updates</button>
-<button class="nav-btn" onclick="tab('comm',this)">community</button>
-<button class="nav-btn" onclick="tab('stat',this)">status</button>
-<button class="nav-btn" onclick="tab('legal',this)">legal</button>
-</div>
-
-<div class="nav-socials">
-<button onclick="window.open('https://discord.gg/zDJyx7VHSd','_blank')" class="social-btn">
-<i class="fa-brands fa-discord"></i>
-</button>
-<button onclick="window.open('https://www.roblox.com/games/134913590714763/Bonaire-The-Netherlands','_blank')" class="social-btn">
-<i class="fa-solid fa-gamepad"></i>
-</button>
-</div>
-
-</div>
+        <div class="nav-tabs">
+            <div id="nav-pill"></div>
+            <button class="nav-btn active" id="default-btn" onclick="tab('home',this)">home</button>
+            <button class="nav-btn" onclick="tab('upds',this)">updates</button>
+            <button class="nav-btn" onclick="tab('stat',this)">status</button>
+        </div>
+    </div>
 </nav>
 
 <main class="page-container">
 
 <!-- HOME -->
 <div id="home-tab" class="page-wrap active">
-<div class="text-center mb-20">
-<h1 class="text-7xl md:text-9xl font-black text-white mb-8">
-Bonaire,<br><span class="text-[#c89b3c]">The Netherlands</span>
-</h1>
-<p class="text-gray-500 text-lg max-w-2xl mx-auto">
-A high-fidelity Roblox roleplay experience focused on realism,
-structured governance, and immersive Caribbean life.
-</p>
-</div>
-
-<div class="grid-master mb-20">
-<div class="card"><span class="card-tag">Updates</span><p class="text-gray-500 text-sm">Game & bot changelogs, fixes, and feature releases.</p></div>
-<div class="card"><span class="card-tag">Community</span><p class="text-gray-500 text-sm">Staff, departments, and daily operations.</p></div>
-<div class="card"><span class="card-tag">Legal</span><p class="text-gray-500 text-sm">Rules, enforcement, and data handling.</p></div>
-</div>
+    <h1 class="text-7xl font-black text-white mb-6">Bonaire,<br><span class="text-[#c89b3c]">The Netherlands</span></h1>
+    <p class="text-gray-500 max-w-xl">
+        A high-fidelity Roblox roleplay experience focused on realism, structured governance,
+        and immersive Caribbean life.
+    </p>
 </div>
 
 <!-- UPDATES -->
 <div id="upds-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Changelog</h2>
-<div id="updates-grid" class="grid-master"></div>
+    <h2 class="text-6xl font-black text-white mb-12">Updates</h2>
+
+    <div class="grid-master">
+        <div class="card" onclick="openUpdate('01.01')">
+            <span class="card-tag">Stable</span>
+            <h3 class="text-white font-bold text-xl">Discord Update 01.01</h3>
+            <p class="text-gray-500 text-sm mt-2">Embeds, AutoMod changes, and booster perks.</p>
+        </div>
+
+        <div class="card" onclick="openUpdate('01.02')">
+            <span class="card-tag">Stable</span>
+            <h3 class="text-white font-bold text-xl">Discord Update 01.02</h3>
+            <p class="text-gray-500 text-sm mt-2">Automation improvements and bug reporting.</p>
+        </div>
+
+        <div class="card" onclick="openUpdate('01.03')">
+            <span class="card-tag">Stable</span>
+            <h3 class="text-white font-bold text-xl">Discord Update 01.03</h3>
+            <p class="text-gray-500 text-sm mt-2">Logging, moderation, and backend optimizations.</p>
+        </div>
+    </div>
 </div>
 
 <!-- STATUS -->
 <div id="stat-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Systems Operational</h2>
-<div class="grid-master">
-<div class="card"><span class="card-tag">Bot</span><h3 class="text-white font-bold mb-2">Synthova</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Discord bot</div></div>
-<div class="card"><span class="card-tag">Bot</span><h3 class="text-white font-bold mb-2">Synthova API</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Discord bot</div></div>
-<div class="card"><span class="card-tag">Bot</span><h3 class="text-white font-bold mb-2">Synthova Appeals</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Discord bot</div></div>
-<div class="card"><span class="card-tag">Bot</span><h3 class="text-white font-bold mb-2">Synthova Community</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Discord bot</div></div>
-<div class="card"><span class="card-tag">Game</span><h3 class="text-white font-bold mb-2">Bonaire, The Netherlands</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Game servers</div></div>
-</div>
-</div>
+    <h2 class="text-6xl font-black text-white mb-12">System Status</h2>
 
-<!-- COMMUNITY -->
-<div id="comm-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Community</h2>
-<p class="text-gray-500 max-w-3xl">Community structure, staff, and departments will be documented here.</p>
-</div>
-
-<!-- LEGAL -->
-<div id="legal-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Legal</h2>
-<p class="text-gray-500 max-w-3xl">Rules, policies, enforcement authority, and data handling.</p>
+    <div class="grid-master">
+        <div class="card" onclick="openStatus('Synthova')"><h3 class="text-white font-bold">Synthova</h3></div>
+        <div class="card" onclick="openStatus('Synthova API')"><h3 class="text-white font-bold">Synthova API</h3></div>
+        <div class="card" onclick="openStatus('Synthova Appeals')"><h3 class="text-white font-bold">Synthova Appeals</h3></div>
+        <div class="card" onclick="openStatus('Synthova Community')"><h3 class="text-white font-bold">Synthova Community</h3></div>
+    </div>
 </div>
 
 </main>
 
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+        <div id="modal-content"></div>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
 <script>
-const updates=[
-{t:"Discord Update 01.01",s:["Embeds updated","New AutoMod rules","Role icons","Notification roles","Booster perks added"]},
-{t:"Discord Update 01.02",s:["Automatic booster rewards","Bug reporting system"]},
-{t:"Discord Update 01.03",s:["Logging expansion","Backend optimization","Emoji management"]}
-];
+const updates = {
+    "01.01": {
+        title: "Discord Update 01.01",
+        items: [
+            "Embeds updated (info, notice, teaser, event)",
+            "New AutoMod rules added",
+            "Role icons added",
+            "Notification roles available",
+            "Booster perks expanded"
+        ]
+    },
+    "01.02": {
+        title: "Discord Update 01.02",
+        items: [
+            "Auto booster economy rewards",
+            "Bug report confirmations",
+            "Staff bug status tools"
+        ]
+    },
+    "01.03": {
+        title: "Discord Update 01.03",
+        items: [
+            "Expanded moderation logging",
+            "Voice moderation archives",
+            "Backend optimizations",
+            "Emoji rotation system"
+        ]
+    }
+};
+
+const statuses = {
+    "Synthova": ["Latency: 40–80ms", "API Latency: 15–45ms", "Uptime: 99.9%", "Servers: 8"],
+    "Synthova API": ["Latency: 30–60ms", "API Latency: 15–35ms", "Uptime: 99.9%", "Servers: 8"],
+    "Synthova Appeals": ["Latency: 45–90ms", "API Latency: 50–80ms", "Uptime: 99.9%", "Servers: 2"],
+    "Synthova Community": ["Latency: 50–100ms", "API Latency: 50–80ms", "Uptime: 99.9%", "Servers: 2"]
+};
+
+function openUpdate(id){
+    const u = updates[id];
+    document.getElementById('modal-content').innerHTML =
+        `<h2>${u.title}</h2><ul>${u.items.map(i=>`<li>${i}</li>`).join("")}</ul>`;
+    document.getElementById('modal').classList.add('open');
+}
+
+function openStatus(id){
+    document.getElementById('modal-content').innerHTML =
+        `<h2>${id}</h2><ul>${statuses[id].map(i=>`<li>${i}</li>`).join("")}</ul>`;
+    document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(){
+    document.getElementById('modal').classList.remove('open');
+}
 
 function init(){
-movePill(document.getElementById('default-btn'));
-renderUpdates();
+    movePill(document.getElementById('default-btn'));
 }
-function tab(id,el){
-movePill(el);
-document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');
-document.querySelectorAll('.page-wrap').forEach(p=>p.classList.remove('active'));
-document.getElementById(id+'-tab').classList.add('active');
-window.scrollTo({top:0,behavior:'smooth'});
+
+function tab(id, el){
+    movePill(el);
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.page-wrap').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id+'-tab').classList.add('active');
 }
+
 function movePill(el){
-const p=document.getElementById('nav-pill');
-p.style.width=el.offsetWidth+'px';
-p.style.left=el.offsetLeft+'px';
-}
-function renderUpdates(){
-document.getElementById('updates-grid').innerHTML=
-updates.map(u=>`
-<div class="card">
-<span class="card-tag">Stable</span>
-<h3 class="text-white font-bold">${u.t}</h3>
-</div>`).join('');
+    const pill = document.getElementById('nav-pill');
+    pill.style.width = el.offsetWidth + "px";
+    pill.style.left = el.offsetLeft + "px";
 }
 </script>
 
