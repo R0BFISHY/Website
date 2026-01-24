@@ -14,119 +14,50 @@
 
 <style>
 :root {
-    --accent: #c89b3c;
-    --bg: #050505;
-    --surface: #0a0a0a;
-    --border: rgba(255,255,255,0.06);
-    --ease: cubic-bezier(0.2,0.8,0.2,1);
+    --accent:#c89b3c;
+    --bg:#050505;
+    --surface:#0a0a0a;
+    --border:rgba(255,255,255,.06);
+    --ease:cubic-bezier(.2,.8,.2,1);
 }
-
-body {
-    background: var(--bg);
-    color: #d4d4d4;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    overflow-x: hidden;
+body{
+    background:var(--bg);
+    color:#d4d4d4;
+    font-family:'Plus Jakarta Sans',sans-serif;
+    overflow-x:hidden;
 }
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-thumb { background: #1a1a1a; }
-
-/* Background */
-.bg-grid {
-    position: fixed;
-    inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(circle at center, black, transparent 80%);
-    z-index: -1;
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:#1a1a1a}
+.bg-grid{
+    position:fixed;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
+    background-size:40px 40px;
+    mask-image:radial-gradient(circle at center,black,transparent 80%);
+    z-index:-1;
 }
-
-/* NAV */
-.nav-fixed {
-    position: fixed;
-    top: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
+.nav-fixed{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000}
+.nav-container{
+    display:flex;align-items:center;gap:4px;
+    padding:6px;border-radius:100px;
+    background:rgba(10,10,10,.75);
+    backdrop-filter:blur(20px);
+    border:1px solid var(--border);
 }
-
-.nav-container {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 6px;
-    border-radius: 100px;
-    background: rgba(10,10,10,0.75);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
-}
-
-.nav-logo {
-    font-weight: 800;
-    font-size: 13px;
-    padding: 0 16px;
-    border-right: 1px solid var(--border);
-    white-space: nowrap;
-}
-.nav-logo .main { color:#fff; }
-.nav-logo .sub { color:var(--accent); }
-
-.nav-tabs { position:relative; display:flex; gap:2px; }
-
-#nav-pill {
-    position:absolute;
-    inset:0;
-    background:rgba(255,255,255,0.05);
-    border-radius:100px;
-    transition:all .6s var(--ease);
-    z-index:0;
-}
-
-.nav-btn {
-    position:relative;
-    z-index:1;
-    padding:8px 18px;
-    font-size:12px;
-    font-weight:600;
-    color:#555;
-}
-.nav-btn.active { color:var(--accent); }
-.nav-btn:hover:not(.active) { color:#aaa; }
-
-.nav-socials {
-    display:flex;
-    gap:4px;
-    padding-left:8px;
-    margin-left:4px;
-    border-left:1px solid var(--border);
-}
-
-.social-btn {
-    width:34px;height:34px;
-    display:flex;align-items:center;justify-content:center;
-    color:#555;
-}
-.social-btn:hover { color:var(--accent); transform:translateY(-2px); }
-
-/* PAGES */
-.page-container {
-    max-width:1200px;
-    margin:0 auto;
-    padding-top:140px;
-}
-
-.page-wrap { display:none; padding:0 24px; }
-.page-wrap.active { display:block; }
-
-/* CARDS */
-.grid-master {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-    gap:16px;
-}
-
-.card {
+.nav-logo{font-weight:800;font-size:13px;padding:0 16px;border-right:1px solid var(--border);white-space:nowrap}
+.nav-logo .main{color:#fff}
+.nav-logo .sub{color:var(--accent)}
+.nav-tabs{position:relative;display:flex;gap:2px}
+#nav-pill{position:absolute;inset:0;background:rgba(255,255,255,.05);border-radius:100px;transition:.6s var(--ease)}
+.nav-btn{position:relative;z-index:1;padding:8px 18px;font-size:12px;font-weight:600;color:#555}
+.nav-btn.active{color:var(--accent)}
+.nav-socials{display:flex;gap:4px;padding-left:8px;margin-left:4px;border-left:1px solid var(--border)}
+.social-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#555}
+.social-btn:hover{color:var(--accent);transform:translateY(-2px)}
+.page-container{max-width:1200px;margin:0 auto;padding-top:140px}
+.page-wrap{display:none;padding:0 24px}
+.page-wrap.active{display:block}
+.grid-master{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.card{
     background:var(--surface);
     border:1px solid var(--border);
     border-radius:24px;
@@ -134,82 +65,33 @@ body {
     transition:.4s var(--ease);
     cursor:pointer;
 }
-.card:hover {
-    border-color:rgba(200,155,60,.45);
-    transform:translateY(-6px);
-}
-
-.card-tag {
-    font-size:10px;
-    font-weight:800;
-    letter-spacing:.25em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:10px;
-}
-
-.status-row {
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-top:8px;
-}
-.status-dot {
-    width:8px;height:8px;
-    border-radius:50%;
-    background:#22c55e;
-}
-
-.spacer { height:140px; }
-
-/* MODAL */
-.modal-overlay {
-    position:fixed;
-    inset:0;
+.card:hover{border-color:rgba(200,155,60,.45);transform:translateY(-6px)}
+.card-tag{font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.status-row{display:flex;align-items:center;gap:10px;margin-top:8px}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#22c55e}
+.spacer{height:140px}
+.modal-overlay{
+    position:fixed;inset:0;
     background:rgba(0,0,0,.85);
     backdrop-filter:blur(14px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:2000;
+    display:none;align-items:center;justify-content:center;
+    z-index:2000
 }
-.modal-overlay.open { display:flex; }
-
-.modal-box {
-    background:#0a0a0a;
-    border:1px solid #1a1a1a;
-    border-radius:28px;
-    padding:36px;
-    width:90%;
-    max-width:760px;
+.modal-overlay.open{display:flex}
+.modal-box{
+    background:#0a0a0a;border:1px solid #1a1a1a;
+    border-radius:28px;padding:36px;
+    width:90%;max-width:760px
 }
-.modal-box h2 {
-    font-size:32px;
-    font-weight:800;
-    color:#fff;
-    margin-bottom:12px;
-}
-.modal-box h3 {
-    margin-top:24px;
-    margin-bottom:6px;
-    font-size:14px;
-    font-weight:700;
-    text-transform:uppercase;
-    color:var(--accent);
-}
-.modal-box ul {
-    list-style:disc;
-    padding-left:20px;
-    color:#bbb;
-    font-size:14px;
-}
+.modal-box h2{font-size:32px;font-weight:800;color:#fff;margin-bottom:12px}
+.modal-box h3{margin-top:24px;margin-bottom:6px;font-size:14px;font-weight:700;text-transform:uppercase;color:var(--accent)}
+.modal-box ul{list-style:disc;padding-left:20px;color:#bbb;font-size:14px}
 </style>
 </head>
 
 <body onload="init()">
 <div class="bg-grid"></div>
 
-<!-- NAV -->
 <nav class="nav-fixed">
 <div class="nav-container">
 <div class="nav-logo">
@@ -245,67 +127,10 @@ and immersive Caribbean life.
 </div>
 
 <div class="grid-master">
-<div class="card">
-<span class="card-tag">Updates</span>
-<h3 class="text-white font-bold text-xl mb-2">Development & Changelogs</h3>
-<p class="text-gray-500 text-sm">
-Detailed Discord and game updates covering systems, automation, moderation,
-balancing, fixes, and feature releases.
-</p>
+<div class="card"><span class="card-tag">Updates</span><h3 class="text-white font-bold text-xl mb-2">Development & Changelogs</h3><p class="text-gray-500 text-sm">Detailed Discord and game updates covering systems, automation, moderation, balancing, fixes, and feature releases.</p></div>
+<div class="card"><span class="card-tag">Community</span><h3 class="text-white font-bold text-xl mb-2">People & Departments</h3><p class="text-gray-500 text-sm">Meet the staff team, explore departments, and understand how Bonaire operates day to day.</p></div>
+<div class="card"><span class="card-tag">Legal</span><h3 class="text-white font-bold text-xl mb-2">Rules & Compliance</h3><p class="text-gray-500 text-sm">Policies, privacy practices, and standards aligned with Roblox platform requirements.</p></div>
 </div>
-
-<div class="card">
-<span class="card-tag">Community</span>
-<h3 class="text-white font-bold text-xl mb-2">People & Departments</h3>
-<p class="text-gray-500 text-sm">
-Meet the staff team, explore departments, learn how roleplay operates,
-and understand how Bonaire functions day to day.
-</p>
-</div>
-
-<div class="card">
-<span class="card-tag">Legal</span>
-<h3 class="text-white font-bold text-xl mb-2">Rules & Compliance</h3>
-<p class="text-gray-500 text-sm">
-Clear rules, enforcement standards, privacy practices,
-and policies aligned with Roblox platform requirements.
-</p>
-</div>
-</div>
-
-<div class="spacer"></div>
-</div>
-
-<!-- UPDATES -->
-<div id="upds-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Updates</h2>
-
-<div class="grid-master">
-<div class="card" onclick="openUpdate('01.01')">
-<span class="card-tag">Stable</span>
-<h3 class="text-white font-bold text-xl">Discord Update 01.01</h3>
-<p class="text-gray-500 text-sm mt-2">
-Embeds, AutoMod rules, notification roles, and expanded booster perks.
-</p>
-</div>
-
-<div class="card" onclick="openUpdate('01.02')">
-<span class="card-tag">Stable</span>
-<h3 class="text-white font-bold text-xl">Discord Update 01.02</h3>
-<p class="text-gray-500 text-sm mt-2">
-Automation improvements, economy handling, and bug reporting systems.
-</p>
-</div>
-
-<div class="card" onclick="openUpdate('01.03')">
-<span class="card-tag">Stable</span>
-<h3 class="text-white font-bold text-xl">Discord Update 01.03</h3>
-<p class="text-gray-500 text-sm mt-2">
-Expanded logging, moderation oversight, backend optimization, and emoji management.
-</p>
-</div>
-</div>
-
 <div class="spacer"></div>
 </div>
 
@@ -315,57 +140,26 @@ Expanded logging, moderation oversight, backend optimization, and emoji manageme
 
 <h3 class="text-2xl font-bold text-white mb-6">Meet the Team</h3>
 <div class="grid-master mb-20">
-<!-- 7 STAFF CARDS -->
-<div class="card" onclick="openModal('Server Owner','Oversees all systems, direction, and governance.')"><h3 class="text-white font-bold">Server Owner</h3></div>
-<div class="card" onclick="openModal('Lead Administrator','Manages staff operations and enforcement.')"><h3 class="text-white font-bold">Lead Administrator</h3></div>
-<div class="card" onclick="openModal('Operations Lead','Oversees departments and realism standards.')"><h3 class="text-white font-bold">Operations Lead</h3></div>
-<div class="card" onclick="openModal('Development Lead','Responsible for systems, bots, and tooling.')"><h3 class="text-white font-bold">Development Lead</h3></div>
-<div class="card" onclick="openModal('Moderation Lead','Handles moderation policy and escalations.')"><h3 class="text-white font-bold">Moderation Lead</h3></div>
-<div class="card" onclick="openModal('Support Lead','Manages player support and appeals.')"><h3 class="text-white font-bold">Support Lead</h3></div>
-<div class="card" onclick="openModal('Media Lead','Oversees announcements, embeds, and communication.')"><h3 class="text-white font-bold">Media Lead</h3></div>
+<!-- TEAM CARDS -->
+<div class="card" onclick="openModal('R0BFISHY — Founder & Owner','Hey, I’m Robert (R0BFISHY on Roblox). I’m a scripter and the founder and owner of the project. I value structure, fairness, and consistency, and aim to make BTNL a place where everyone is recognised, treated fairly, and given the opportunity to grow. My goal is to build something stable, meaningful, and welcoming for everyone involved.')"><h3 class="text-white font-bold">R0BFISHY</h3><p class="text-gray-500 text-sm">Founder & Owner</p></div>
+
+<div class="card" onclick="openModal('ZlindbergVirus — Development Lead','Zack is the Development Lead at BTNL. He focuses on scripting and oversees the technical direction of the project, ensuring systems are built cleanly, efficiently, and in line with long-term stability goals.')"><h3 class="text-white font-bold">ZlindbergVirus</h3><p class="text-gray-500 text-sm">Development Lead</p></div>
+
+<div class="card" onclick="openModal('OllieChurchblox — Developer','Ollie is an A-Level computing student and developer working primarily on scripting. He also oversees the Verisentry moderation team, ensuring operations remain effective, consistent, and supportive of a safe community.')"><h3 class="text-white font-bold">OllieChurchblox</h3><p class="text-gray-500 text-sm">Developer</p></div>
+
+<div class="card" onclick="openModal('FireHyperrr — Team Member','FireHyperrr is a dedicated team member who supports project development and contributes to maintaining quality and consistency across the experience.')"><h3 class="text-white font-bold">FireHyperrr</h3><p class="text-gray-500 text-sm">Team Member</p></div>
+
+<div class="card" onclick="openModal('KelzGotGame — Team Member','KelzGotGame contributes to the project by supporting development initiatives and helping ensure smooth operations behind the scenes.')"><h3 class="text-white font-bold">KelzGotGame</h3><p class="text-gray-500 text-sm">Team Member</p></div>
+
+<div class="card" onclick="openModal('Vontirax — Builder','Ryan (Vontirax) is a builder focused on creating detailed, immersive environments that enhance realism and support meaningful roleplay.')"><h3 class="text-white font-bold">Vontirax</h3><p class="text-gray-500 text-sm">Builder</p></div>
+
+<div class="card" onclick="openModal('mlxlaura — Moderation Lead','Laura is the Moderation Lead at BTNL. Her focus is maintaining a safe, fair, and organised environment where players can enjoy the community while feeling protected and respected.')"><h3 class="text-white font-bold">mlxlaura</h3><p class="text-gray-500 text-sm">Moderation Lead</p></div>
+
+<div class="card" onclick="openModal('ThePuggle2 — Quality Assurance Lead','Max is the Quality Assurance Lead and Commandant of TNAF. He values honesty, respect, and high standards, aiming to deliver a stable, immersive experience while ensuring fairness and equal opportunity for all players.')"><h3 class="text-white font-bold">ThePuggle2</h3><p class="text-gray-500 text-sm">QA Lead</p></div>
 </div>
 
-<h3 class="text-2xl font-bold text-white mb-6">Game Rules</h3>
-<p class="text-gray-500 max-w-3xl">
-Players are expected to follow all realism standards, roleplay guidelines,
-department procedures, and staff instructions. Failure to comply may result
-in moderation action.
-</p>
-
-<div class="spacer"></div>
-</div>
-
-<!-- STATUS -->
-<div id="stat-tab" class="page-wrap">
-<h2 class="text-6xl font-black text-white mb-16">Status</h2>
-
-<div class="grid-master">
-<div class="card" onclick="openStatus('Synthova Bot','Discord Bot')">
-<h3 class="text-white font-bold">Synthova</h3>
-<div class="status-row"><span class="status-dot"></span><span class="text-sm text-gray-500">Operational</span></div>
-</div>
-
-<div class="card" onclick="openStatus('Synthova API','Discord API')">
-<h3 class="text-white font-bold">Synthova API</h3>
-<div class="status-row"><span class="status-dot"></span><span class="text-sm text-gray-500">Operational</span></div>
-</div>
-
-<div class="card" onclick="openStatus('Synthova Appeals','Appeals System')">
-<h3 class="text-white font-bold">Synthova Appeals</h3>
-<div class="status-row"><span class="status-dot"></span><span class="text-sm text-gray-500">Operational</span></div>
-</div>
-
-<div class="card" onclick="openStatus('Synthova Community','Community Bot')">
-<h3 class="text-white font-bold">Synthova Community</h3>
-<div class="status-row"><span class="status-dot"></span><span class="text-sm text-gray-500">Operational</span></div>
-</div>
-
-<div class="card" onclick="openStatus('Bonaire, The Netherlands','Game Server')">
-<h3 class="text-white font-bold">Bonaire, The Netherlands</h3>
-<div class="status-row"><span class="status-dot"></span><span class="text-sm text-gray-500">Operational</span></div>
-</div>
-</div>
-
+<h3 class="text-2xl font-bold text-white mb-4">Game Rules</h3>
+<p class="text-gray-500 max-w-3xl">Game-specific rules are currently <strong>TBD</strong> and will be published once gameplay systems are finalised.</p>
 <div class="spacer"></div>
 </div>
 
@@ -374,21 +168,15 @@ in moderation action.
 <h2 class="text-6xl font-black text-white mb-16">Legal</h2>
 
 <div class="grid-master">
-<div class="card" onclick="openModal('Terms of Use','Use of the server implies acceptance of all rules, staff decisions, and enforcement actions. Violations may result in warnings, removals, or permanent bans.')">
-<h3 class="text-white font-bold">Terms of Use</h3>
-</div>
+<div class="card" onclick="openModal('Terms of Use','By participating in Bonaire, The Netherlands, users agree to follow server rules, Roblox Community Standards, and staff guidance. Staff actions are taken to maintain fairness, safety, and platform compliance.')"><h3 class="text-white font-bold">Terms of Use</h3></div>
 
-<div class="card" onclick="openModal('Privacy Policy','Minimal data such as IDs, logs, and moderation records may be stored for operational and safety purposes. No data is sold or shared externally.')">
-<h3 class="text-white font-bold">Privacy Policy</h3>
-</div>
+<div class="card" onclick="openModal('Community Conduct','Harassment, hate speech, threats, exploitation, automation abuse, raids, or disruptive behaviour are not permitted. Actions are handled proportionally and with consideration for context.')"><h3 class="text-white font-bold">Community Conduct</h3></div>
 
-<div class="card" onclick="openModal('Data Handling','Logs and records are retained only as long as necessary to ensure safety, accountability, and platform compliance.')">
-<h3 class="text-white font-bold">Data Handling</h3>
-</div>
+<div class="card" onclick="openModal('Privacy Policy','Limited data such as user IDs, logs, and moderation records may be collected solely for operational, safety, and moderation purposes. No personal data is sold or shared externally.')"><h3 class="text-white font-bold">Privacy Policy</h3></div>
 
-<div class="card" onclick="openModal('Enforcement','Staff may act at discretion to protect players and the integrity of roleplay. Appeals may be reviewed but are not guaranteed.')">
-<h3 class="text-white font-bold">Enforcement</h3>
-</div>
+<div class="card" onclick="openModal('Data Retention','Operational logs are retained only as long as necessary to ensure platform compliance, safety, and accountability. Users may request data clarification or removal where applicable.')"><h3 class="text-white font-bold">Data Retention</h3></div>
+
+<div class="card" onclick="openModal('Enforcement & Appeals','Moderation actions may include warnings, restrictions, or removal. Appeals may be reviewed but are not guaranteed and are handled on a case-by-case basis.')"><h3 class="text-white font-bold">Enforcement & Appeals</h3></div>
 </div>
 
 <div class="spacer"></div>
@@ -405,68 +193,12 @@ in moderation action.
 </div>
 
 <script>
-const updates={
-"01.01":{title:"Discord Update 01.01",sections:[
-{h:"General Updates",i:[
-"Embeds updated (info, notice, teaser, event)",
-"New AutoMod rules added",
-"Role icons implemented",
-"Notification roles added: Notice, Development Preview, Events"
-]},
-{h:"Booster Perks Added",i:[
-"10,000 economy cash","Embed permissions","Attach files","Add reactions","External emojis & stickers",
-"Bypass slowmode","Voice messages","Create polls","Soundboard access","Voice channel status","Activities"
-]}
-]},
-"01.02":{title:"Discord Update 01.02",sections:[
-{h:"Automation",i:[
-"Synthova Community Bot applies economy rewards automatically on boost",
-"No manual staff input required"
-]},
-{h:"Bug Reporting",i:[
-"Automatic confirmation on submission",
-"Staff can update tags and status"
-]}
-]},
-"01.03":{title:"Discord Update 01.03",sections:[
-{h:"Logging & Moderation",i:[
-"Advanced screening join logs","Role update logs","Voice moderation logs archived",
-"Server mute/unmute/deafen logs","Backend optimisation","Emoji management & rotation"
-]}
-]}
-};
-
-const statusData={
-"Synthova Bot":["Latency: 40–80ms","API Latency: 15–45ms","Uptime: 99.9%","Servers: 8"],
-"Synthova API":["Latency: 30–60ms","API Latency: 15–35ms","Uptime: 99.9%","Servers: 8"],
-"Synthova Appeals":["Latency: 45–90ms","API Latency: 50–80ms","Uptime: 99.9%","Servers: 2"],
-"Synthova Community":["Latency: 50–100ms","API Latency: 50–80ms","Uptime: 99.9%","Servers: 2"],
-"Bonaire, The Netherlands":["Latency: 40–90ms","Uptime: 99.9%","Servers: Live"]
-};
-
-function openUpdate(id){
-let u=updates[id],html=`<h2>${u.title}</h2>`;
-u.sections.forEach(s=>{
-html+=`<h3>${s.h}</h3><ul>${s.i.map(i=>`<li>${i}</li>`).join("")}</ul>`;
-});
-openHTML(html);
-}
-
-function openStatus(name,type){
-openHTML(`<h2>${name}</h2><p class="text-gray-500 mb-4">${type}</p><ul>${statusData[name].map(i=>`<li>${i}</li>`).join("")}</ul>`);
-}
-
-function openModal(title,body){ openHTML(`<h2>${title}</h2><p class="text-gray-500">${body}</p>`); }
-
-function openHTML(html){
-document.getElementById('modal-content').innerHTML=html;
+function openModal(title,body){
+document.getElementById('modal-content').innerHTML=`<h2>${title}</h2><p class="text-gray-500">${body}</p>`;
 document.getElementById('modal').classList.add('open');
 }
-
-function closeModal(){ document.getElementById('modal').classList.remove('open'); }
-
-function init(){ movePill(document.getElementById('default-btn')); }
-
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function init(){movePill(document.getElementById('default-btn'))}
 function tab(id,el){
 movePill(el);
 document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -475,7 +207,6 @@ document.querySelectorAll('.page-wrap').forEach(p=>p.classList.remove('active'))
 document.getElementById(id+'-tab').classList.add('active');
 window.scrollTo({top:0,behavior:'smooth'});
 }
-
 function movePill(el){
 const pill=document.getElementById('nav-pill');
 pill.style.width=el.offsetWidth+"px";
