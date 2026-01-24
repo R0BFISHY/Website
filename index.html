@@ -13,39 +13,40 @@
 <meta name="theme-color" content="#050505">
 
 <style>
-:root {
-    --accent:#c89b3c;
-    --bg:#050505;
-    --surface:#0a0a0a;
-    --border:rgba(255,255,255,0.06);
-    --ease:cubic-bezier(.2,.8,.2,1);
+:root{
+--accent:#c89b3c;
+--bg:#050505;
+--surface:#0a0a0a;
+--border:rgba(255,255,255,0.06);
+--ease:cubic-bezier(.2,.8,.2,1);
 }
 
-body {
-    background:var(--bg);
-    color:#d4d4d4;
-    font-family:'Plus Jakarta Sans',sans-serif;
+body{
+background:var(--bg);
+color:#d4d4d4;
+font-family:'Plus Jakarta Sans',sans-serif;
+overflow-x:hidden;
 }
 
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-thumb{background:#1a1a1a}
 
 .bg-grid{
-    position:fixed;inset:0;
-    background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
-    background-size:40px 40px;
-    mask-image:radial-gradient(circle at center,black,transparent 80%);
-    z-index:-1;
+position:fixed;inset:0;
+background-image:radial-gradient(rgba(255,255,255,.03) 1px,transparent 1px);
+background-size:40px 40px;
+mask-image:radial-gradient(circle at center,black,transparent 80%);
+z-index:-1;
 }
 
-/* NAV */
+/* NAV — unchanged */
 .nav-fixed{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000}
 .nav-container{
-    display:flex;align-items:center;gap:4px;
-    padding:6px;border-radius:100px;
-    background:rgba(10,10,10,.75);
-    backdrop-filter:blur(20px);
-    border:1px solid var(--border)
+display:flex;align-items:center;gap:4px;
+padding:6px;border-radius:100px;
+background:rgba(10,10,10,.75);
+backdrop-filter:blur(20px);
+border:1px solid var(--border)
 }
 .nav-logo{font-weight:800;font-size:13px;padding:0 16px;border-right:1px solid var(--border)}
 .nav-logo .main{color:#fff}
@@ -53,15 +54,15 @@ body {
 
 .nav-tabs{position:relative;display:flex;gap:2px}
 #nav-pill{
-    position:absolute;inset:0;
-    background:rgba(255,255,255,.05);
-    border-radius:100px;
-    transition:.6s var(--ease);
+position:absolute;top:0;left:0;height:100%;
+background:rgba(255,255,255,.05);
+border-radius:100px;
+transition:.6s var(--ease)
 }
 .nav-btn{
-    position:relative;z-index:1;
-    padding:8px 18px;font-size:12px;font-weight:600;
-    color:#555;border-radius:100px
+position:relative;z-index:1;
+padding:8px 18px;font-size:12px;font-weight:600;
+color:#555;border-radius:100px
 }
 .nav-btn.active{color:var(--accent)}
 .nav-btn:hover:not(.active){color:#aaa}
@@ -70,56 +71,52 @@ body {
 .social-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#555}
 .social-btn:hover{color:var(--accent);transform:translateY(-2px)}
 
-/* PAGES */
 .page-container{max-width:1200px;margin:0 auto;padding-top:140px}
 .page-wrap{display:none;padding:0 24px}
 .page-wrap.active{display:block}
 
-/* CARDS */
 .grid-master{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+
 .card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:24px;
-    padding:28px;
-    transition:.5s var(--ease);
-    cursor:pointer;
-    position:relative;
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:24px;
+padding:28px;
+transition:.5s var(--ease);
+cursor:pointer;
 }
 .card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(200,155,60,.45);
-    box-shadow:0 35px 70px rgba(0,0,0,.7);
+transform:translateY(-8px);
+border-color:rgba(200,155,60,.45);
+box-shadow:0 35px 70px rgba(0,0,0,.7)
 }
 .card-tag{
-    font-size:10px;font-weight:800;
-    letter-spacing:.25em;
-    text-transform:uppercase;
-    color:var(--accent);
-    margin-bottom:10px;
+font-size:10px;font-weight:800;
+letter-spacing:.25em;
+text-transform:uppercase;
+color:var(--accent);
+margin-bottom:10px
 }
 
 .status-row{display:flex;align-items:center;gap:8px;margin-top:6px}
 .status-dot{width:8px;height:8px;border-radius:50%;background:#22c55e}
 
 .modal{
-    position:fixed;inset:0;
-    background:rgba(0,0,0,.85);
-    backdrop-filter:blur(10px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:2000;
+position:fixed;inset:0;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(12px);
+display:none;align-items:center;justify-content:center;
+z-index:2000
 }
 .modal.open{display:flex}
 .modal-box{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:28px;
-    padding:40px;
-    max-width:600px;
-    width:90%;
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:28px;
+padding:42px;
+max-width:700px;width:90%
 }
+
 .spacer{height:120px}
 </style>
 </head>
@@ -127,13 +124,12 @@ body {
 <body onload="init()">
 <div class="bg-grid"></div>
 
-<!-- NAV -->
 <nav class="nav-fixed">
 <div class="nav-container">
 <div class="nav-logo"><span class="main">Bonaire</span>, <span class="sub">The Netherlands</span></div>
 <div class="nav-tabs">
 <div id="nav-pill"></div>
-<button class="nav-btn active" id="default-btn" onclick="tab('home',this)">home</button>
+<button id="default-btn" class="nav-btn active" onclick="tab('home',this)">home</button>
 <button class="nav-btn" onclick="tab('updates',this)">updates</button>
 <button class="nav-btn" onclick="tab('community',this)">community</button>
 <button class="nav-btn" onclick="tab('status',this)">status</button>
@@ -151,29 +147,41 @@ body {
 <!-- HOME -->
 <div id="home-tab" class="page-wrap active">
 <div class="text-center mb-24">
-<h1 class="text-7xl md:text-9xl font-black text-white mb-8">Bonaire,<br><span class="text-[#c89b3c]">The Netherlands</span></h1>
+<h1 class="text-7xl md:text-9xl font-black text-white mb-8">
+Bonaire,<br><span class="text-[#c89b3c]">The Netherlands</span>
+</h1>
 <p class="text-gray-500 text-lg max-w-2xl mx-auto">
-A high-fidelity Roblox roleplay experience focused on realism, structured governance, and immersive Caribbean life.
+A high-fidelity Roblox roleplay experience focused on realism, structured governance,
+and immersive Caribbean life.
 </p>
 </div>
 
 <div class="grid-master">
 <div class="card" onclick="tab('updates',document.querySelector('[onclick*=updates]'))">
 <span class="card-tag">Updates</span>
-<h3 class="text-white font-bold text-xl mb-2">Ongoing Development</h3>
-<p class="text-gray-500 text-sm">Changelogs, automation improvements, booster perks, and system updates.</p>
+<h3 class="text-white font-bold text-xl mb-2">Active Development</h3>
+<p class="text-gray-500 text-sm">
+Ongoing Discord, automation, and backend updates focused on stability,
+moderation, and quality-of-life improvements.
+</p>
 </div>
 
 <div class="card" onclick="tab('community',document.querySelector('[onclick*=community]'))">
 <span class="card-tag">Community</span>
-<h3 class="text-white font-bold text-xl mb-2">People & Structure</h3>
-<p class="text-gray-500 text-sm">Meet the team, explore departments, and understand how BTNL operates.</p>
+<h3 class="text-white font-bold text-xl mb-2">People & Governance</h3>
+<p class="text-gray-500 text-sm">
+Meet the leadership team, explore departments, and understand how Bonaire,
+The Netherlands is managed and moderated.
+</p>
 </div>
 
 <div class="card" onclick="tab('legal',document.querySelector('[onclick*=legal]'))">
 <span class="card-tag">Legal</span>
 <h3 class="text-white font-bold text-xl mb-2">Policies & Compliance</h3>
-<p class="text-gray-500 text-sm">Roblox-compliant rules, privacy, enforcement, and data handling.</p>
+<p class="text-gray-500 text-sm">
+Roblox-compliant terms, Discord rules, data handling policies,
+and enforcement procedures.
+</p>
 </div>
 </div>
 <div class="spacer"></div>
@@ -187,19 +195,25 @@ A high-fidelity Roblox roleplay experience focused on realism, structured govern
 <div class="card" onclick="openModal(update01)">
 <span class="card-tag">Stable</span>
 <h3 class="text-white font-bold">Discord Update 01.01</h3>
-<p class="text-gray-500 text-sm">Embeds, AutoMod rules, notification roles, and booster perks.</p>
+<p class="text-gray-500 text-sm">
+Embeds overhaul, AutoMod expansion, notification roles, and booster perks.
+</p>
 </div>
 
 <div class="card" onclick="openModal(update02)">
 <span class="card-tag">Stable</span>
 <h3 class="text-white font-bold">Discord Update 01.02</h3>
-<p class="text-gray-500 text-sm">Automation upgrades and new bug reporting system.</p>
+<p class="text-gray-500 text-sm">
+Automation improvements and structured bug reporting workflow.
+</p>
 </div>
 
 <div class="card" onclick="openModal(update03)">
 <span class="card-tag">Stable</span>
 <h3 class="text-white font-bold">Discord Update 01.03</h3>
-<p class="text-gray-500 text-sm">Logging, moderation expansion, backend optimization.</p>
+<p class="text-gray-500 text-sm">
+Logging expansion, moderation archives, backend optimisation.
+</p>
 </div>
 
 </div>
@@ -212,12 +226,58 @@ A high-fidelity Roblox roleplay experience focused on realism, structured govern
 
 <h3 class="text-3xl font-bold mb-8">Meet the Team</h3>
 <div class="grid-master">
-<!-- Cards omitted here for brevity in explanation but INCLUDED IN YOUR MESSAGE -->
-<!-- (All team members you provided are assumed inserted here exactly as requested) -->
+<div class="card" onclick="openModal(teamRob)">
+<span class="card-tag">Founder & Owner</span>
+<h3 class="text-white font-bold">R0BFISHY</h3>
+<p class="text-gray-500 text-sm">Project leadership, scripting, and governance.</p>
+</div>
+
+<div class="card" onclick="openModal(teamZack)">
+<span class="card-tag">Developer Lead</span>
+<h3 class="text-white font-bold">ZlindbergVirus</h3>
+<p class="text-gray-500 text-sm">Core systems development and oversight.</p>
+</div>
+
+<div class="card" onclick="openModal(teamOllie)">
+<span class="card-tag">Developer</span>
+<h3 class="text-white font-bold">OllieChurchblox</h3>
+<p class="text-gray-500 text-sm">Gameplay scripting and QA leadership.</p>
+</div>
+
+<div class="card" onclick="openModal(teamFire)">
+<span class="card-tag">Developer</span>
+<h3 class="text-white font-bold">FireHyperrr</h3>
+<p class="text-gray-500 text-sm">Game feature development.</p>
+</div>
+
+<div class="card" onclick="openModal(teamKelz)">
+<span class="card-tag">Developer</span>
+<h3 class="text-white font-bold">KelzGotGame</h3>
+<p class="text-gray-500 text-sm">Systems and gameplay development.</p>
+</div>
+
+<div class="card" onclick="openModal(teamRyan)">
+<span class="card-tag">Builder</span>
+<h3 class="text-white font-bold">Vontirax</h3>
+<p class="text-gray-500 text-sm">Environment and map design.</p>
+</div>
+
+<div class="card" onclick="openModal(teamLaura)">
+<span class="card-tag">Moderation Lead</span>
+<h3 class="text-white font-bold">mlxlaura</h3>
+<p class="text-gray-500 text-sm">Community safety and moderation operations.</p>
+</div>
+
+<div class="card" onclick="openModal(teamMax)">
+<span class="card-tag">QA Lead</span>
+<h3 class="text-white font-bold">ThePuggle2</h3>
+<p class="text-gray-500 text-sm">Quality assurance and TNAF command.</p>
+</div>
 </div>
 
 <h3 class="text-3xl font-bold mt-24 mb-8">Game Rules</h3>
-<p class="text-gray-500">Game rules are currently <strong>TBD</strong> and will be published prior to full release.</p>
+<p class="text-gray-500">Game rules are currently <strong>TBD</strong> and will be published prior to release.</p>
+
 <div class="spacer"></div>
 </div>
 
@@ -238,6 +298,18 @@ A high-fidelity Roblox roleplay experience focused on realism, structured govern
 <div class="status-row"><span class="status-dot"></span><span>Operational</span></div>
 </div>
 
+<div class="card" onclick="openModal(statusAppeals)">
+<span class="card-tag">Appeals</span>
+<h3 class="text-white font-bold">Synthova Appeals</h3>
+<div class="status-row"><span class="status-dot"></span><span>Operational</span></div>
+</div>
+
+<div class="card" onclick="openModal(statusCommunity)">
+<span class="card-tag">Community Bot</span>
+<h3 class="text-white font-bold">Synthova Community</h3>
+<div class="status-row"><span class="status-dot"></span><span>Operational</span></div>
+</div>
+
 <div class="card" onclick="openModal(statusGame)">
 <span class="card-tag">Game</span>
 <h3 class="text-white font-bold">Bonaire, The Netherlands</h3>
@@ -252,9 +324,25 @@ A high-fidelity Roblox roleplay experience focused on realism, structured govern
 <div id="legal-tab" class="page-wrap">
 <h2 class="text-6xl font-black mb-16">Legal</h2>
 <div class="grid-master">
-<div class="card"><span class="card-tag">Roblox</span><h3 class="text-white font-bold">Roblox Terms</h3><p class="text-gray-500 text-sm">Use of BTNL requires compliance with Roblox Terms of Use and Community Standards.</p></div>
-<div class="card"><span class="card-tag">Discord</span><h3 class="text-white font-bold">Discord Rules</h3><p class="text-gray-500 text-sm">Server rules apply alongside Discord Terms of Service and Guidelines.</p></div>
-<div class="card"><span class="card-tag">Privacy</span><h3 class="text-white font-bold">Data Retention</h3><p class="text-gray-500 text-sm">Minimal data is stored for moderation and security. GDPR compliant.</p></div>
+
+<div class="card" onclick="openModal(discordRules)">
+<span class="card-tag">Discord</span>
+<h3 class="text-white font-bold">Discord Rules</h3>
+<p class="text-gray-500 text-sm">Community behaviour and server usage rules.</p>
+</div>
+
+<div class="card" onclick="openModal(robloxRules)">
+<span class="card-tag">Roblox</span>
+<h3 class="text-white font-bold">Roblox Compliance</h3>
+<p class="text-gray-500 text-sm">Terms of use and platform compliance.</p>
+</div>
+
+<div class="card" onclick="openModal(privacyPolicy)">
+<span class="card-tag">Privacy</span>
+<h3 class="text-white font-bold">Data & Privacy</h3>
+<p class="text-gray-500 text-sm">GDPR-aligned data handling and retention.</p>
+</div>
+
 </div>
 <div class="spacer"></div>
 </div>
@@ -265,7 +353,7 @@ A high-fidelity Roblox roleplay experience focused on realism, structured govern
 <div id="modal" class="modal" onclick="closeModal()">
 <div class="modal-box" onclick="event.stopPropagation()">
 <div id="modalContent"></div>
-<button class="mt-8 w-full py-3 border border-white/10 rounded-xl" onclick="closeModal()">Close</button>
+<button class="mt-10 w-full py-3 border border-white/10 rounded-xl" onclick="closeModal()">Close</button>
 </div>
 </div>
 
@@ -275,6 +363,7 @@ function tab(id,el){
 movePill(el)
 document.querySelectorAll('.page-wrap').forEach(p=>p.classList.remove('active'))
 document.getElementById(id+'-tab').classList.add('active')
+window.scrollTo({top:0,behavior:'smooth'})
 }
 function movePill(el){
 const pill=document.getElementById('nav-pill')
@@ -285,35 +374,92 @@ function openModal(html){
 document.getElementById('modalContent').innerHTML=html
 document.getElementById('modal').classList.add('open')
 }
-function closeModal(){document.getElementById('modal').classList.remove('open')}
+function closeModal(){
+document.getElementById('modal').classList.remove('open')
+}
 
-/* UPDATE CONTENT */
-const update01 = `
+/* ================= CONTENT ================= */
+
+/* Updates */
+const update01=`
 <h2>Discord Update 01.01</h2>
-<ul><li>Embeds updated (info, notice, teaser, event)</li><li>New AutoMod rules</li><li>Role icons added</li><li>Notification roles available</li><li>Booster perks expanded</li></ul>
-`
-const update02 = `
-<h2>Discord Update 01.02</h2>
-<ul><li>Automatic booster rewards</li><li>Bug reporting system</li><li>Status & tag management</li></ul>
-`
-const update03 = `
-<h2>Discord Update 01.03</h2>
-<ul><li>Advanced join & role logs</li><li>Voice moderation archives</li><li>Backend optimization</li><li>Emoji lifecycle management</li></ul>
+<h4>General Updates</h4>
+<ul>
+<li>Embeds updated (info, notice, teaser, event)</li>
+<li>New AutoMod rules implemented</li>
+<li>Role icons added</li>
+<li>Notification roles: Notice, Development Preview, Events</li>
+</ul>
+<h4>Booster Perks</h4>
+<ul>
+<li>10,000 economy cash</li>
+<li>Embed & file permissions</li>
+<li>External emojis, stickers, soundboard</li>
+<li>Bypass slowmode, create polls, activities</li>
+</ul>
 `
 
-/* STATUS CONTENT */
-const statusSynthova = `
-<h2>Synthova</h2>
-Latency: 40–80ms<br>API Latency: 15–45ms<br>Uptime: 99.9%<br>Servers: 8
+const update02=`
+<h2>Discord Update 01.02</h2>
+<ul>
+<li>Automatic economy rewards on server boost</li>
+<li>No staff input required</li>
+<li>Bug reporting system with confirmations</li>
+<li>Staff tag & status controls</li>
+</ul>
 `
-const statusAPI = `
-<h2>Synthova API</h2>
-Latency: 30–60ms<br>API Latency: 15–35ms<br>Uptime: 99.9%<br>Servers: 8
+
+const update03=`
+<h2>Discord Update 01.03</h2>
+<ul>
+<li>Advanced join & role logs</li>
+<li>Voice moderation archives</li>
+<li>Backend variable optimisation</li>
+<li>Emoji lifecycle management</li>
+</ul>
 `
-const statusGame = `
-<h2>Bonaire, The Netherlands</h2>
-Game servers operational<br>Uptime: 99.9%
+
+/* Status */
+const statusSynthova=`<h2>Synthova</h2>Latency: 40–80ms<br>API Latency: 15–45ms<br>Uptime: 99.9%<br>Servers: 8`
+const statusAPI=`<h2>Synthova API</h2>Latency: 30–60ms<br>API Latency: 15–35ms<br>Uptime: 99.9%<br>Servers: 8`
+const statusAppeals=`<h2>Synthova Appeals</h2>Latency: 45–90ms<br>API Latency: 50–80ms<br>Uptime: 99.9%<br>Servers: 2`
+const statusCommunity=`<h2>Synthova Community</h2>Latency: 50–100ms<br>API Latency: 50–80ms<br>Uptime: 99.9%<br>Servers: 2`
+const statusGame=`<h2>Bonaire, The Netherlands</h2>Game servers operational<br>Uptime: 99.9%`
+
+/* Legal */
+const discordRules=`
+<h2>Discord Rules</h2>
+<ul>
+<li>No toxicity, harassment, impersonation, or spam</li>
+<li>Use channels correctly</li>
+<li>No illegal, NSFW, or harmful content</li>
+<li>No self-promotion or advertising</li>
+<li>No bot exploitation or alt evasion</li>
+<li>Respect privacy — no doxxing</li>
+<li>Follow Discord TOS & staff instructions</li>
+</ul>
+<p>Server activity may be logged for moderation and safety.</p>
 `
+
+const robloxRules=`
+<h2>Roblox Compliance</h2>
+<p>All gameplay and community activity must comply with Roblox Terms of Use and Community Standards.</p>
+`
+
+const privacyPolicy=`
+<h2>Data & Privacy</h2>
+<p>Limited data is stored for moderation, security, and automation purposes. Users may request data removal. GDPR compliant.</p>
+`
+
+/* Team */
+const teamRob=`<h2>R0BFISHY</h2><p>Founder, owner, and lead scripter focused on structure, fairness, and stability.</p>`
+const teamZack=`<h2>ZlindbergVirus</h2><p>Developer Lead responsible for systems architecture and oversight.</p>`
+const teamOllie=`<h2>OllieChurchblox</h2><p>Developer and QA oversight, scripting and moderation support.</p>`
+const teamFire=`<h2>FireHyperrr</h2><p>Developer contributing to gameplay systems.</p>`
+const teamKelz=`<h2>KelzGotGame</h2><p>Developer focused on game systems.</p>`
+const teamRyan=`<h2>Vontirax</h2><p>Builder responsible for environment and map design.</p>`
+const teamLaura=`<h2>mlxlaura</h2><p>Moderation Lead ensuring community safety.</p>`
+const teamMax=`<h2>ThePuggle2</h2><p>QA Lead and TNAF Commandant focused on stability and immersion.</p>`
 </script>
 
 </body>
