@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Bonaire, The Netherlands</title>
 
 <link rel="icon" type="image/png" href="https://www.transparentpng.com/download/emoticons/thinking-blue-emoticons-hd-transparent-1b3uLJ.png">
@@ -14,199 +13,132 @@
 <meta name="theme-color" content="#050505">
 
 <style>
-:root {
-    --accent: #c89b3c;
-    --bg: #050505;
-    --surface: #0a0a0a;
-    --border: rgba(255,255,255,0.06);
-    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+:root{
+--accent:#c89b3c;
+--bg:#050505;
+--surface:#0a0a0a;
+--border:rgba(255,255,255,0.06);
+--ease:cubic-bezier(.2,.8,.2,1);
 }
 
-body {
-    background: var(--bg);
-    color: #d4d4d4;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    overflow-x: hidden;
+body{
+background:var(--bg);
+color:#d4d4d4;
+font-family:'Plus Jakarta Sans',sans-serif;
+overflow-x:hidden;
 }
 
-/* Grid background */
-.bg-grid {
-    position: fixed;
-    inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(circle at center, black, transparent 80%);
-    z-index: -1;
+.bg-grid{
+position:fixed;inset:0;
+background-image:radial-gradient(rgba(255,255,255,.03)1px,transparent 1px);
+background-size:40px 40px;
+mask-image:radial-gradient(circle at center,black,transparent 80%);
+z-index:-1;
 }
 
-/* NAV */
-.nav-fixed {
-    position: fixed;
-    top: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
+/* NAV (RESTORED) */
+.nav-fixed{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000}
+.nav-container{
+display:flex;align-items:center;gap:4px;
+background:rgba(10,10,10,.75);
+backdrop-filter:blur(20px);
+border:1px solid var(--border);
+padding:6px;border-radius:100px
 }
-
-.nav-container {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 6px;
-    border-radius: 100px;
-    background: rgba(10,10,10,0.75);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border);
+.nav-logo{
+font-weight:800;font-size:13px;
+padding:0 16px;border-right:1px solid var(--border);
+white-space:nowrap
 }
+.nav-logo .main{color:#fff}
+.nav-logo .sub{color:var(--accent)}
 
-.nav-logo {
-    font-weight: 800;
-    font-size: 13px;
-    padding: 0 16px;
-    border-right: 1px solid var(--border);
+.nav-tabs{position:relative;display:flex;gap:2px}
+#nav-pill{
+position:absolute;height:100%;top:0;
+background:rgba(255,255,255,.05);
+border-radius:100px;
+transition:.6s var(--ease);
+z-index:0
 }
-
-.nav-logo .main { color: #fff; }
-.nav-logo .sub { color: var(--accent); }
-
-.nav-tabs {
-    position: relative;
-    display: flex;
-    gap: 2px;
+.nav-btn{
+position:relative;z-index:1;
+padding:8px 18px;font-size:12px;font-weight:600;
+color:#555;border-radius:100px
 }
+.nav-btn.active{color:var(--accent)}
+.nav-btn:hover:not(.active){color:#aaa}
 
-#nav-pill {
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.05);
-    border-radius: 100px;
-    transition: all 0.6s var(--ease);
+.nav-socials{
+display:flex;gap:4px;padding-left:8px;
+margin-left:4px;border-left:1px solid var(--border)
 }
-
-.nav-btn {
-    position: relative;
-    z-index: 1;
-    padding: 8px 18px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #555;
-    border-radius: 100px;
-}
-
-.nav-btn.active { color: var(--accent); }
-.nav-btn:hover:not(.active) { color: #aaa; }
-
-.nav-socials {
-    display: flex;
-    gap: 4px;
-    padding-left: 8px;
-    margin-left: 4px;
-    border-left: 1px solid var(--border);
-}
-
-.social-btn {
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #555;
-}
-
-.social-btn:hover { color: var(--accent); }
+.social-btn{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:#555}
+.social-btn:hover{color:var(--accent);transform:translateY(-2px)}
 
 /* PAGES */
-.page-container {
-    display: grid;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding-top: 140px;
+.page-container{
+display:grid;max-width:1200px;margin:0 auto;
+padding-top:140px
 }
-
-.page-wrap {
-    opacity: 0;
-    transform: translateY(30px);
-    pointer-events: none;
-    transition: 0.6s var(--ease);
-    padding: 0 24px;
+.page-wrap{
+grid-area:1/1;
+opacity:0;transform:translateY(30px);
+pointer-events:none;
+transition:.6s var(--ease);
+padding:0 24px
 }
-
-.page-wrap.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+.page-wrap.active{
+opacity:1;transform:none;pointer-events:auto
 }
 
 /* CARDS */
-.grid-master {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px,1fr));
-    gap: 16px;
+.grid-master{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+gap:16px
+}
+.card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:24px;
+padding:28px;
+transition:.5s var(--ease);
+cursor:pointer
+}
+.card:hover{
+transform:translateY(-6px);
+border-color:rgba(200,155,60,.45)
+}
+.card-tag{
+font-size:10px;font-weight:800;
+letter-spacing:.25em;text-transform:uppercase;
+color:var(--accent);margin-bottom:10px;display:block
 }
 
-.card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 28px;
-    transition: 0.5s var(--ease);
-    cursor: pointer;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(200,155,60,0.45);
-}
-
-.card-tag {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-    display: block;
-}
-
-/* STATUS DOT */
-.status-dot {
-    width: 8px;
-    height: 8px;
-    background: #22c55e;
-    border-radius: 50%;
-}
+/* STATUS */
+.status-dot{width:8px;height:8px;border-radius:50%;background:#22c55e}
 
 /* MODAL */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(16px);
-    opacity: 0;
-    pointer-events: none;
-    transition: 0.4s var(--ease);
-    z-index: 2000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.modal-overlay{
+position:fixed;inset:0;
+background:rgba(0,0,0,.85);
+backdrop-filter:blur(16px);
+opacity:0;pointer-events:none;
+transition:.4s var(--ease);
+z-index:2000;
+display:flex;align-items:center;justify-content:center
+}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal-box{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:28px;
+padding:36px;width:90%;max-width:560px
 }
 
-.modal-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 28px;
-    padding: 36px;
-    width: 90%;
-    max-width: 560px;
-}
-
-/* Reduced spacing so home does NOT scroll forever */
-.spacer { height: 80px; }
+/* SHORTER SCROLL */
+.spacer{height:80px}
 </style>
 </head>
 
@@ -218,16 +150,15 @@ body {
 <div class="nav-container">
 
 <div class="nav-logo">
-<span class="main">Bonaire</span>,
-<span class="sub">The Netherlands</span>
+<span class="main">Bonaire</span>, <span class="sub">The Netherlands</span>
 </div>
 
 <div class="nav-tabs">
 <div id="nav-pill"></div>
 <button class="nav-btn active" id="default-btn" onclick="tab('home',this)">home</button>
 <button class="nav-btn" onclick="tab('upds',this)">updates</button>
-<button class="nav-btn" onclick="tab('stat',this)">status</button>
 <button class="nav-btn" onclick="tab('comm',this)">community</button>
+<button class="nav-btn" onclick="tab('stat',this)">status</button>
 <button class="nav-btn" onclick="tab('legal',this)">legal</button>
 </div>
 
@@ -252,24 +183,15 @@ body {
 Bonaire,<br><span class="text-[#c89b3c]">The Netherlands</span>
 </h1>
 <p class="text-gray-500 text-lg max-w-2xl mx-auto">
-A high-fidelity Roblox roleplay experience focused on realism, structured governance,
-and immersive Caribbean life.
+A high-fidelity Roblox roleplay experience focused on realism,
+structured governance, and immersive Caribbean life.
 </p>
 </div>
 
 <div class="grid-master mb-20">
-<div class="card">
-<span class="card-tag">Updates</span>
-<p class="text-gray-500 text-sm">Game and bot changelogs, fixes, balancing updates, and feature releases.</p>
-</div>
-<div class="card">
-<span class="card-tag">Community</span>
-<p class="text-gray-500 text-sm">Meet the staff team, explore departments, and understand operations.</p>
-</div>
-<div class="card">
-<span class="card-tag">Legal</span>
-<p class="text-gray-500 text-sm">Rules, moderation authority, enforcement procedures, and data handling.</p>
-</div>
+<div class="card"><span class="card-tag">Updates</span><p class="text-gray-500 text-sm">Game & bot changelogs, fixes, and feature releases.</p></div>
+<div class="card"><span class="card-tag">Community</span><p class="text-gray-500 text-sm">Staff, departments, and daily operations.</p></div>
+<div class="card"><span class="card-tag">Legal</span><p class="text-gray-500 text-sm">Rules, enforcement, and data handling.</p></div>
 </div>
 </div>
 
@@ -282,137 +204,40 @@ and immersive Caribbean life.
 <!-- STATUS -->
 <div id="stat-tab" class="page-wrap">
 <h2 class="text-6xl font-black text-white mb-16">Systems Operational</h2>
-
 <div class="grid-master">
-<div class="card">
-<span class="card-tag">Info</span>
-<h3 class="text-white font-bold mb-2">Synthova</h3>
-<div class="flex items-center gap-2 text-sm text-gray-500">
-<div class="status-dot"></div> Discord bot operational
+<div class="card"><span class="card-tag">Bot</span><h3 class="text-white font-bold mb-2">Synthova</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Discord bot</div></div>
+<div class="card"><span class="card-tag">Bot</span><h3 class="text-white font-bold mb-2">Synthova API</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Discord bot</div></div>
+<div class="card"><span class="card-tag">Bot</span><h3 class="text-white font-bold mb-2">Synthova Appeals</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Discord bot</div></div>
+<div class="card"><span class="card-tag">Bot</span><h3 class="text-white font-bold mb-2">Synthova Community</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Discord bot</div></div>
+<div class="card"><span class="card-tag">Game</span><h3 class="text-white font-bold mb-2">Bonaire, The Netherlands</h3><div class="flex items-center gap-2 text-sm text-gray-500"><div class="status-dot"></div> Game servers</div></div>
 </div>
 </div>
 
-<div class="card">
-<span class="card-tag">Info</span>
-<h3 class="text-white font-bold mb-2">Synthova API</h3>
-<div class="flex items-center gap-2 text-sm text-gray-500">
-<div class="status-dot"></div> Discord bot operational
-</div>
+<!-- COMMUNITY -->
+<div id="comm-tab" class="page-wrap">
+<h2 class="text-6xl font-black text-white mb-16">Community</h2>
+<p class="text-gray-500 max-w-3xl">Community structure, staff, and departments will be documented here.</p>
 </div>
 
-<div class="card">
-<span class="card-tag">Info</span>
-<h3 class="text-white font-bold mb-2">Synthova Appeals</h3>
-<div class="flex items-center gap-2 text-sm text-gray-500">
-<div class="status-dot"></div> Discord bot operational
-</div>
-</div>
-
-<div class="card">
-<span class="card-tag">Info</span>
-<h3 class="text-white font-bold mb-2">Synthova Community</h3>
-<div class="flex items-center gap-2 text-sm text-gray-500">
-<div class="status-dot"></div> Discord bot operational
-</div>
-</div>
-
-<div class="card">
-<span class="card-tag">Game</span>
-<h3 class="text-white font-bold mb-2">Bonaire, The Netherlands</h3>
-<div class="flex items-center gap-2 text-sm text-gray-500">
-<div class="status-dot"></div> Game servers operational
-</div>
-</div>
-</div>
+<!-- LEGAL -->
+<div id="legal-tab" class="page-wrap">
+<h2 class="text-6xl font-black text-white mb-16">Legal</h2>
+<p class="text-gray-500 max-w-3xl">Rules, policies, enforcement authority, and data handling.</p>
 </div>
 
 </main>
 
-<!-- UPDATE MODAL -->
-<div id="update-modal" class="modal-overlay" onclick="closeModal()">
-<div class="modal-box" onclick="event.stopPropagation()">
-<div id="modal-content"></div>
-<button onclick="closeModal()" class="mt-6 w-full py-3 border border-white/10 rounded-xl text-xs uppercase tracking-widest">Close</button>
-</div>
-</div>
-
 <script>
-const updates = [
-{
-title:"Discord Update 01.01",
-status:"Stable",
-sections:[
-{
-h:"General Updates",
-b:[
-"Embeds updated (info, notice, teaser, event)",
-"New AutoMod rules added",
-"Role icons added",
-"Notification roles available:",
-"• Notice Notifications",
-"• Development Preview Notifications",
-"• Event Notifications"
-]
-},
-{
-h:"Booster Perks Added",
-b:[
-"10,000 economy cash",
-"Embed permissions",
-"Attach files",
-"Add reactions (external emojis)",
-"Use external stickers",
-"Bypass slowmode",
-"Voice messages",
-"Create polls",
-"Soundboard & activities"
-]
-}
-]
-},
-{
-title:"Discord Update 01.02",
-status:"Stable",
-sections:[
-{
-h:"Automation Updates",
-b:[
-"Synthova Community Bot now applies booster rewards automatically",
-"No manual staff input required"
-]
-},
-{
-h:"Bug Reporting System",
-b:[
-"Automatic user confirmation on submission",
-"Staff commands to update bug status and tags"
-]
-}
-]
-},
-{
-title:"Discord Update 01.03",
-status:"Stable",
-sections:[
-{
-h:"System & Automation Updates",
-b:[
-"Advanced screening join logs",
-"Role update logs",
-"Archived voice moderation logs",
-"Backend optimization for stability",
-"Emoji rotation and management"
-]
-}
-]
-}
+const updates=[
+{t:"Discord Update 01.01",s:["Embeds updated","New AutoMod rules","Role icons","Notification roles","Booster perks added"]},
+{t:"Discord Update 01.02",s:["Automatic booster rewards","Bug reporting system"]},
+{t:"Discord Update 01.03",s:["Logging expansion","Backend optimization","Emoji management"]}
 ];
 
 function init(){
 movePill(document.getElementById('default-btn'));
 renderUpdates();
 }
-
 function tab(id,el){
 movePill(el);
 document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
@@ -421,38 +246,18 @@ document.querySelectorAll('.page-wrap').forEach(p=>p.classList.remove('active'))
 document.getElementById(id+'-tab').classList.add('active');
 window.scrollTo({top:0,behavior:'smooth'});
 }
-
 function movePill(el){
-const pill=document.getElementById('nav-pill');
-pill.style.width=el.offsetWidth+'px';
-pill.style.left=el.offsetLeft+'px';
+const p=document.getElementById('nav-pill');
+p.style.width=el.offsetWidth+'px';
+p.style.left=el.offsetLeft+'px';
 }
-
 function renderUpdates(){
-const g=document.getElementById('updates-grid');
-g.innerHTML=updates.map((u,i)=>`
-<div class="card" onclick="openUpdate(${i})">
-<span class="card-tag">${u.status}</span>
-<h3 class="text-white font-bold text-xl">${u.title}</h3>
+document.getElementById('updates-grid').innerHTML=
+updates.map(u=>`
+<div class="card">
+<span class="card-tag">Stable</span>
+<h3 class="text-white font-bold">${u.t}</h3>
 </div>`).join('');
-}
-
-function openUpdate(i){
-const u=updates[i];
-document.getElementById('modal-content').innerHTML=`
-<span class="card-tag">${u.status}</span>
-<h2 class="text-3xl font-black text-white mb-4">${u.title}</h2>
-${u.sections.map(s=>`
-<h4 class="text-white font-bold mt-4 mb-2">${s.h}</h4>
-<ul class="text-gray-400 text-sm list-disc list-inside space-y-1">
-${s.b.map(x=>`<li>${x}</li>`).join('')}
-</ul>`).join('')}
-`;
-document.getElementById('update-modal').classList.add('open');
-}
-
-function closeModal(){
-document.getElementById('update-modal').classList.remove('open');
 }
 </script>
 
