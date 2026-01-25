@@ -246,6 +246,25 @@ body {
     opacity: 1;
 }
 
+/* ===== STATUS CARD ENHANCEMENTS ===== */
+.status-card::after {
+    content: "View stats";
+    position: absolute;
+    bottom: 18px;
+    right: 22px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,155,60,0.65);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+    pointer-events: none;
+}
+
+.status-card:hover::after {
+    opacity: 1;
+}
+
 /* modal */
 .modal {
     position: fixed;
@@ -511,7 +530,7 @@ and emoji lifecycle management.
 <h2 class="text-6xl font-black mb-16">System Status</h2>
 
 <div class="grid-master">
-<div class="card" onclick="openModal(statusSynthova)">
+<div class="card status-card" onclick="openModal(statusSynthova)">
 <span class="card-tag">Discord Bot</span>
 <h3 class="text-white font-bold">Synthova</h3>
 <div class="status-row"><span class="status-dot"></span><span>Operational</span></div>
