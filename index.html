@@ -588,35 +588,54 @@ and emoji lifecycle management.
 <h2 class="text-6xl font-black mb-16">Legal</h2>
 
 <div class="grid-master">
-<div class="card legal-card" onclick="openModal(discordRules)">
-<span class="card-tag">Discord</span>
-<h3 class="text-white font-bold">Discord Rules</h3>
-</div>
+    
+  <div class="card team-card legal-card" onclick="openModal(ruleFairUsage)">
+    <span class="card-tag">Usage</span>
+    <h3>Fair Usage</h3>
+    <p>Reasonable use of systems, commands, and services.</p>
+  </div>
 
-<div class="card legal-card" onclick="openModal(robloxRules)">
-<span class="card-tag">Roblox</span>
-<h3 class="text-white font-bold">Roblox Policies</h3>
-</div>
+ <div class="card team-card legal-card" onclick="openModal(ruleMiniModding)">
+    <span class="card-tag>Moderation</span>
+    <h3>Mini-Modding</h3>
+    <p>Preventing backseat moderation and authority misuse.</p>
+  </div>
 
-<div class="card legal-card" onclick="openModal(automationPolicy)">
-<span class="card-tag">Automation</span>
-<h3 class="text-white font-bold">Automation & Bots</h3>
-</div>
+<div class="card team-card legal-card" onclick="openModal(ruleRaids)">
+    <span class="card-tag">Safety</span>
+    <h3>Raids & Disruption</h3>
+    <p>Zero-tolerance policy on organised disruption.</p>
+  </div>
 
-<div class="card legal-card" onclick="openModal(usagePolicy)">
-<span class="card-tag">Usage</span>
-<h3 class="text-white font-bold">Acceptable Use</h3>
-</div>
+<div class="card team-card legal-card" onclick="openModal(ruleAutomation)">
+    <span class="card-tag">Automation</span>
+    <h3>Bots & Self-Bots</h3>
+    <p>Restrictions on automation and exploitative tooling.</p>
+  </div>
 
+<div class="card team-card legal-card" onclick="openModal(ruleContent)">
+    <span class="card-tag">Content</span>
+    <h3>Media & Recordings</h3>
+    <p>Rules around videos, screenshots, and recordings.</p>
+  </div>
+
+  <div class="card team-card legal-card" onclick="openModal(rulePrivacy)">
+    <span class="card-tag">Privacy</span>
+    <h3>Data & Privacy</h3>
+    <p>How user data is handled and retained.</p>
+  </div>   
+    
 <div class="card legal-card" onclick="openModal(privacyPolicy)">
 <span class="card-tag">Privacy</span>
 <h3 class="text-white font-bold">Data & Privacy</h3>
 </div>
 
-<div class="card legal-card" onclick="openModal(enforcementPolicy)">
-<span class="card-tag">Moderation</span>
-<h3 class="text-white font-bold">Enforcement</h3>
-</div>
+ <div class="card team-card legal-card" onclick="openModal(ruleEnforcement)">
+    <span class="card-tag">Policy</span>
+    <h3>Moderation & Enforcement</h3>
+    <p>How rules are enforced and penalties applied.</p>
+  </div>
+    
 </div>
 
 <div class="spacer"></div>
@@ -1062,12 +1081,148 @@ const teamMax = `
 `;
 
 /* ===== LEGAL ===== */
-const discordRules = `<h2>Discord Rules</h2><ul><li>No harassment, toxicity, spam, impersonation, or abuse.</li><li>No illegal, NSFW, or harmful content.</li><li>No self-promotion or advertising without permission.</li><li>No bot exploitation or moderation evasion.</li><li>Respect privacy and follow Discord TOS.</li></ul>`;
-const robloxRules = `<h2>Roblox Policies</h2><p>All gameplay and community behaviour must comply with Roblox Terms of Use and Community Standards.</p>`;
-const automationPolicy = `<h2>Automation & Bots</h2><p>Abuse of automation, macros, or scripts is prohibited. Bots may log activity for moderation.</p>`;
-const usagePolicy = `<h2>Acceptable Use</h2><p>Users must act in good faith and avoid disruptive or exploitative behaviour.</p>`;
-const privacyPolicy = `<h2>Data & Privacy</h2><p>Data is stored only for moderation and security. GDPR compliant.</p>`;
-const enforcementPolicy = `<h2>Enforcement</h2><p>Staff may issue warnings, mutes, kicks, or bans based on severity and repetition.</p>`;
+const ruleFairUsage = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Fair Usage</div>
+    <div class="modal-role">Usage Policy</div>
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="modal-body">
+    Spamming commands, abusing rate limits, or intentionally misusing
+    systems may result in warnings, timeouts, or further action.
+    Services must be used in good faith.
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="text-xs text-gray-500">
+    Last updated: 26 January 2026
+  </div>
+</div>
+`;
+
+const ruleMiniModding = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Mini-Modding</div>
+    <div class="modal-role">Moderation Conduct</div>
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="modal-body">
+    Minimodding is not allowed. Users may not enforce rules,
+    issue warnings, threaten punishments, or speak on behalf
+    of staff. All moderation actions are reserved for trained
+    staff to prevent misuse and confusion.
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="text-xs text-gray-500">
+    Last updated: 26 January 2026
+  </div>
+</div>
+`;
+
+const ruleRaids = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Raids & Disruption</div>
+    <div class="modal-role">Safety Policy</div>
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="modal-body">
+    Raiding, spam attacks, mass mentions, or coordinated
+    disruption are strictly prohibited. Encouraging raids,
+    evading moderation via alternate accounts or VPNs, or
+    overwhelming systems will result in enforcement action.
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="text-xs text-gray-500">
+    Last updated: 26 January 2026
+  </div>
+</div>
+`;
+
+const ruleAutomation = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Automation & Bots</div>
+    <div class="modal-role">Systems Policy</div>
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="modal-body">
+    Self-bots, macros, scripts, or automation intended to
+    bypass moderation, cooldowns, or restrictions are prohibited.
+    Abuse of bots or systems will result in disciplinary action.
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="text-xs text-gray-500">
+    Last updated: 26 January 2026
+  </div>
+</div>
+`;
+
+const rulePrivacy = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Data & Privacy</div>
+    <div class="modal-role">Privacy Policy</div>
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="modal-body">
+    We collect minimal data required for moderation,
+    automation, and security. This may include user IDs,
+    timestamps, and moderation logs. No financial or
+    personal data is collected. Data is retained only
+    as necessary and may be deleted upon request.
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="text-xs text-gray-500">
+    Last updated: 26 January 2026
+  </div>
+</div>
+`;
+
+const ruleEnforcement = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Moderation & Enforcement</div>
+    <div class="modal-role">Policy</div>
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="modal-body">
+    Staff may issue warnings, timeouts, kicks, or bans
+    at their discretion. Punishments may escalate based
+    on severity or repetition. Appeals are not guaranteed.
+  </div>
+
+  <div class="modal-divider"></div>
+
+  <div class="text-xs text-gray-500">
+    Last updated: 26 January 2026
+  </div>
+</div>
+`;
+
 </script>
 
 </body>
