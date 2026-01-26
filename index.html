@@ -265,6 +265,25 @@ body {
     opacity: 1;
 }
 
+/* ===== LEGAL CARD ENHANCEMENTS ===== */
+.legal-card::after {
+    content: "View details";
+    position: absolute;
+    bottom: 18px;
+    right: 22px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,155,60,0.65);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+    pointer-events: none;
+}
+
+.legal-card:hover::after {
+    opacity: 1;
+}
+    
 /* modal */
 .modal {
     position: fixed;
@@ -569,32 +588,32 @@ and emoji lifecycle management.
 <h2 class="text-6xl font-black mb-16">Legal</h2>
 
 <div class="grid-master">
-<div class="card" onclick="openModal(discordRules)">
+<div class="card legal-card" onclick="openModal(discordRules)">
 <span class="card-tag">Discord</span>
 <h3 class="text-white font-bold">Discord Rules</h3>
 </div>
 
-<div class="card" onclick="openModal(robloxRules)">
+<div class="card legal-card" onclick="openModal(robloxRules)">
 <span class="card-tag">Roblox</span>
 <h3 class="text-white font-bold">Roblox Policies</h3>
 </div>
 
-<div class="card" onclick="openModal(automationPolicy)">
+<div class="card legal-card" onclick="openModal(automationPolicy)">
 <span class="card-tag">Automation</span>
 <h3 class="text-white font-bold">Automation & Bots</h3>
 </div>
 
-<div class="card" onclick="openModal(usagePolicy)">
+<div class="card legal-card" onclick="openModal(usagePolicy)">
 <span class="card-tag">Usage</span>
 <h3 class="text-white font-bold">Acceptable Use</h3>
 </div>
 
-<div class="card" onclick="openModal(privacyPolicy)">
+<div class="card legal-card" onclick="openModal(privacyPolicy)">
 <span class="card-tag">Privacy</span>
 <h3 class="text-white font-bold">Data & Privacy</h3>
 </div>
 
-<div class="card" onclick="openModal(enforcementPolicy)">
+<div class="card legal-card" onclick="openModal(enforcementPolicy)">
 <span class="card-tag">Moderation</span>
 <h3 class="text-white font-bold">Enforcement</h3>
 </div>
