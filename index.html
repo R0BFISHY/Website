@@ -589,53 +589,92 @@ and emoji lifecycle management.
 
 <div class="grid-master">
     
-  <div class="card team-card legal-card" onclick="openModal(ruleFairUsage)">
-    <span class="card-tag">Usage</span>
-    <h3>Fair Usage</h3>
-    <p>Reasonable use of systems, commands, and services.</p>
-  </div>
+m not changing layout, CSS, or JS logic — only cards + modal content constants.
 
- <div class="card team-card legal-card" onclick="openModal(ruleMiniModding)">
-    <span class="card-tag>Moderation</span>
-    <h3>Mini-Modding</h3>
-    <p>Preventing backseat moderation and authority misuse.</p>
-  </div>
+1️⃣ LEGAL PAGE – CARD GRID (replace only the Legal cards section)
+<div class="grid-master">
 
-<div class="card team-card legal-card" onclick="openModal(ruleRaids)">
-    <span class="card-tag">Safety</span>
-    <h3>Raids & Disruption</h3>
-    <p>Zero-tolerance policy on organised disruption.</p>
-  </div>
-
-<div class="card team-card legal-card" onclick="openModal(ruleAutomation)">
-    <span class="card-tag">Automation</span>
-    <h3>Bots & Self-Bots</h3>
-    <p>Restrictions on automation and exploitative tooling.</p>
-  </div>
-
-<div class="card team-card legal-card" onclick="openModal(ruleContent)">
-    <span class="card-tag">Content</span>
-    <h3>Media & Recordings</h3>
-    <p>Rules around videos, screenshots, and recordings.</p>
-  </div>
-
-  <div class="card team-card legal-card" onclick="openModal(rulePrivacy)">
-    <span class="card-tag">Privacy</span>
-    <h3>Data & Privacy</h3>
-    <p>How user data is handled and retained.</p>
-  </div>   
-    
-<div class="card legal-card" onclick="openModal(privacyPolicy)">
-<span class="card-tag">Privacy</span>
-<h3 class="text-white font-bold">Data & Privacy</h3>
+<!-- Safety & Privacy -->
+<div class="card legal-card" onclick="openModal(privacySafety)">
+    <span class="card-tag">Safety & Privacy</span>
+    <h3 class="text-white font-bold">Privacy & Personal Safety</h3>
 </div>
 
- <div class="card team-card legal-card" onclick="openModal(ruleEnforcement)">
+<div class="card legal-card" onclick="openModal(dataRetention)">
+    <span class="card-tag">Privacy</span>
+    <h3 class="text-white font-bold">Data Retention & Privacy</h3>
+</div>
+
+<div class="card legal-card" onclick="openModal(sensitiveTopics)">
+    <span class="card-tag">Safety</span>
+    <h3 class="text-white font-bold">Sensitive Topics</h3>
+</div>
+
+<div class="card legal-card" onclick="openModal(nsfwContent)">
+    <span class="card-tag">Safety</span>
+    <h3 class="text-white font-bold">NSFW & Inappropriate Content</h3>
+</div>
+
+<!-- Conduct & Behaviour -->
+<div class="card legal-card" onclick="openModal(conductBehaviour)">
+    <span class="card-tag">Conduct</span>
+    <h3 class="text-white font-bold">Conduct & Behaviour</h3>
+</div>
+
+<div class="card legal-card" onclick="openModal(reportingCallouts)">
+    <span class="card-tag">Conduct</span>
+    <h3 class="text-white font-bold">Reporting & Public Callouts</h3>
+</div>
+
+<div class="card legal-card" onclick="openModal(minimodding)">
+    <span class="card-tag">Moderation</span>
+    <h3 class="text-white font-bold">Mini-Modding & Unauthorized Moderation</h3>
+</div>
+
+<!-- Integrity & Abuse -->
+<div class="card legal-card" onclick="openModal(coordinatedAbuse)">
+    <span class="card-tag">Integrity</span>
+    <h3 class="text-white font-bold">Coordinated Abuse & Disruption</h3>
+</div>
+
+<div class="card legal-card" onclick="openModal(exploits)">
+    <span class="card-tag">Integrity</span>
+    <h3 class="text-white font-bold">Exploits & Bad-Faith Conduct</h3>
+</div>
+
+<div class="card legal-card" onclick="openModal(altsEvasion)">
+    <span class="card-tag">Integrity</span>
+    <h3 class="text-white font-bold">Alternate Accounts & Evasion</h3>
+</div>
+
+<!-- Bots & Automation -->
+<div class="card legal-card" onclick="openModal(fairUsage)">
+    <span class="card-tag">Automation</span>
+    <h3 class="text-white font-bold">Fair Usage Policy</h3>
+</div>
+
+<div class="card legal-card" onclick="openModal(botting)">
+    <span class="card-tag">Automation</span>
+    <h3 class="text-white font-bold">Botting & Unauthorized Automation</h3>
+</div>
+
+<!-- Media -->
+<div class="card legal-card" onclick="openModal(mediaMisuse)">
+    <span class="card-tag">Content</span>
+    <h3 class="text-white font-bold">Misuse of Media & External Content</h3>
+</div>
+
+<!-- Governance -->
+<div class="card legal-card" onclick="openModal(moderationEnforcement)">
+    <span class="card-tag">Governance</span>
+    <h3 class="text-white font-bold">Moderation & Enforcement</h3>
+</div>
+
+<div class="card legal-card" onclick="openModal(updatesAmendments)">
     <span class="card-tag">Policy</span>
-    <h3>Moderation & Enforcement</h3>
-    <p>How rules are enforced and penalties applied.</p>
-  </div>
-    
+    <h3 class="text-white font-bold">Updates & Amendments</h3>
+</div>
+
 </div>
 
 <div class="spacer"></div>
@@ -1081,144 +1120,120 @@ const teamMax = `
 `;
 
 /* ===== LEGAL ===== */
-const ruleFairUsage = `
+
+const privacySafety = `
 <div class="modal-content">
   <div class="modal-header">
-    <div class="modal-name">Fair Usage</div>
-    <div class="modal-role">Usage Policy</div>
+    <div class="modal-name">Privacy & Personal Safety</div>
+    <div class="modal-role">Safety & Privacy</div>
   </div>
-
   <div class="modal-divider"></div>
-
   <div class="modal-body">
-    Spamming commands, abusing rate limits, or intentionally misusing
-    systems may result in warnings, timeouts, or further action.
-    Services must be used in good faith.
-  </div>
-
-  <div class="modal-divider"></div>
-
-  <div class="text-xs text-gray-500">
-    Last updated: 26 January 2026
+    Sharing personal or private information without clear consent is strictly prohibited.
+    This includes doxxing, threats of doxxing, or any form of intimidation involving personal data.
+    Violations will result in immediate enforcement action, including permanent bans where applicable.
   </div>
 </div>
 `;
 
-const ruleMiniModding = `
+const dataRetention = `
 <div class="modal-content">
   <div class="modal-header">
-    <div class="modal-name">Mini-Modding</div>
-    <div class="modal-role">Moderation Conduct</div>
+    <div class="modal-name">Data Retention & Privacy</div>
+    <div class="modal-role">Privacy</div>
   </div>
-
   <div class="modal-divider"></div>
-
   <div class="modal-body">
-    Minimodding is not allowed. Users may not enforce rules,
-    issue warnings, threaten punishments, or speak on behalf
-    of staff. All moderation actions are reserved for trained
-    staff to prevent misuse and confusion.
-  </div>
-
-  <div class="modal-divider"></div>
-
-  <div class="text-xs text-gray-500">
-    Last updated: 26 January 2026
+    We handle personal data in accordance with applicable data protection laws, including POPIA
+    and, where applicable, GDPR principles.
+    <br><br>
+    Stored data may include Roblox User ID, username, and moderation-related logs.
+    Users may request data removal by emailing <strong>x2rob39@gmail.com</strong>
+    or creating a support ticket. Requests are reviewed and processed where legally permissible.
+    <br><br>
+    <strong>Last updated:</strong> 2026-01-27
   </div>
 </div>
 `;
 
-const ruleRaids = `
+const fairUsage = `
 <div class="modal-content">
   <div class="modal-header">
-    <div class="modal-name">Raids & Disruption</div>
-    <div class="modal-role">Safety Policy</div>
+    <div class="modal-name">Fair Usage Policy</div>
+    <div class="modal-role">Bots & Automation</div>
   </div>
-
   <div class="modal-divider"></div>
-
   <div class="modal-body">
-    Raiding, spam attacks, mass mentions, or coordinated
-    disruption are strictly prohibited. Encouraging raids,
-    evading moderation via alternate accounts or VPNs, or
-    overwhelming systems will result in enforcement action.
-  </div>
-
-  <div class="modal-divider"></div>
-
-  <div class="text-xs text-gray-500">
-    Last updated: 26 January 2026
+    Excessive or repetitive command usage is not permitted.
+    Spamming commands may trigger automatic rate limits and will result in timeouts
+    to ensure stable and fair bot operation for all users.
   </div>
 </div>
 `;
 
-const ruleAutomation = `
+const minimodding = `
 <div class="modal-content">
   <div class="modal-header">
-    <div class="modal-name">Automation & Bots</div>
-    <div class="modal-role">Systems Policy</div>
+    <div class="modal-name">Mini-Modding & Unauthorized Moderation</div>
+    <div class="modal-role">Conduct</div>
   </div>
-
   <div class="modal-divider"></div>
-
   <div class="modal-body">
-    Self-bots, macros, scripts, or automation intended to
-    bypass moderation, cooldowns, or restrictions are prohibited.
-    Abuse of bots or systems will result in disciplinary action.
-  </div>
-
-  <div class="modal-divider"></div>
-
-  <div class="text-xs text-gray-500">
-    Last updated: 26 January 2026
+    Minimodding is not allowed. Do not enforce rules, warn users, threaten punishments,
+    or speak on behalf of staff.
+    <br><br>
+    All moderation actions are handled exclusively by trained staff to avoid confusion
+    and misuse of authority.
   </div>
 </div>
 `;
 
-const rulePrivacy = `
+const coordinatedAbuse = `
 <div class="modal-content">
   <div class="modal-header">
-    <div class="modal-name">Data & Privacy</div>
-    <div class="modal-role">Privacy Policy</div>
+    <div class="modal-name">Coordinated Abuse & Disruption</div>
+    <div class="modal-role">Server Integrity</div>
   </div>
-
   <div class="modal-divider"></div>
-
   <div class="modal-body">
-    We collect minimal data required for moderation,
-    automation, and security. This may include user IDs,
-    timestamps, and moderation logs. No financial or
-    personal data is collected. Data is retained only
-    as necessary and may be deleted upon request.
-  </div>
-
-  <div class="modal-divider"></div>
-
-  <div class="text-xs text-gray-500">
-    Last updated: 26 January 2026
+    Raiding, brigading, mass mentions, spam attacks, or coordinated disruption are strictly prohibited.
+    Organising or encouraging others to overwhelm channels, staff, or bots is not allowed.
+    <br><br>
+    Evading moderation through alternate accounts, VPNs, or repeated rejoining will result
+    in enforcement action.
   </div>
 </div>
 `;
 
-const ruleEnforcement = `
+const botting = `
 <div class="modal-content">
   <div class="modal-header">
-    <div class="modal-name">Moderation & Enforcement</div>
-    <div class="modal-role">Policy</div>
+    <div class="modal-name">Botting & Unauthorized Automation</div>
+    <div class="modal-role">Automation</div>
   </div>
-
   <div class="modal-divider"></div>
-
   <div class="modal-body">
-    Staff may issue warnings, timeouts, kicks, or bans
-    at their discretion. Punishments may escalate based
-    on severity or repetition. Appeals are not guaranteed.
+    Self-bots, user bots, scripts, macros, automation tools, or abuse of server bots
+    are strictly prohibited.
+    <br><br>
+    Attempting to bypass moderation, cooldowns, or restrictions through automated means
+    will result in enforcement action.
   </div>
+</div>
+`;
 
+const updatesAmendments = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Updates & Amendments</div>
+    <div class="modal-role">Governance</div>
+  </div>
   <div class="modal-divider"></div>
-
-  <div class="text-xs text-gray-500">
-    Last updated: 26 January 2026
+  <div class="modal-body">
+    These terms may be modified at any time without prior notice.
+    Continued participation constitutes acceptance of the most current version.
+    <br><br>
+    Users are notified of changes via this website only.
   </div>
 </div>
 `;
