@@ -265,6 +265,17 @@ body {
     opacity: 1;
 }
 
+/* ===== LEGAL AUTO LAST UPDATED ===== */
+.legal-last-updated {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(200,155,60,0.65);
+}
+
 /* ===== LEGAL CARD ENHANCEMENTS ===== */
 .legal-card::after {
     content: "View details";
@@ -667,6 +678,9 @@ and emoji lifecycle management.
 
 </div>
 
+<!-- AUTO LAST UPDATED (LEGAL) -->
+<div id="legal-last-updated" class="legal-last-updated"></div>
+    
 <div class="spacer"></div>
 </div>
 
@@ -1324,6 +1338,21 @@ const moderationEnforcement = `
 </div>
 `;
 
+/* ===== AUTO LEGAL LAST UPDATED ===== */
+(function setLegalLastUpdated(){
+    const el = document.getElementById('legal-last-updated');
+    if (!el) return;
+
+    const d = new Date();
+    el.textContent =
+        "Last updated · " +
+        d.toLocaleDateString("en-ZA", {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
+})();
+    
 </script>
 
 </body>
