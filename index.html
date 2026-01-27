@@ -43,7 +43,7 @@ body {
     z-index:-1;
 }
 
-/* ===== NAV (UNCHANGED, THIN) ===== */
+/* ===== NAV ===== */
 .nav-fixed {
     position:fixed;
     top:24px;
@@ -282,6 +282,14 @@ body {
 
 .legal-card:hover::after {
     opacity: 1;
+}
+
+.legal-updated {
+    margin-top: 14px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200,155,60,0.6);
 }
     
 /* modal */
@@ -1323,6 +1331,24 @@ const moderationEnforcement = `
   </div>
 </div>
 `;
+
+<!-- DATE AUTOADD -->
+function openModal(html){
+    document.getElementById('modalContent').innerHTML = html;
+
+    const updated = document.getElementById('legal-updated');
+    const date = new Date();
+
+    updated.textContent =
+        "Last updated · " +
+        date.toLocaleDateString("en-ZA", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+
+    document.getElementById('modal').classList.add('open');
+}
 
 
 </script>
