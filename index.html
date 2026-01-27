@@ -611,11 +611,6 @@ and emoji lifecycle management.
 </div>
 
 <!-- Conduct & Behaviour -->
-<div class="card legal-card" onclick="openModal(conductBehaviour)">
-    <span class="card-tag">Conduct</span>
-    <h3 class="text-white font-bold">Conduct & Behaviour</h3>
-</div>
-
 <div class="card legal-card" onclick="openModal(reportingCallouts)">
     <span class="card-tag">Conduct</span>
     <h3 class="text-white font-bold">Reporting & Public Callouts</h3>
@@ -1232,6 +1227,105 @@ const updatesAmendments = `
   </div>
 </div>
 `;
+
+const sensitiveTopics = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Sensitive Topics</div>
+    <div class="modal-role">Safety & Privacy</div>
+  </div>
+  <div class="modal-divider"></div>
+  <div class="modal-body">
+    Sensitive or controversial topics including politics, religion, and graphic violence
+    are not permitted. Attempts to introduce these topics may result in moderation action.
+  </div>
+</div>
+`;
+
+const nsfwContent = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">NSFW & Inappropriate Content</div>
+    <div class="modal-role">Safety & Privacy</div>
+  </div>
+  <div class="modal-divider"></div>
+  <div class="modal-body">
+    NSFW, sexually explicit, graphic, or otherwise inappropriate content is strictly
+    prohibited regardless of context or channel.
+  </div>
+</div>
+`;
+
+const reportingCallouts = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Reporting & Public Callouts</div>
+    <div class="modal-role">Community Behaviour</div>
+  </div>
+  <div class="modal-divider"></div>
+  <div class="modal-body">
+    Rule violations must be reported through official moderation channels.
+    Public callouts, shaming, or naming other members is not permitted.
+  </div>
+</div>
+`;
+
+const exploits = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Exploits & Bad-Faith Conduct</div>
+    <div class="modal-role">Server Integrity</div>
+  </div>
+  <div class="modal-divider"></div>
+  <div class="modal-body">
+    Exploiting bugs, abusing loopholes, trolling, or acting in bad faith to disrupt
+    the community or systems is prohibited, even if not explicitly listed.
+  </div>
+</div>
+`;
+
+const altsEvasion = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Alternate Accounts & Evasion</div>
+    <div class="modal-role">Server Integrity</div>
+  </div>
+  <div class="modal-divider"></div>
+  <div class="modal-body">
+    Using alternate accounts, VPNs, or repeated rejoining to evade moderation
+    will result in enforcement action.
+  </div>
+</div>
+`;
+
+const mediaMisuse = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Misuse of Media & External Content</div>
+    <div class="modal-role">Content & Media Use</div>
+  </div>
+  <div class="modal-divider"></div>
+  <div class="modal-body">
+    Media must not be used for harassment, misinformation, or without consent.
+    Content taken out of context to target individuals is prohibited.
+  </div>
+</div>
+`;
+
+const moderationEnforcement = `
+<div class="modal-content">
+  <div class="modal-header">
+    <div class="modal-name">Moderation & Enforcement</div>
+    <div class="modal-role">Governance</div>
+  </div>
+  <div class="modal-divider"></div>
+  <div class="modal-body">
+    Staff may issue warnings, mutes, kicks, bans, or permanent bans at their discretion.
+    Actions may escalate based on severity or repetition. Appeals are not guaranteed.
+  </div>
+</div>
+`;
+
 
 </script>
 
