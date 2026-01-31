@@ -192,18 +192,38 @@ body{
 .modal.open{display:flex}
 
 .modal-box{
-  background:var(--surface);
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.02),
+    rgba(255,255,255,0.005)
+  ), var(--surface);
+
   border:1px solid var(--border);
   border-radius:28px;
-  padding:36px;
-  max-width:720px;
+  padding:40px;
+  max-width:760px;
   width:92%;
+
   display:flex;
   flex-direction:column;
-  gap:18px;
+  gap:22px;
+
   box-shadow:
     0 0 0 1px rgba(250,204,21,.12),
-    0 40px 80px rgba(0,0,0,.85);
+    0 40px 90px rgba(0,0,0,.9);
+
+  animation:modalIn .5s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:scale(.96) translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 .modal-close{
@@ -221,6 +241,52 @@ body{
 }
 .modal-close:hover{
   transform:translateY(-4px);
+}
+
+.modal-header{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.modal-title{
+  font-size:22px;
+  font-weight:900;
+  color:#fff;
+}
+
+.modal-subtitle{
+  font-size:11px;
+  letter-spacing:.25em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:var(--yellow);
+}
+
+.modal-divider{
+  height:1px;
+  background:linear-gradient(
+    to right,
+    rgba(250,204,21,.6),
+    rgba(250,204,21,.05)
+  );
+}
+
+.modal-body{
+  font-size:15px;
+  line-height:1.75;
+  color:#c7c7c7;
+}
+
+.modal-list{
+  margin-top:6px;
+  padding-left:18px;
+  list-style:disc;
+  color:#9ca3af;
+}
+
+.modal-list li{
+  margin-bottom:6px;
 }
 
 /* ===== SPACING ===== */
@@ -252,7 +318,6 @@ body{
       After <span class="text-yellow-400">Hours</span>
     </h1>
     <p class="text-gray-400 max-w-xl mx-auto">
-      Play · Drink · Connect<br>
       One night. One stall. Unlimited fun.
     </p>
   </div>
@@ -288,31 +353,31 @@ body{
     <div class="card" onclick="openModal(teamRobert)">
       <span class="tag">Group Leader</span>
       <h3>Robert</h3>
-      <p>Leadership & design.</p>
+      <p>Leadership</p>
     </div>
 
     <div class="card" onclick="openModal(teamSizwe)">
       <span class="tag">Operations</span>
       <h3>Sizwe</h3>
-      <p>Logistics & flow.</p>
+      <p>Logistics</p>
     </div>
 
     <div class="card" onclick="openModal(teamLesedi)">
       <span class="tag">Creative</span>
       <h3>Lesedi</h3>
-      <p>Visuals & atmosphere.</p>
+      <p>Visuals & atmosphere</p>
     </div>
 
     <div class="card" onclick="openModal(teamNkosi)">
       <span class="tag">Games</span>
       <h3>Nkosi</h3>
-      <p>Interactive experiences.</p>
+      <p>Interactive experiences</p>
     </div>
 
     <div class="card" onclick="openModal(teamBonolo)">
       <span class="tag">Support</span>
       <h3>Bonolo</h3>
-      <p>Guest assistance.</p>
+      <p>Guest assistance</p>
     </div>
   </div>
 
@@ -423,21 +488,285 @@ function closeModal(){
 }
 
 /* ===== MODAL CONTENT ===== */
-const teamRobert=`<h3 class="text-2xl font-black">Robert</h3><p>Group leader and website designer. Oversees planning, organisation, and overall execution of After Hours.</p>`;
-const teamSizwe=`<h3 class="text-2xl font-black">Sizwe</h3><p>Manages operations and ensures the stall runs smoothly throughout the event.</p>`;
-const teamLesedi=`<h3 class="text-2xl font-black">Lesedi</h3><p>Handles creative direction, visuals, and overall atmosphere.</p>`;
-const teamNkosi=`<h3 class="text-2xl font-black">Nkosi</h3><p>Runs mini games and keeps engagement high.</p>`;
-const teamBonolo=`<h3 class="text-2xl font-black">Bonolo</h3><p>Provides general support and assists guests.</p>`;
+const teamRobert = `
+<div class="modal-header">
+  <div class="modal-title">Robert</div>
+  <div class="modal-subtitle">Group Leader · Website Designer</div>
+</div>
 
-const photoBooth=`<h3 class="text-2xl font-black">Photo Booth</h3><p>Capture fun moments with themed props.</p><p><b>Price:</b> TBD</p>`;
-const bracelets=`<h3 class="text-2xl font-black">Friendship Bracelets</h3><p>Colourful handmade bracelets.</p><p><b>Price:</b> TBD</p>`;
-const drinks=`<h3 class="text-2xl font-black">Colorful Drinks</h3><p>Bright, refreshing beverages.</p><p><b>Price:</b> TBD</p>`;
-const games=`<h3 class="text-2xl font-black">Mini Games</h3><p>Quick games with prizes.</p><p><b>Price:</b> TBD</p>`;
-const mystery=`<h3 class="text-2xl font-black">Mystery Packs</h3><p>Surprise items.</p><p><b>Price:</b> TBD</p>`;
+<div class="modal-divider"></div>
 
-const infoWhat=`<h3 class="text-2xl font-black">What is After Hours?</h3><p>A one-night interactive stall focused on fun, connection, and entertainment.</p>`;
-const infoWhen=`<h3 class="text-2xl font-black">When</h3><p>13 February 2026</p>`;
-const infoWhere=`<h3 class="text-2xl font-black">Where</h3><p>Curro Serengeti Auditorium</p><p class="mt-4 text-gray-400">Pre-orders will be further communicated via the website in the coming days.</p>`;
+<div class="modal-body">
+  Robert is the group leader behind After Hours and the designer of the website.
+  He oversees the overall direction, planning, and execution of the stall.
+
+  <ul class="modal-list">
+    <li>Event planning and coordination</li>
+    <li>Website design and structure</li>
+    <li>Creative direction and organisation</li>
+  </ul>
+
+  His focus is on keeping After Hours well-organised, visually appealing,
+  and enjoyable for everyone attending.
+</div>
+`;
+
+const teamSizwe = `
+<div class="modal-header">
+  <div class="modal-title">Sizwe</div>
+  <div class="modal-subtitle">Operations</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Sizwe manages the operational side of After Hours, ensuring the stall runs
+  smoothly from start to finish.
+
+  <ul class="modal-list">
+    <li>Stall setup and flow</li>
+    <li>Assisting with crowd movement</li>
+    <li>Supporting activities during the event</li>
+  </ul>
+</div>
+`;
+
+const teamLesedi = `
+<div class="modal-header">
+  <div class="modal-title">Lesedi</div>
+  <div class="modal-subtitle">Creative Lead</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Lesedi is responsible for the creative look and atmosphere of After Hours.
+
+  <ul class="modal-list">
+    <li>Visual styling and presentation</li>
+    <li>Decor and overall aesthetic</li>
+    <li>Ensuring the stall matches the theme</li>
+  </ul>
+</div>
+`;
+const teamNkosi = `
+<div class="modal-header">
+  <div class="modal-title">Nkosi</div>
+  <div class="modal-subtitle">Games & Interaction</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Nkosi runs the mini games and interactive experiences at the stall.
+
+  <ul class="modal-list">
+    <li>Managing mini games</li>
+    <li>Explaining rules to participants</li>
+    <li>Keeping energy and engagement high</li>
+  </ul>
+</div>
+`;
+
+const teamBonolo = `
+<div class="modal-header">
+  <div class="modal-title">Bonolo</div>
+  <div class="modal-subtitle">General Support</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Bonolo assists across all areas of After Hours and helps guests throughout the event.
+
+  <ul class="modal-list">
+    <li>Guest assistance</li>
+    <li>Helping with products and games</li>
+    <li>General stall support</li>
+  </ul>
+</div>
+`;
+
+
+const photoBooth = `
+<div class="modal-header">
+  <div class="modal-title">Photo Booth</div>
+  <div class="modal-subtitle">Memories & Moments</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Capture fun moments with friends using themed props and a dedicated photo area designed
+  to match the After Hours atmosphere.
+
+  <ul class="modal-list">
+    <li>Group and solo photos</li>
+    <li>Themed accessories and props</li>
+    <li>Perfect keepsakes from the night</li>
+  </ul>
+
+  <p><b>Price:</b> TBD</p>
+</div>
+`;
+
+const bracelets = `
+<div class="modal-header">
+  <div class="modal-title">Friendship Bracelets</div>
+  <div class="modal-subtitle">Keepsakes</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Colourful handmade friendship bracelets designed to trade, share, or keep
+  as a reminder of the night.
+
+  <ul class="modal-list">
+    <li>Multiple colours and styles</li>
+    <li>Easy to trade with friends</li>
+    <li>Lightweight and wearable</li>
+  </ul>
+
+  <p><b>Price:</b> TBD</p>
+</div>
+`;
+
+const drinks = `
+<div class="modal-header">
+  <div class="modal-title">Colorful Drinks</div>
+  <div class="modal-subtitle">Refreshments</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Bright, eye-catching drinks created to match the After Hours theme
+  and keep guests refreshed throughout the event.
+
+  <ul class="modal-list">
+    <li>Vibrant colours</li>
+    <li>Multiple flavour options</li>
+    <li>Perfect for late-night vibes</li>
+  </ul>
+
+  <p><b>Price:</b> TBD</p>
+</div>
+`;
+
+const games = `
+<div class="modal-header">
+  <div class="modal-title">Mini Games</div>
+  <div class="modal-subtitle">Interactive Fun</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Short, interactive games designed to keep energy high and create friendly
+  competition throughout the night.
+
+  <ul class="modal-list">
+    <li>Quick and easy to play</li>
+    <li>Fun for individuals and groups</li>
+    <li>Small rewards and prizes</li>
+  </ul>
+
+  <p><b>Price:</b> TBD</p>
+</div>
+`;
+
+const mystery = `
+<div class="modal-header">
+  <div class="modal-title">Mystery Packs</div>
+  <div class="modal-subtitle">Surprise Rewards</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  Mystery packs contain surprise items that add excitement and curiosity
+  to the After Hours experience.
+
+  <ul class="modal-list">
+    <li>Randomised contents</li>
+    <li>Different pack outcomes</li>
+    <li>Limited availability</li>
+  </ul>
+
+  <p><b>Price:</b> TBD</p>
+</div>
+`;
+
+const infoWhat = `
+<div class="modal-header">
+  <div class="modal-title">What is After Hours?</div>
+  <div class="modal-subtitle">Event Overview</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  After Hours is a one-night interactive stall experience designed to bring
+  people together through games, visuals, and social interaction.
+
+  <ul class="modal-list">
+    <li>Mini games and interactive activities</li>
+    <li>Photobooth experiences</li>
+    <li>Colourful drinks and mystery packs</li>
+  </ul>
+
+  The focus of After Hours is on fun, connection, and creating memorable moments
+  in a relaxed, welcoming environment.
+</div>
+`;
+
+const infoWhen = `
+<div class="modal-header">
+  <div class="modal-title">When is After Hours?</div>
+  <div class="modal-subtitle">Event Date</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  After Hours will take place on a single night, giving guests a unique
+  and time-limited experience.
+
+  <ul class="modal-list">
+    <li><b>Date:</b> 13 February 2026</li>
+    <li>Evening event</li>
+    <li>One-night only</li>
+  </ul>
+
+  Make sure to arrive early to experience everything the stall has to offer.
+</div>
+`;
+
+const infoWhere = `
+<div class="modal-header">
+  <div class="modal-title">Where is After Hours?</div>
+  <div class="modal-subtitle">Location & Access</div>
+</div>
+
+<div class="modal-divider"></div>
+
+<div class="modal-body">
+  After Hours will be hosted at the Curro Serengeti Auditorium, providing a
+  central and accessible venue for the event.
+
+  <ul class="modal-list">
+    <li><b>Venue:</b> Curro Serengeti Auditorium</li>
+    <li>Indoor event space</li>
+    <li>Easy access for attendees</li>
+  </ul>
+
+  <p class="mt-4 text-gray-400">
+    Pre-orders will be further communicated via the website in the coming days.
+  </p>
+</div>
+`;
+
 </script>
 
 </body>
