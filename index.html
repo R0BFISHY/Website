@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>After Hours</title>
 
@@ -13,193 +13,288 @@
 :root{
   --accent:#e879f9;
   --bg:#050505;
-  --surface:#0b0b0b;
+  --surface:#0a0a0a;
   --border:rgba(255,255,255,0.06);
+  --ease:cubic-bezier(.2,.8,.2,1);
 }
 
 body{
   background:var(--bg);
-  color:#e5e5e5;
-  font-family:ui-sans-serif,system-ui;
+  color:#d4d4d4;
+  overflow-x:hidden;
 }
 
 .bg-grid{
   position:fixed;
   inset:0;
-  background-image:radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-image:radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
   background-size:40px 40px;
   z-index:-1;
+}
+
+/* NAV */
+.nav-fixed{
+  position:fixed;
+  top:16px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:1000;
+}
+
+.nav-box{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  padding:6px;
+  border-radius:100px;
+  background:rgba(10,10,10,.75);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--border);
+}
+
+.nav-logo{
+  padding:0 14px;
+  font-weight:800;
+  font-size:12px;
+  white-space:nowrap;
+}
+
+.nav-logo span{color:var(--accent)}
+
+.nav-tabs{
+  position:relative;
+  display:flex;
+  gap:2px;
+}
+
+#pill{
+  position:absolute;
+  top:0;
+  height:100%;
+  background:rgba(255,255,255,.06);
+  border-radius:100px;
+  transition:.5s var(--ease);
+}
+
+.nav-btn{
+  position:relative;
+  z-index:1;
+  padding:8px 16px;
+  font-size:12px;
+  font-weight:600;
+  color:#777;
+  border-radius:100px;
+}
+
+.nav-btn.active{color:var(--accent)}
+
+/* PAGES */
+.page{
+  display:none;
+  max-width:1200px;
+  margin:0 auto;
+  padding:120px 20px 80px;
+}
+
+.page.active{display:block}
+
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:16px;
 }
 
 .card{
   background:var(--surface);
   border:1px solid var(--border);
   border-radius:24px;
-  padding:24px;
-  transition:all .4s ease;
+  padding:26px;
+  transition:.45s var(--ease);
 }
 
 .card:hover{
   transform:translateY(-6px);
-  border-color:rgba(232,121,249,.5);
-  box-shadow:0 30px 60px rgba(0,0,0,.7);
+  border-color:rgba(232,121,249,.45);
 }
 
 .tag{
-  font-size:11px;
+  font-size:10px;
   letter-spacing:.25em;
-  color:var(--accent);
   text-transform:uppercase;
-  font-weight:700;
+  color:var(--accent);
+  font-weight:800;
 }
 
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:50;
-}
-
-.modal.open{display:flex;}
-
-.modal-box{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:28px;
-  padding:32px;
-  width:90%;
-  max-width:600px;
-}
+h1{font-weight:900;color:#fff}
+h2{font-weight:800;color:#fff}
+h3{font-weight:700;color:#fff}
+p{color:#9ca3af;font-size:14px;line-height:1.6}
 </style>
 </head>
 
-<body>
-
+<body onload="init()">
 <div class="bg-grid"></div>
 
 <!-- NAV -->
-<nav class="fixed top-4 left-1/2 -translate-x-1/2 z-40">
-  <div class="flex items-center gap-4 px-6 py-3 rounded-full bg-black/70 backdrop-blur border border-white/10">
-    <span class="font-black tracking-wide text-white">AFTER <span class="text-fuchsia-400">HOURS</span></span>
-    <a href="#products" class="text-sm text-gray-400 hover:text-white">Products</a>
-    <a href="#contact" class="text-sm text-gray-400 hover:text-white">Contact</a>
+<nav class="nav-fixed">
+  <div class="nav-box">
+    <div class="nav-logo">After <span>Hours</span></div>
+
+    <div class="nav-tabs">
+      <div id="pill"></div>
+      <button id="default" class="nav-btn active" onclick="tab('home',this)">home</button>
+      <button class="nav-btn" onclick="tab('community',this)">community</button>
+      <button class="nav-btn" onclick="tab('products',this)">products</button>
+      <button class="nav-btn" onclick="tab('info',this)">information</button>
+    </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="min-h-screen flex flex-col items-center justify-center text-center px-6">
-  <h1 class="text-6xl md:text-8xl font-black mb-6">
-    After <span class="text-fuchsia-400">Hours</span>
-  </h1>
-  <p class="max-w-xl text-gray-400 text-lg">
-    Neon nights. Interactive fun. Drinks, games, mystery packs, and photo moments that glow.
-  </p>
-  <a href="#products" class="mt-10 px-8 py-4 rounded-2xl border border-fuchsia-400 text-fuchsia-400 hover:bg-fuchsia-400 hover:text-black transition font-bold">
-    Explore Products
-  </a>
+<!-- HOME -->
+<section id="home" class="page active">
+  <div class="text-center mb-20">
+    <h1 class="text-6xl md:text-8xl mb-6">After <span class="text-fuchsia-400">Hours</span></h1>
+    <p class="max-w-xl mx-auto">
+      A neon-themed late-night experience combining games, mystery packs,
+      photobooths, and vibrant drinks.
+    </p>
+  </div>
+
+  <div class="grid">
+    <div class="card" onclick="tab('community',document.querySelector('[onclick*=community]'))">
+      <span class="tag">Community</span>
+      <h3 class="text-xl mt-2 mb-2">People & Team</h3>
+      <p>Meet the hosts, organisers, and people behind After Hours.</p>
+    </div>
+
+    <div class="card" onclick="tab('products',document.querySelector('[onclick*=products]'))">
+      <span class="tag">Products</span>
+      <h3 class="text-xl mt-2 mb-2">Games & Experiences</h3>
+      <p>Minigames, mystery neon packs, photobooths, and drinks.</p>
+    </div>
+
+    <div class="card" onclick="tab('info',document.querySelector('[onclick*=info]'))">
+      <span class="tag">Information</span>
+      <h3 class="text-xl mt-2 mb-2">When · Where · What</h3>
+      <p>Event details, location, timing, and booking information.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community" class="page">
+  <h2 class="text-5xl mb-12">Community</h2>
+
+  <h3 class="text-2xl mb-6">Meet the Team</h3>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Founder</span>
+      <h3 class="mt-2">After Hours Team</h3>
+      <p>Responsible for planning, branding, and event execution.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Hosts</span>
+      <h3 class="mt-2">Event Hosts</h3>
+      <p>Running games, managing the crowd, and keeping energy high.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Creative</span>
+      <h3 class="mt-2">Design & Atmosphere</h3>
+      <p>Lighting, props, photobooth layout, and visual experience.</p>
+    </div>
+  </div>
 </section>
 
 <!-- PRODUCTS -->
-<section id="products" class="max-w-7xl mx-auto px-6 py-24">
-  <h2 class="text-4xl md:text-5xl font-black mb-16 text-center">What We Offer</h2>
+<section id="products" class="page">
+  <h2 class="text-5xl mb-12">Products</h2>
 
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-    <div class="card" onclick="openModal(minigames)">
-      <span class="tag">Interactive</span>
-      <h3 class="text-xl font-bold mt-2">Minigames</h3>
-      <p class="text-sm text-gray-400 mt-2">
-        Competitive party games designed to keep guests moving and laughing.
-      </p>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">Minigames</span>
+      <h3 class="mt-2">Interactive Games</h3>
+      <p>Short competitive games run by hosts.</p>
+      <p class="mt-2 text-white font-semibold">R50 – R100 per session</p>
     </div>
 
-    <div class="card" onclick="openModal(neon)">
-      <span class="tag">Surprise</span>
-      <h3 class="text-xl font-bold mt-2">Mystery Neon Packs</h3>
-      <p class="text-sm text-gray-400 mt-2">
-        Randomized glowing items and accessories — every pack is different.
-      </p>
+    <div class="card">
+      <span class="tag">Mystery</span>
+      <h3 class="mt-2">Neon Packs</h3>
+      <p>Randomised glowing accessories.</p>
+      <p class="mt-2 text-white font-semibold">R80 / R150 / R250</p>
     </div>
 
-    <div class="card" onclick="openModal(photo)">
-      <span class="tag">Memories</span>
-      <h3 class="text-xl font-bold mt-2">Photobooth Accessories</h3>
-      <p class="text-sm text-gray-400 mt-2">
-        LED props, signs, glasses, and themed accessories for perfect shots.
-      </p>
+    <div class="card">
+      <span class="tag">Photo</span>
+      <h3 class="mt-2">Photobooth Accessories</h3>
+      <p>LED props, signs, and themed bundles.</p>
+      <p class="mt-2 text-white font-semibold">Included / Bundle pricing</p>
     </div>
 
-    <div class="card" onclick="openModal(drinks)">
-      <span class="tag">Refresh</span>
-      <h3 class="text-xl font-bold mt-2">Colorful Drinks</h3>
-      <p class="text-sm text-gray-400 mt-2">
-        Bright, vibrant beverages designed for late-night vibes.
-      </p>
+    <div class="card">
+      <span class="tag">Drinks</span>
+      <h3 class="mt-2">Colorful Drinks</h3>
+      <p>Bright, neon-inspired beverages.</p>
+      <p class="mt-2 text-white font-semibold">R30 – R60</p>
     </div>
-
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="text-center py-24 px-6">
-  <h2 class="text-4xl font-black mb-6">Book After Hours</h2>
-  <p class="text-gray-400 max-w-xl mx-auto mb-8">
-    Perfect for events, parties, and late-night experiences.
-  </p>
-  <button class="px-8 py-4 rounded-2xl bg-fuchsia-400 text-black font-bold">
-    Get in Touch
-  </button>
-</section>
+<!-- INFORMATION -->
+<section id="info" class="page">
+  <h2 class="text-5xl mb-12">Information</h2>
 
-<!-- MODAL -->
-<div id="modal" class="modal" onclick="closeModal()">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <div id="modalContent"></div>
-    <button onclick="closeModal()" class="mt-6 w-full py-3 rounded-xl border border-fuchsia-400 text-fuchsia-400 font-bold">
-      Close
-    </button>
+  <div class="grid">
+    <div class="card">
+      <span class="tag">What</span>
+      <h3 class="mt-2">What is After Hours?</h3>
+      <p>A late-night entertainment event focused on fun, visuals, and interaction.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">When</span>
+      <h3 class="mt-2">Event Times</h3>
+      <p>Typically hosted evenings and nights. Dates announced in advance.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Where</span>
+      <h3 class="mt-2">Location</h3>
+      <p>Venue details provided upon booking or announcement.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Booking</span>
+      <h3 class="mt-2">How to Book</h3>
+      <p>Contact the After Hours team for private or public event bookings.</p>
+    </div>
   </div>
-</div>
+</section>
 
 <script>
-function openModal(content){
-  document.getElementById('modalContent').innerHTML = content;
-  document.getElementById('modal').classList.add('open');
-}
-function closeModal(){
-  document.getElementById('modal').classList.remove('open');
+function init(){
+  move(document.getElementById('default'))
 }
 
-const minigames = `
-<h3 class="text-2xl font-black mb-4">Minigames</h3>
-<p class="text-gray-400">
-Fast-paced party games, reaction challenges, and team competitions designed to keep energy high all night.
-</p>
-`;
+function tab(id,el){
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'))
+  el.classList.add('active')
 
-const neon = `
-<h3 class="text-2xl font-black mb-4">Mystery Neon Packs</h3>
-<p class="text-gray-400">
-Each pack includes randomized LED accessories, glow items, and exclusive After Hours surprises.
-</p>
-`;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
+  document.getElementById(id).classList.add('active')
 
-const photo = `
-<h3 class="text-2xl font-black mb-4">Photobooth Accessories</h3>
-<p class="text-gray-400">
-Neon signs, LED glasses, glow sticks, and themed props to level up your photos.
-</p>
-`;
+  move(el)
+  window.scrollTo({top:0})
+}
 
-const drinks = `
-<h3 class="text-2xl font-black mb-4">Colorful Drinks</h3>
-<p class="text-gray-400">
-Bright, eye-catching drinks crafted for atmosphere and presentation.
-</p>
-`;
+function move(el){
+  const p=document.getElementById('pill')
+  p.style.width=el.offsetWidth+'px'
+  p.style.left=el.offsetLeft+'px'
+}
 </script>
 
 </body>
