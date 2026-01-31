@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>After Hours</title>
+<title>After Hours — Stall</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 :root{
-  --accent:#e879f9;
-  --bg:#050505;
-  --surface:#0a0a0a;
-  --border:rgba(255,255,255,0.06);
+  --accent:#f59e0b;
+  --accent2:#ef4444;
+  --bg:#070707;
+  --surface:#0e0e0e;
+  --border:rgba(255,255,255,.08);
   --ease:cubic-bezier(.2,.8,.2,1);
 }
 
@@ -22,20 +22,22 @@ body{
   background:var(--bg);
   color:#d4d4d4;
   overflow-x:hidden;
+  font-family:ui-sans-serif,system-ui;
 }
 
+/* background texture */
 .bg-grid{
   position:fixed;
   inset:0;
-  background-image:radial-gradient(rgba(255,255,255,.03) 1px, transparent 1px);
-  background-size:40px 40px;
+  background-image:radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size:42px 42px;
   z-index:-1;
 }
 
-/* NAV */
+/* ===== NAV ===== */
 .nav-fixed{
   position:fixed;
-  top:16px;
+  top:12px;
   left:50%;
   transform:translateX(-50%);
   z-index:1000;
@@ -45,20 +47,20 @@ body{
   display:flex;
   align-items:center;
   gap:4px;
-  padding:6px;
-  border-radius:100px;
-  background:rgba(10,10,10,.75);
-  backdrop-filter:blur(20px);
+  padding:4px;
+  background:rgba(14,14,14,.75);
+  backdrop-filter:blur(18px);
   border:1px solid var(--border);
+  border-radius:999px;
 }
 
 .nav-logo{
-  padding:0 14px;
-  font-weight:800;
-  font-size:12px;
+  padding:0 12px;
+  font-weight:900;
+  font-size:11px;
   white-space:nowrap;
+  color:#fff;
 }
-
 .nav-logo span{color:var(--accent)}
 
 .nav-tabs{
@@ -67,38 +69,43 @@ body{
   gap:2px;
 }
 
-#pill{
+#nav-pill{
   position:absolute;
   top:0;
   height:100%;
-  background:rgba(255,255,255,.06);
-  border-radius:100px;
-  transition:.5s var(--ease);
+  background:rgba(255,255,255,.08);
+  border-radius:999px;
+  transition:all .45s var(--ease);
 }
 
 .nav-btn{
   position:relative;
   z-index:1;
-  padding:8px 16px;
-  font-size:12px;
+  padding:6px 12px;
+  font-size:11px;
   font-weight:600;
-  color:#777;
-  border-radius:100px;
+  color:#888;
+  border-radius:999px;
 }
 
 .nav-btn.active{color:var(--accent)}
 
-/* PAGES */
+/* ===== PAGES ===== */
 .page{
   display:none;
   max-width:1200px;
   margin:0 auto;
-  padding:120px 20px 80px;
+  padding:110px 20px 90px;
+  animation:fade .5s ease;
 }
-
 .page.active{display:block}
 
-/* CARDS */
+@keyframes fade{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+
+/* ===== GRID & CARDS ===== */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -108,28 +115,30 @@ body{
 .card{
   background:var(--surface);
   border:1px solid var(--border);
-  border-radius:24px;
+  border-radius:22px;
   padding:26px;
   transition:.45s var(--ease);
 }
 
 .card:hover{
   transform:translateY(-6px);
-  border-color:rgba(232,121,249,.45);
+  border-color:rgba(245,158,11,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.7);
 }
 
 .tag{
   font-size:10px;
   letter-spacing:.25em;
   text-transform:uppercase;
-  color:var(--accent);
   font-weight:800;
+  color:var(--accent);
 }
 
-h1{font-weight:900;color:#fff}
-h2{font-weight:800;color:#fff}
-h3{font-weight:700;color:#fff}
+h1,h2,h3{color:#fff}
 p{color:#9ca3af;font-size:14px;line-height:1.6}
+
+/* spacing */
+.spacer{height:80px}
 </style>
 </head>
 
@@ -139,11 +148,11 @@ p{color:#9ca3af;font-size:14px;line-height:1.6}
 <!-- NAV -->
 <nav class="nav-fixed">
   <div class="nav-box">
-    <div class="nav-logo">After <span>Hours</span></div>
+    <div class="nav-logo">AFTER <span>HOURS</span></div>
 
     <div class="nav-tabs">
-      <div id="pill"></div>
-      <button id="default" class="nav-btn active" onclick="tab('home',this)">home</button>
+      <div id="nav-pill"></div>
+      <button id="default-btn" class="nav-btn active" onclick="tab('home',this)">home</button>
       <button class="nav-btn" onclick="tab('community',this)">community</button>
       <button class="nav-btn" onclick="tab('products',this)">products</button>
       <button class="nav-btn" onclick="tab('info',this)">information</button>
@@ -153,11 +162,13 @@ p{color:#9ca3af;font-size:14px;line-height:1.6}
 
 <!-- HOME -->
 <section id="home" class="page active">
-  <div class="text-center mb-20">
-    <h1 class="text-6xl md:text-8xl mb-6">After <span class="text-fuchsia-400">Hours</span></h1>
+  <div class="text-center mb-24">
+    <h1 class="text-6xl md:text-8xl font-black mb-6">
+      After <span class="text-amber-400">Hours</span>
+    </h1>
     <p class="max-w-xl mx-auto">
-      A neon-themed late-night experience combining games, mystery packs,
-      photobooths, and vibrant drinks.
+      Play · Drink · Connect<br>
+      One night. One stall. Unlimited fun.
     </p>
   </div>
 
@@ -165,118 +176,151 @@ p{color:#9ca3af;font-size:14px;line-height:1.6}
     <div class="card" onclick="tab('community',document.querySelector('[onclick*=community]'))">
       <span class="tag">Community</span>
       <h3 class="text-xl mt-2 mb-2">People & Team</h3>
-      <p>Meet the hosts, organisers, and people behind After Hours.</p>
+      <p>The group behind the stall and the experience.</p>
     </div>
 
     <div class="card" onclick="tab('products',document.querySelector('[onclick*=products]'))">
       <span class="tag">Products</span>
-      <h3 class="text-xl mt-2 mb-2">Games & Experiences</h3>
-      <p>Minigames, mystery neon packs, photobooths, and drinks.</p>
+      <h3 class="text-xl mt-2 mb-2">What’s Inside</h3>
+      <p>Games, drinks, photobooth, and mystery packs.</p>
     </div>
 
     <div class="card" onclick="tab('info',document.querySelector('[onclick*=info]'))">
       <span class="tag">Information</span>
-      <h3 class="text-xl mt-2 mb-2">When · Where · What</h3>
-      <p>Event details, location, timing, and booking information.</p>
+      <h3 class="text-xl mt-2 mb-2">When & Where</h3>
+      <p>Event details, venue, and timing.</p>
     </div>
   </div>
 </section>
 
 <!-- COMMUNITY -->
 <section id="community" class="page">
-  <h2 class="text-5xl mb-12">Community</h2>
+  <h2 class="text-5xl font-black mb-14">Community</h2>
 
-  <h3 class="text-2xl mb-6">Meet the Team</h3>
+  <h3 class="text-2xl font-bold mb-6">Meet the Team</h3>
+
   <div class="grid">
     <div class="card">
-      <span class="tag">Founder</span>
-      <h3 class="mt-2">After Hours Team</h3>
-      <p>Responsible for planning, branding, and event execution.</p>
+      <span class="tag">Group Leader</span>
+      <h3 class="mt-2">Robert</h3>
+      <p>
+        Group leader and website designer. Oversees planning,
+        organisation, and the overall direction of After Hours.
+      </p>
     </div>
 
     <div class="card">
-      <span class="tag">Hosts</span>
-      <h3 class="mt-2">Event Hosts</h3>
-      <p>Running games, managing the crowd, and keeping energy high.</p>
+      <span class="tag">Operations</span>
+      <h3 class="mt-2">Sizwe</h3>
+      <p>
+        Handles stall operations and ensures activities run smoothly
+        throughout the event.
+      </p>
     </div>
 
     <div class="card">
       <span class="tag">Creative</span>
-      <h3 class="mt-2">Design & Atmosphere</h3>
-      <p>Lighting, props, photobooth layout, and visual experience.</p>
+      <h3 class="mt-2">Lesedi</h3>
+      <p>
+        Responsible for creative elements, visuals,
+        and the overall look and feel of the stall.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Games</span>
+      <h3 class="mt-2">Nkosi</h3>
+      <p>
+        Manages mini games and interactive activities,
+        keeping engagement high.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Support</span>
+      <h3 class="mt-2">Bonolo</h3>
+      <p>
+        Assists across the stall, helps guests,
+        and supports all activities where needed.
+      </p>
     </div>
   </div>
 </section>
 
 <!-- PRODUCTS -->
 <section id="products" class="page">
-  <h2 class="text-5xl mb-12">Products</h2>
+  <h2 class="text-5xl font-black mb-14">Products</h2>
 
   <div class="grid">
     <div class="card">
-      <span class="tag">Minigames</span>
-      <h3 class="mt-2">Interactive Games</h3>
-      <p>Short competitive games run by hosts.</p>
-      <p class="mt-2 text-white font-semibold">R50 – R100 per session</p>
+      <span class="tag">Photobooth</span>
+      <h3 class="mt-2">Photo Booth</h3>
+      <p>Take fun pictures with friends and themed props.</p>
     </div>
 
     <div class="card">
-      <span class="tag">Mystery</span>
-      <h3 class="mt-2">Neon Packs</h3>
-      <p>Randomised glowing accessories.</p>
-      <p class="mt-2 text-white font-semibold">R80 / R150 / R250</p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Photo</span>
-      <h3 class="mt-2">Photobooth Accessories</h3>
-      <p>LED props, signs, and themed bundles.</p>
-      <p class="mt-2 text-white font-semibold">Included / Bundle pricing</p>
+      <span class="tag">Bracelets</span>
+      <h3 class="mt-2">Friendship Bracelets</h3>
+      <p>Colourful handmade bracelets to trade or keep.</p>
     </div>
 
     <div class="card">
       <span class="tag">Drinks</span>
       <h3 class="mt-2">Colorful Drinks</h3>
-      <p>Bright, neon-inspired beverages.</p>
-      <p class="mt-2 text-white font-semibold">R30 – R60</p>
+      <p>Bright, refreshing drinks designed for the night.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Games</span>
+      <h3 class="mt-2">Mini Games</h3>
+      <p>Quick games with prizes and competitive fun.</p>
+    </div>
+
+    <div class="card">
+      <span class="tag">Mystery</span>
+      <h3 class="mt-2">Mystery Packs</h3>
+      <p>Surprise packs filled with random rewards.</p>
     </div>
   </div>
 </section>
 
 <!-- INFORMATION -->
 <section id="info" class="page">
-  <h2 class="text-5xl mb-12">Information</h2>
+  <h2 class="text-5xl font-black mb-14">Information</h2>
 
   <div class="grid">
     <div class="card">
       <span class="tag">What</span>
       <h3 class="mt-2">What is After Hours?</h3>
-      <p>A late-night entertainment event focused on fun, visuals, and interaction.</p>
+      <p>
+        A one-night interactive stall focused on fun,
+        connection, and entertainment.
+      </p>
     </div>
 
     <div class="card">
       <span class="tag">When</span>
-      <h3 class="mt-2">Event Times</h3>
-      <p>Typically hosted evenings and nights. Dates announced in advance.</p>
+      <h3 class="mt-2">13 February 2026</h3>
+      <p>The event runs for one night only.</p>
     </div>
 
     <div class="card">
       <span class="tag">Where</span>
-      <h3 class="mt-2">Location</h3>
-      <p>Venue details provided upon booking or announcement.</p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Booking</span>
-      <h3 class="mt-2">How to Book</h3>
-      <p>Contact the After Hours team for private or public event bookings.</p>
+      <h3 class="mt-2">Curro Serengeti Auditorium</h3>
+      <p>The official venue for After Hours.</p>
     </div>
   </div>
+
+  <div class="spacer"></div>
+
+  <p class="text-center text-sm text-gray-500">
+    After Hours — Where the night starts.
+  </p>
 </section>
 
 <script>
 function init(){
-  move(document.getElementById('default'))
+  move(document.getElementById('default-btn'))
 }
 
 function tab(id,el){
@@ -287,13 +331,13 @@ function tab(id,el){
   document.getElementById(id).classList.add('active')
 
   move(el)
-  window.scrollTo({top:0})
+  window.scrollTo({top:0,behavior:'smooth'})
 }
 
 function move(el){
-  const p=document.getElementById('pill')
-  p.style.width=el.offsetWidth+'px'
-  p.style.left=el.offsetLeft+'px'
+  const pill=document.getElementById('nav-pill')
+  pill.style.width=el.offsetWidth+'px'
+  pill.style.left=el.offsetLeft+'px'
 }
 </script>
 
