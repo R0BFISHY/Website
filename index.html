@@ -131,28 +131,20 @@ body{
 }
 
 .card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:24px;
-  background:radial-gradient(
-    600px circle at top left,
-    rgba(250,204,21,.18),
-    transparent 45%
-  );
+  background:none;
   opacity:0;
-  transition:opacity .6s var(--ease);
-  pointer-events:none;
 }
 
 .card:hover::before,
-.card:active::before{opacity:1}
+.card:active::before{
+  opacity:1;
+}
 
 .card:hover,
 .card:active{
   transform:translateY(-8px);
-  border-color:rgba(250,204,21,.45);
   box-shadow:0 32px 70px rgba(0,0,0,.75);
+  border-color:currentColor; /* THIS enables per-section neon */
 }
 
 .tag{
@@ -291,6 +283,61 @@ body{
 
 /* ===== SPACING ===== */
 .spacer{height:120px}
+
+/* =========================
+   NEON COLOR MAP
+========================= */
+
+/* COMMUNITY – PURPLE */
+#community-tab .card::before{
+  background:radial-gradient(
+    600px circle at top left,
+    rgba(168,85,247,.35),
+    transparent 45%
+  );
+}
+#community-tab .card:hover{
+  border-color:rgba(168,85,247,.9);
+}
+
+/* PRODUCTS */
+#products-tab .card:nth-child(1)::before{ /* Photo Booth – Cyan */
+  background:radial-gradient(600px circle at top left, rgba(34,211,238,.35), transparent 45%);
+}
+#products-tab .card:nth-child(1):hover{border-color:rgba(34,211,238,.9)}
+
+#products-tab .card:nth-child(2)::before{ /* Accessories – Magenta */
+  background:radial-gradient(600px circle at top left, rgba(217,70,239,.35), transparent 45%);
+}
+#products-tab .card:nth-child(2):hover{border-color:rgba(217,70,239,.9)}
+
+#products-tab .card:nth-child(3)::before{ /* Drinks – Blue */
+  background:radial-gradient(600px circle at top left, rgba(59,130,246,.35), transparent 45%);
+}
+#products-tab .card:nth-child(3):hover{border-color:rgba(59,130,246,.9)}
+
+#products-tab .card:nth-child(4)::before{ /* Mini Games – Green */
+  background:radial-gradient(600px circle at top left, rgba(34,197,94,.35), transparent 45%);
+}
+#products-tab .card:nth-child(4):hover{border-color:rgba(34,197,94,.9)}
+
+#products-tab .card:nth-child(5)::before{ /* Mystery Packs – Red */
+  background:radial-gradient(600px circle at top left, rgba(239,68,68,.35), transparent 45%);
+}
+#products-tab .card:nth-child(5):hover{border-color:rgba(239,68,68,.9)}
+
+/* INFORMATION – AMBER */
+#info-tab .card::before{
+  background:radial-gradient(
+    600px circle at top left,
+    rgba(251,146,60,.35),
+    transparent 45%
+  );
+}
+#info-tab .card:hover{
+  border-color:rgba(251,146,60,.9);
+}
+
 </style>
 </head>
 
