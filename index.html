@@ -4,341 +4,328 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>After Hours — Stall</title>
-
+<title>After Hours – Stall</title>
 <script src="https://cdn.tailwindcss.com"></script>
 
 <style>
+/* =====================
+   GLOBAL
+===================== */
 :root{
-  --accent:#f59e0b;
-  --accent2:#ef4444;
-  --bg:#070707;
-  --surface:#0e0e0e;
+  --red:#c2410c;
+  --blue:#1e3a8a;
+  --yellow:#facc15;
+  --cream:#f5f5f4;
+  --bg:#0b0b0b;
+  --surface:#141414;
   --border:rgba(255,255,255,.08);
-  --ease:cubic-bezier(.2,.8,.2,1);
 }
 
 body{
+  margin:0;
   background:var(--bg);
-  color:#d4d4d4;
-  overflow-x:hidden;
-  font-family:ui-sans-serif,system-ui;
+  color:#e5e5e5;
+  font-family:system-ui;
 }
 
-/* background texture */
-.bg-grid{
-  position:fixed;
-  inset:0;
-  background-image:radial-gradient(rgba(255,255,255,.025) 1px, transparent 1px);
-  background-size:42px 42px;
-  z-index:-1;
+/* show/hide layouts */
+.mobile-site{display:none}
+.desktop-site{display:none}
+
+@media(max-width:767px){
+  .mobile-site{display:block}
 }
 
-/* ===== NAV ===== */
-.nav-fixed{
-  position:fixed;
-  top:12px;
-  left:50%;
-  transform:translateX(-50%);
-  z-index:1000;
+@media(min-width:768px){
+  .desktop-site{display:block}
 }
 
-.nav-box{
-  display:flex;
-  align-items:center;
-  gap:4px;
-  padding:4px;
-  background:rgba(14,14,14,.75);
-  backdrop-filter:blur(18px);
-  border:1px solid var(--border);
-  border-radius:999px;
-}
-
-.nav-logo{
-  padding:0 12px;
-  font-weight:900;
-  font-size:11px;
-  white-space:nowrap;
-  color:#fff;
-}
-.nav-logo span{color:var(--accent)}
-
-.nav-tabs{
-  position:relative;
-  display:flex;
-  gap:2px;
-}
-
-#nav-pill{
-  position:absolute;
-  top:0;
-  height:100%;
-  background:rgba(255,255,255,.08);
-  border-radius:999px;
-  transition:all .45s var(--ease);
-}
-
-.nav-btn{
-  position:relative;
-  z-index:1;
-  padding:6px 12px;
-  font-size:11px;
-  font-weight:600;
-  color:#888;
-  border-radius:999px;
-}
-
-.nav-btn.active{color:var(--accent)}
-
-/* ===== PAGES ===== */
-.page{
-  display:none;
-  max-width:1200px;
-  margin:0 auto;
-  padding:110px 20px 90px;
-  animation:fade .5s ease;
-}
-.page.active{display:block}
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:none}
-}
-
-/* ===== GRID & CARDS ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:16px;
-}
-
+/* shared */
 .card{
   background:var(--surface);
   border:1px solid var(--border);
-  border-radius:22px;
-  padding:26px;
-  transition:.45s var(--ease);
+  border-radius:20px;
+  padding:22px;
+  transition:.3s ease;
 }
-
-.card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(245,158,11,.45);
-  box-shadow:0 30px 70px rgba(0,0,0,.7);
-}
+.card:hover{transform:translateY(-5px)}
 
 .tag{
-  font-size:10px;
+  font-size:11px;
   letter-spacing:.25em;
   text-transform:uppercase;
-  font-weight:800;
-  color:var(--accent);
+  font-weight:700;
+  color:var(--yellow);
 }
 
-h1,h2,h3{color:#fff}
-p{color:#9ca3af;font-size:14px;line-height:1.6}
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+}
 
-/* spacing */
-.spacer{height:80px}
+.modal.open{display:flex}
+
+.modal-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:28px;
+  max-width:520px;
+  width:90%;
+}
+
+/* =====================
+   MOBILE SITE
+===================== */
+.mobile-nav{
+  position:fixed;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111;
+  padding:6px 10px;
+  border-radius:999px;
+  display:flex;
+  gap:6px;
+  z-index:20;
+}
+
+.mobile-nav button{
+  font-size:11px;
+  padding:6px 10px;
+  border-radius:999px;
+  color:#aaa;
+}
+
+.mobile-nav .active{color:var(--yellow)}
+
+.mobile-page{
+  display:none;
+  padding:90px 16px 70px;
+}
+.mobile-page.active{display:block}
+
+/* =====================
+   DESKTOP SITE
+===================== */
+.desktop-nav{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#111;
+  padding:8px;
+  border-radius:999px;
+  display:flex;
+  gap:6px;
+  z-index:20;
+}
+
+.desktop-nav button{
+  font-size:12px;
+  padding:8px 16px;
+  border-radius:999px;
+  color:#aaa;
+}
+
+.desktop-nav .active{color:var(--yellow)}
+
+.desktop-page{
+  display:none;
+  max-width:1200px;
+  margin:auto;
+  padding:140px 24px 90px;
+}
+.desktop-page.active{display:block}
 </style>
 </head>
 
-<body onload="init()">
-<div class="bg-grid"></div>
+<body>
 
-<!-- NAV -->
-<nav class="nav-fixed">
-  <div class="nav-box">
-    <div class="nav-logo">AFTER <span>HOURS</span></div>
+<!-- =====================
+     MOBILE WEBSITE
+===================== -->
+<div class="mobile-site">
 
-    <div class="nav-tabs">
-      <div id="nav-pill"></div>
-      <button id="default-btn" class="nav-btn active" onclick="tab('home',this)">home</button>
-      <button class="nav-btn" onclick="tab('community',this)">community</button>
-      <button class="nav-btn" onclick="tab('products',this)">products</button>
-      <button class="nav-btn" onclick="tab('info',this)">information</button>
-    </div>
-  </div>
+<nav class="mobile-nav">
+  <button class="active" onclick="mTab('m-home',this)">Home</button>
+  <button onclick="mTab('m-community',this)">Community</button>
+  <button onclick="mTab('m-products',this)">Products</button>
+  <button onclick="mTab('m-info',this)">Info</button>
 </nav>
 
-<!-- HOME -->
-<section id="home" class="page active">
-  <div class="text-center mb-24">
-    <h1 class="text-6xl md:text-8xl font-black mb-6">
-      After <span class="text-amber-400">Hours</span>
-    </h1>
-    <p class="max-w-xl mx-auto">
-      Play · Drink · Connect<br>
-      One night. One stall. Unlimited fun.
+<section id="m-home" class="mobile-page active text-center">
+  <h1 class="text-4xl font-black mb-4">After <span class="text-yellow-400">Hours</span></h1>
+  <p class="text-gray-400 mb-8">Play · Drink · Connect</p>
+
+  <div class="grid gap-4">
+    <div class="card" onclick="openModal(teamRobert)">
+      <span class="tag">Community</span>
+      <h3 class="mt-2">Meet the Team</h3>
+    </div>
+
+    <div class="card" onclick="openModal(productInfo)">
+      <span class="tag">Products</span>
+      <h3 class="mt-2">What’s Inside</h3>
+    </div>
+
+    <div class="card" onclick="openModal(eventInfo)">
+      <span class="tag">Information</span>
+      <h3 class="mt-2">When & Where</h3>
+    </div>
+  </div>
+</section>
+
+<section id="m-community" class="mobile-page">
+  <h2 class="text-3xl font-bold mb-6">Community</h2>
+  <div class="grid gap-4">
+    <div class="card" onclick="openModal(teamRobert)">Robert</div>
+    <div class="card" onclick="openModal(teamSizwe)">Sizwe</div>
+    <div class="card" onclick="openModal(teamLesedi)">Lesedi</div>
+    <div class="card" onclick="openModal(teamNkosi)">Nkosi</div>
+    <div class="card" onclick="openModal(teamBonolo)">Bonolo</div>
+  </div>
+</section>
+
+<section id="m-products" class="mobile-page">
+  <h2 class="text-3xl font-bold mb-6">Products</h2>
+  <div class="grid gap-4">
+    <div class="card" onclick="openModal(photoBooth)">Photo Booth<br><b>TBD</b></div>
+    <div class="card" onclick="openModal(bracelets)">Friendship Bracelets<br><b>TBD</b></div>
+    <div class="card" onclick="openModal(drinks)">Colorful Drinks<br><b>TBD</b></div>
+    <div class="card" onclick="openModal(games)">Mini Games<br><b>TBD</b></div>
+    <div class="card" onclick="openModal(mystery)">Mystery Packs<br><b>TBD</b></div>
+  </div>
+</section>
+
+<section id="m-info" class="mobile-page">
+  <h2 class="text-3xl font-bold mb-6">Information</h2>
+  <div class="card">
+    <p><b>Date:</b> 13 February 2026</p>
+    <p><b>Venue:</b> Curro Serengeti Auditorium</p>
+    <p class="mt-4 text-gray-400">
+      Pre-orders will be further communicated via the website in the coming days.
     </p>
   </div>
+</section>
 
-  <div class="grid">
-    <div class="card" onclick="tab('community',document.querySelector('[onclick*=community]'))">
-      <span class="tag">Community</span>
-      <h3 class="text-xl mt-2 mb-2">People & Team</h3>
-      <p>The group behind the stall and the experience.</p>
-    </div>
+</div>
 
-    <div class="card" onclick="tab('products',document.querySelector('[onclick*=products]'))">
-      <span class="tag">Products</span>
-      <h3 class="text-xl mt-2 mb-2">What’s Inside</h3>
-      <p>Games, drinks, photobooth, and mystery packs.</p>
-    </div>
+<!-- =====================
+     DESKTOP WEBSITE
+===================== -->
+<div class="desktop-site">
 
-    <div class="card" onclick="tab('info',document.querySelector('[onclick*=info]'))">
-      <span class="tag">Information</span>
-      <h3 class="text-xl mt-2 mb-2">When & Where</h3>
-      <p>Event details, venue, and timing.</p>
-    </div>
+<nav class="desktop-nav">
+  <button class="active" onclick="dTab('d-home',this)">Home</button>
+  <button onclick="dTab('d-community',this)">Community</button>
+  <button onclick="dTab('d-products',this)">Products</button>
+  <button onclick="dTab('d-info',this)">Information</button>
+</nav>
+
+<section id="d-home" class="desktop-page active text-center">
+  <h1 class="text-7xl font-black mb-6">After <span class="text-yellow-400">Hours</span></h1>
+  <p class="text-gray-400 mb-14">One night. One stall. Unlimited fun.</p>
+
+  <div class="grid grid-cols-3 gap-6">
+    <div class="card" onclick="dTab('d-community',document.querySelector('[onclick*=d-community]'))">Community</div>
+    <div class="card" onclick="dTab('d-products',document.querySelector('[onclick*=d-products]'))">Products</div>
+    <div class="card" onclick="dTab('d-info',document.querySelector('[onclick*=d-info]'))">Information</div>
   </div>
 </section>
 
-<!-- COMMUNITY -->
-<section id="community" class="page">
-  <h2 class="text-5xl font-black mb-14">Community</h2>
-
-  <h3 class="text-2xl font-bold mb-6">Meet the Team</h3>
-
-  <div class="grid">
-    <div class="card">
-      <span class="tag">Group Leader</span>
-      <h3 class="mt-2">Robert</h3>
-      <p>
-        Group leader and website designer. Oversees planning,
-        organisation, and the overall direction of After Hours.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Operations</span>
-      <h3 class="mt-2">Sizwe</h3>
-      <p>
-        Handles stall operations and ensures activities run smoothly
-        throughout the event.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Creative</span>
-      <h3 class="mt-2">Lesedi</h3>
-      <p>
-        Responsible for creative elements, visuals,
-        and the overall look and feel of the stall.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Games</span>
-      <h3 class="mt-2">Nkosi</h3>
-      <p>
-        Manages mini games and interactive activities,
-        keeping engagement high.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Support</span>
-      <h3 class="mt-2">Bonolo</h3>
-      <p>
-        Assists across the stall, helps guests,
-        and supports all activities where needed.
-      </p>
-    </div>
+<section id="d-community" class="desktop-page">
+  <h2 class="text-5xl font-bold mb-10">Meet the Team</h2>
+  <div class="grid grid-cols-3 gap-6">
+    <div class="card" onclick="openModal(teamRobert)">Robert</div>
+    <div class="card" onclick="openModal(teamSizwe)">Sizwe</div>
+    <div class="card" onclick="openModal(teamLesedi)">Lesedi</div>
+    <div class="card" onclick="openModal(teamNkosi)">Nkosi</div>
+    <div class="card" onclick="openModal(teamBonolo)">Bonolo</div>
   </div>
 </section>
 
-<!-- PRODUCTS -->
-<section id="products" class="page">
-  <h2 class="text-5xl font-black mb-14">Products</h2>
-
-  <div class="grid">
-    <div class="card">
-      <span class="tag">Photobooth</span>
-      <h3 class="mt-2">Photo Booth</h3>
-      <p>Take fun pictures with friends and themed props.</p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Bracelets</span>
-      <h3 class="mt-2">Friendship Bracelets</h3>
-      <p>Colourful handmade bracelets to trade or keep.</p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Drinks</span>
-      <h3 class="mt-2">Colorful Drinks</h3>
-      <p>Bright, refreshing drinks designed for the night.</p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Games</span>
-      <h3 class="mt-2">Mini Games</h3>
-      <p>Quick games with prizes and competitive fun.</p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Mystery</span>
-      <h3 class="mt-2">Mystery Packs</h3>
-      <p>Surprise packs filled with random rewards.</p>
-    </div>
+<section id="d-products" class="desktop-page">
+  <h2 class="text-5xl font-bold mb-10">Products</h2>
+  <div class="grid grid-cols-3 gap-6">
+    <div class="card" onclick="openModal(photoBooth)">Photo Booth – TBD</div>
+    <div class="card" onclick="openModal(bracelets)">Friendship Bracelets – TBD</div>
+    <div class="card" onclick="openModal(drinks)">Colorful Drinks – TBD</div>
+    <div class="card" onclick="openModal(games)">Mini Games – TBD</div>
+    <div class="card" onclick="openModal(mystery)">Mystery Packs – TBD</div>
   </div>
 </section>
 
-<!-- INFORMATION -->
-<section id="info" class="page">
-  <h2 class="text-5xl font-black mb-14">Information</h2>
-
-  <div class="grid">
-    <div class="card">
-      <span class="tag">What</span>
-      <h3 class="mt-2">What is After Hours?</h3>
-      <p>
-        A one-night interactive stall focused on fun,
-        connection, and entertainment.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="tag">When</span>
-      <h3 class="mt-2">13 February 2026</h3>
-      <p>The event runs for one night only.</p>
-    </div>
-
-    <div class="card">
-      <span class="tag">Where</span>
-      <h3 class="mt-2">Curro Serengeti Auditorium</h3>
-      <p>The official venue for After Hours.</p>
-    </div>
+<section id="d-info" class="desktop-page">
+  <h2 class="text-5xl font-bold mb-10">Information</h2>
+  <div class="card max-w-xl">
+    <p><b>Date:</b> 13 February 2026</p>
+    <p><b>Venue:</b> Curro Serengeti Auditorium</p>
+    <p class="mt-4 text-gray-400">
+      Pre-orders will be further communicated via the website in the coming days.
+    </p>
   </div>
-
-  <div class="spacer"></div>
-
-  <p class="text-center text-sm text-gray-500">
-    After Hours — Where the night starts.
-  </p>
 </section>
+
+</div>
+
+<!-- =====================
+     MODAL
+===================== -->
+<div id="modal" class="modal" onclick="closeModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div id="modalContent"></div>
+    <button class="mt-6 w-full py-3 rounded-xl bg-yellow-400 text-black font-bold" onclick="closeModal()">Close</button>
+  </div>
+</div>
 
 <script>
-function init(){
-  move(document.getElementById('default-btn'))
+function openModal(html){
+  modalContent.innerHTML = html;
+  modal.classList.add('open');
+}
+function closeModal(){
+  modal.classList.remove('open');
 }
 
-function tab(id,el){
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'))
-  el.classList.add('active')
-
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))
-  document.getElementById(id).classList.add('active')
-
-  move(el)
-  window.scrollTo({top:0,behavior:'smooth'})
+/* mobile tabs */
+function mTab(id,el){
+  document.querySelectorAll('.mobile-page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.mobile-nav button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  window.scrollTo(0,0);
 }
 
-function move(el){
-  const pill=document.getElementById('nav-pill')
-  pill.style.width=el.offsetWidth+'px'
-  pill.style.left=el.offsetLeft+'px'
+/* desktop tabs */
+function dTab(id,el){
+  document.querySelectorAll('.desktop-page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.desktop-nav button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  window.scrollTo(0,0);
 }
+
+/* modal content */
+const teamRobert = `<h3 class="text-xl font-bold">Robert</h3><p>Group leader and website designer. Oversees planning and execution.</p>`;
+const teamSizwe = `<h3 class="text-xl font-bold">Sizwe</h3><p>Responsible for operations and stall flow.</p>`;
+const teamLesedi = `<h3 class="text-xl font-bold">Lesedi</h3><p>Creative lead for visuals and atmosphere.</p>`;
+const teamNkosi = `<h3 class="text-xl font-bold">Nkosi</h3><p>Manages mini games and engagement.</p>`;
+const teamBonolo = `<h3 class="text-xl font-bold">Bonolo</h3><p>General support and guest assistance.</p>`;
+
+const photoBooth = `<h3 class="text-xl font-bold">Photo Booth</h3><p>Fun themed photos with friends.</p><p class="mt-2"><b>Price:</b> TBD</p>`;
+const bracelets = `<h3 class="text-xl font-bold">Friendship Bracelets</h3><p>Colourful handmade bracelets.</p><p><b>Price:</b> TBD</p>`;
+const drinks = `<h3 class="text-xl font-bold">Colorful Drinks</h3><p>Bright refreshing drinks.</p><p><b>Price:</b> TBD</p>`;
+const games = `<h3 class="text-xl font-bold">Mini Games</h3><p>Quick games with prizes.</p><p><b>Price:</b> TBD</p>`;
+const mystery = `<h3 class="text-xl font-bold">Mystery Packs</h3><p>Surprise rewards.</p><p><b>Price:</b> TBD</p>`;
+
+const eventInfo = `<h3 class="text-xl font-bold">Event Information</h3><p>13 February 2026<br>Curro Serengeti Auditorium</p><p class="mt-3">Pre-orders will be further communicated via the website in coming days.</p>`;
+const productInfo = `<h3 class="text-xl font-bold">Products</h3><p>Games, drinks, photobooths, and mystery packs.</p>`;
 </script>
 
 </body>
